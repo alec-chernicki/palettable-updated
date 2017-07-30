@@ -1,0 +1,17 @@
+{
+  "name": "Palettable",
+  "version": "1.0.0",
+  "description": "Generate color palettes using the knowledge of millions of designers.",
+  "author": "Alec Ortega",
+  "repository": "git@github.com:alecortega/palettable.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node start-server.js",
+    "client": "node start-client.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^3.5.0"
+  }
+}
