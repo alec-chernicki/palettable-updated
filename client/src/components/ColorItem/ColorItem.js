@@ -1,87 +1,58 @@
-import './ColorItem.css';
+import styles from './ColorItem.css';
+import CSSModules from 'react-css-modules';
 import React, { PropTypes, Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ColorName from '../ColorName/ColorName';
-import ColorPicker from '../ColorPicker/ColorPicker';
 import SliderIcon from '../SliderIcon/SliderIcon';
-import InterfaceTheme from '../InterfaceTheme/InterfaceTheme';
+import UILoader from 'UILibrary/loader/UILoader';
+import ColorItemFooter from './ColorItemFooter';
+import ColorPickerTool from './Tools/ColorPickerTool';
 
 class ColorItem extends Component {
-  handlePickerToggle() {
-    this.props.onTogglePicker(this.props.color);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isActive: false,
+    };
+
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
-  handleColorChange(newColor) {
-    this.props.onSubmit(this.props.color, newColor.hex.toUpperCase());
+
+  handleMouseEnter() {
+    this.setState({ isActive: true });
   }
+
+  handleMouseLeave() {
+    this.setState({ isActive: false });
+  }
+
   render() {
-    const {
-      color, colorValue, onSubmit, onChange, onLike, onRemove, onDislike, onCloseAllPickers,
-    } = this.props;
+    const { hexCode } = this.props;
+    const { isActive } = this.state;
+
+    const style = {
+      backgroundColor: hexCode,
+    };
+
     return (
-      <li key={color.id} style={{ backgroundColor: color.color }} className="color">
-        <InterfaceTheme color={color.color}>
-          <div className="color-container">
-            <ColorName
-              color={color}
-              colorValue={colorValue}
-              onChange={onChange}
-              onSubmit={onSubmit}
-              onFocus={onCloseAllPickers}
-            />
-            <div className="spinner">
-              <div className="bounce1"></div>
-              <div className="bounce2"></div>
-              <div className="bounce3"></div>
-            </div>
+      <li
+        key={hexCode}
+        style={style}
+        styleName="color-item"
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
+        <div>
+          <ColorName hexCode={hexCode} />
+          <div styleName="toolbox">
+            <ColorPickerTool hexCode={hexCode} />
           </div>
-          <SliderIcon
-            toggled={color.pickerActive}
-            onToggle={this.handlePickerToggle.bind(this)}
-          />
-          <ReactCSSTransitionGroup
-            transitionName={"color-picker-animation"}
-            transitionEnterTimeout={175}
-            transitionLeaveTimeout={175}
-          >
-            {color.pickerActive ?
-              <ColorPicker
-                onChange={this.handleColorChange.bind(this)}
-                onToggle={this.handlePickerToggle.bind(this)}
-                color={color.color}
-              />
-              : null
-            }
-          </ReactCSSTransitionGroup>
-          <div className="color-footer">
-            <div className="instructions-container dislike" onClick={onDislike}>
-              <span className="keyboard-button">D</span>
-              <span className="keyboard-text">Dislike</span>
-            </div>
-            <div className="instructions-container remove" onClick={onRemove}>
-              <span className="keyboard-button">&#8592;</span>
-              <span className="keyboard-text">Remove</span>
-            </div>
-            <div className="instructions-container like" onClick={onLike}>
-              <span className="keyboard-button">L</span>
-              <span className="keyboard-text">Like</span>
-            </div>
-          </div>
-        </InterfaceTheme>
+        </div>
+        <ColorItemFooter active={isActive} />
       </li>
     );
   }
 }
 
-// TODO: This component might be getting too much responsibility, consider refactor
-ColorItem.propTypes = {
-  color: PropTypes.object.isRequired,
-  colorValue: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onLike: PropTypes.func.isRequired,
-  onDislike: PropTypes.func.isRequired,
-  onTogglePicker: PropTypes.func.isRequired,
-  onCloseAllPickers: PropTypes.func.isRequired,
-};
-
-export default ColorItem;
+export default CSSModules(ColorItem, styles);

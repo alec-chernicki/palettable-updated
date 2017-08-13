@@ -1,5 +1,4 @@
-.color-text {
-  opacity: 0.7;
+.color-name {
   background: transparent;
   border: none;
   outline: none;
@@ -7,12 +6,25 @@
   text-align: center;
   font-size: 30px;
   transition: opacity 0.25s ease-in-out;
-  font-weight: 400;
+  font-weight: 600;
+  letter-spacing: 0.025em;
   width: 100%;
   z-index: 100;
   position: relative;
 }
 
-.color-text:hover, .color-text:focus {
-  opacity: 1;
+.light {
+  composes: color-name;
+}
+
+.light:hover, .light:focus {
+  color: #FFF !important;
+}
+
+.dark {
+  composes: color-name;
+}
+
+.dark:hover, .dark:focus {
+  color: #333 !important;
 }

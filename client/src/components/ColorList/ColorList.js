@@ -1,32 +1,57 @@
-import './ColorList.css';
+import styles from './ColorList.css';
+import CSSModules from 'react-css-modules';
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import SyncedColor from '../../containers/SyncedColor';
+import { connect } from 'react-redux';
+import { requestPalette } from 'redux/actions/dataStatus';
+import ColorItem from 'components/ColorItem/ColorItem';
 
-const ColorList = ({ colors, isFetching }) => {
-  const colorItems = colors.map(color => (
-    <SyncedColor key={color.id} color={color} />
-  ));
+class ColorList extends React.Component {
+  componentDidMount() {
+    const { requestPalette } = this.props;
 
-  const containerClassName = isFetching ? 'searching color-list' : 'color-list';
+    requestPalette();
+  }
+  renderColors() {
+    const { shownPalette } = this.props;
 
-  return (
-    <ReactCSSTransitionGroup
-      component="ul"
-      className={containerClassName}
-      transitionName={'color-animation'}
-      transitionEnterTimeout={300}
-      transitionLeaveTimeout={350}
-    >
-      {colorItems}
-    </ReactCSSTransitionGroup>
-  );
-};
-
+    return shownPalette.map(({ hexCode }) => {
+      console.log(hexCode);
+      return <ColorItem key={hexCode} hexCode={hexCode} />;
+    });
+  }
+  render() {
+    return (
+      <ReactCSSTransitionGroup
+        component="ul"
+        styleName="color-list"
+        transitionName={'color-animation'}
+        transitionEnterTimeout={300}
+        transitionLeaveTimeout={350}
+      >
+        {this.renderColors()}
+      </ReactCSSTransitionGroup>
+    );
+  }
+}
 
 ColorList.propTypes = {
-  colors: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool.isRequired,
+  shownPalette: PropTypes.array.isRequired,
+  requestPalette: PropTypes.func.isRequired,
 };
 
-export default ColorList;
+const mapStateToProps = state => {
+  return {
+    shownPalette: state.sourcePalette,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    requestPalette: () => dispatch(requestPalette()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  CSSModules(ColorList, styles)
+);

@@ -1,17 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import configureStore from '../configureStore';
-import { Router, Route, browserHistory } from 'react-router';
-import App from './App';
+import configureStore from 'redux/configureStore';
+import routes from 'config/routes';
 
 const store = configureStore();
 
-const Root = () => (
+const Root = () =>
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/(:palette)" component={App} />
-    </Router>
-  </Provider>
-);
+    {routes}
+  </Provider>;
 
 export default Root;

@@ -1,7 +1,14 @@
 import { connect } from 'react-redux';
 import {
-  invalidatePalette, changeColorText, resetColorName, editColorText, toggleColorPicker,
-  addColorIfValid, changeColorIfValid, closeAllColorPickers, removeColorIfValid,
+  invalidatePalette,
+  changeColorText,
+  resetColorName,
+  editColorText,
+  toggleColorPicker,
+  addColorIfValid,
+  changeColorIfValid,
+  closeAllColorPickers,
+  removeColorIfValid,
 } from '../actions';
 import isHex from '../utils/isHex';
 import ColorItem from '../components/ColorItem/ColorItem';
@@ -13,39 +20,36 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (color, text) => {
-    const colorText = /#/.test(text) ? text : `#${text}`;
-    if (isHex(colorText)) {
-      dispatch(invalidatePalette());
-      dispatch(changeColorText(color, colorText));
-    } else {
-      dispatch(resetColorName(color));
-    }
-  },
-  onChange: (color, text) => {
-    dispatch(editColorText(color, text));
-  },
-  onTogglePicker: (color) => {
-    dispatch(toggleColorPicker(color));
-  },
-  onCloseAllPickers: () => {
-    dispatch(closeAllColorPickers());
-  },
-  onLike: () => {
-    dispatch(addColorIfValid());
-  },
-  onDislike: () => {
-    dispatch(changeColorIfValid());
-  },
-  onRemove() {
-    dispatch(removeColorIfValid());
-  },
+const mapDispatchToProps = dispatch => ({
+  // onSubmit: (color, text) => {
+  //   const colorText = /#/.test(text) ? text : `#${text}`;
+  //   if (isHex(colorText)) {
+  //     dispatch(invalidatePalette());
+  //     dispatch(changeColorText(color, colorText));
+  //   } else {
+  //     dispatch(resetColorName(color));
+  //   }
+  // },
+  // onChange: (color, text) => {
+  //   dispatch(editColorText(color, text));
+  // },
+  // onTogglePicker: (color) => {
+  //   dispatch(toggleColorPicker(color));
+  // },
+  // onCloseAllPickers: () => {
+  //   dispatch(closeAllColorPickers());
+  // },
+  // onLike: () => {
+  //   dispatch(addColorIfValid());
+  // },
+  // onDislike: () => {
+  //   dispatch(changeColorIfValid());
+  // },
+  // onRemove() {
+  //   dispatch(removeColorIfValid());
+  // },
 });
 
-const SyncedColor = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ColorItem);
+const SyncedColor = connect(mapStateToProps, mapDispatchToProps)(ColorItem);
 
 export default SyncedColor;

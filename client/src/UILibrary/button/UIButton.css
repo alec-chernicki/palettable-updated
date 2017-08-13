@@ -1,0 +1,22 @@
+.uiButton {
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+
+.primary {
+  composes: uiButton;
+  background-color: #333333;
+}
+
+.positive {
+  composes: uiButton;
+  background-color: #77A88D;
+}
+
+.negative {
+  composes: uiButton;
+  background-color: #FF6670;
+}

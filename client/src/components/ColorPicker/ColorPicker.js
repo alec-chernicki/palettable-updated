@@ -1,5 +1,6 @@
-import './ColorPicker.css';
-import React, { Component, PropTypes } from 'react'
+import styles from './ColorPicker.css';
+import CSSModules from 'react-css-modules';
+import React, { Component, PropTypes } from 'react';
 import { CustomPicker } from 'react-color';
 import { Hue, Saturation } from 'react-color/lib/components/common';
 
@@ -9,22 +10,19 @@ class ColorPicker extends Component {
   }
   render() {
     return (
-      <div className="popover">
-        <div className="cover" onClick={this.props.onToggle} />
-        <div className="picker">
-          <div className="saturation">
+      <div styleName="popover">
+        <div styleName="cover" onClick={this.props.onToggle} />
+        <div styleName="picker">
+          <div styleName="saturation">
             <Saturation
               {...this.props}
               onChange={this.handleChange.bind(this)}
             />
           </div>
-          <div className="controls">
-            <div className="sliders">
-              <div className="hue">
-                <Hue
-                  {...this.props}
-                  onChange={this.handleChange.bind(this)}
-                />
+          <div styleName="controls">
+            <div styleName="sliders">
+              <div styleName="hue">
+                <Hue {...this.props} onChange={this.handleChange.bind(this)} />
               </div>
             </div>
           </div>
@@ -39,4 +37,4 @@ ColorPicker.propTypes = {
   onToggle: PropTypes.func.isRequired,
 };
 
-export default CustomPicker(ColorPicker);
+export default CustomPicker(CSSModules(ColorPicker, styles));

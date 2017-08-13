@@ -10,14 +10,14 @@ const PaletteAPI = {
         colors: allColors,
         dislikedColors,
       },
-    }
+    };
 
-    return axios.get(CHANGE_ENDPOINT, options)
+    return axios.get(CHANGE_ENDPOINT, options);
   },
 
   getRandom() {
-    return axios.get(RANDOM_ENDPOINT)
-  }
-}
+    return axios.get(RANDOM_ENDPOINT).then(({ data }) => data);
+  },
+};
 
 export default PaletteAPI;

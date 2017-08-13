@@ -1,34 +1,70 @@
-import './ColorName.css';
-
+import styles from './ColorName.css';
+import CSSModules from 'react-css-modules';
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 
 class ColorName extends Component {
-  handleChange(e) {
-    this.props.onChange(this.props.color, e.target.value);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      shownColor: props.hexCode,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
-  handleSubmit(e) {
-    this.props.onSubmit(this.props.color, e.target.value);
+  handleChange(e) {
+    this.setState({
+      shownColor: e.target.value,
+    });
+  }
+  handleBlur(e) {
+    this.props.onBlur({
+      hexCode: this.props.color,
+      newHexCode: e.target.value,
+    });
+
+    this.props.onBlur(this.props.color, e.target.value);
   }
   render() {
+    const { shownColor } = this.state;
+    const { hexCode } = this.props;
+    const interfaceAttributes = getInterfaceAttributes(hexCode);
+
+    const style = {
+      color: interfaceAttributes.color,
+    };
+
     return (
       <input
         type="text"
-        className="color-text"
-        value={this.props.colorValue}
-        onFocus={this.props.onFocus}
-        onChange={this.handleChange.bind(this)}
-        onBlur={this.handleSubmit.bind(this)}
+        styleName={interfaceAttributes.className}
+        value={shownColor}
+        style={style}
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
       />
-  );
+    );
   }
 }
 
-ColorName.propTypes = {
-  color: PropTypes.object.isRequired,
-  colorValue: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onFocus: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+ColorName.defaultProps = {
+  onBlur: () => {},
+  onChange: () => {},
 };
 
-export default ColorName;
+ColorName.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  hexCode: PropTypes.string.isRequired,
+};
+
+const mapDispatchToProps = dispatch => {
+  onBlur: () => dispatch();
+};
+
+export default connect(() => {}, mapDispatchToProps)(
+  CSSModules(ColorName, styles)
+);

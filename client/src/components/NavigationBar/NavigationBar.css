@@ -1,0 +1,12 @@
+.navigation-bar {
+  background-color: #FFF;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation-bar h1 {
+  color: #333333;
+  font-size: 24px;
+  line-height: 35px;
+}
