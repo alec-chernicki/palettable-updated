@@ -19,7 +19,7 @@ const sourcePalette = handleActions(
       return payload.map(color => {
         return {
           ...defaultSourcecolor,
-          hexCode: `#${color}`,
+          hexCode: color,
         };
       });
     },

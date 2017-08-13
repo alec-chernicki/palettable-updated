@@ -4,7 +4,7 @@ import { addShownColor } from 'redux/actions/shownPalette';
 import { requestPalette } from 'redux/actions/dataStatus';
 import PaletteAPI from 'api/PaletteAPI';
 
-function* fetchPalette() {
+function* fetchPalette(stuff) {
   try {
     const palette = yield call(PaletteAPI.getRandom);
     yield put(receivePalette(palette));

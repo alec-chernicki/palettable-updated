@@ -12,6 +12,8 @@ class ColorList extends React.Component {
 
     requestPalette();
   }
+  handleLike() {}
+  handleDislike() {}
   renderColors() {
     const { shownPalette } = this.props;
 
