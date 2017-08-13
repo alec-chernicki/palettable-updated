@@ -3,6 +3,7 @@
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
+  flex-shrink: 0;
 }
 
 .navigation-bar h1 {

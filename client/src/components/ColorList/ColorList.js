@@ -16,7 +16,6 @@ class ColorList extends React.Component {
     const { shownPalette } = this.props;
 
     return shownPalette.map(({ hexCode }) => {
-      console.log(hexCode);
       return <ColorItem key={hexCode} hexCode={hexCode} />;
     });
   }
@@ -40,9 +39,9 @@ ColorList.propTypes = {
   requestPalette: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ shownPalette }) => {
   return {
-    shownPalette: state.sourcePalette,
+    shownPalette,
   };
 };
 

@@ -1,6 +1,9 @@
 import { handleActions } from 'redux-actions';
-import { receivePalette } from '../actions/sourcePalette';
-import { dislikeSourceColor, likeSourceColor } from 'redux/actions/sourceColor';
+import {
+  receivePalette,
+  dislikeSourceColor,
+  likeSourceColor,
+} from 'redux/actions/sourcePalette';
 
 const defaultSourcecolor = {
   hexCode: '',
@@ -20,11 +23,29 @@ const sourcePalette = handleActions(
         };
       });
     },
-    [dislikeSourceColor]: (state, { payload }) => {
-      return { ...state, ...payload };
+    [dislikeSourceColor]: (state, { payload: { hexCode, disliked } }) => {
+      return state.map(color => {
+        if (color.hexCode !== hexCode) {
+          return color;
+        }
+
+        return {
+          ...color,
+          disliked,
+        };
+      });
     },
-    [likeSourceColor]: (state, { payload }) => {
-      return { ...state, ...payload };
+    [likeSourceColor]: (state, { payload: { hexCode, liked } }) => {
+      return state.map(color => {
+        if (color.hexCode !== hexCode) {
+          return color;
+        }
+
+        return {
+          ...color,
+          liked,
+        };
+      });
     },
   },
   defaultState

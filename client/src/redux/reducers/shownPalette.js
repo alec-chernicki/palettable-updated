@@ -1,25 +1,47 @@
 import { handleActions } from 'redux-actions';
-import { addColor, removeColor } from '../actions/shownPalette';
+import {
+  addShownColor,
+  removeShownColor,
+  changeShownColor,
+} from '../actions/shownPalette';
+
+const defaultShownColor = {
+  hexCode: '',
+};
 
 const initialState = [];
 
 const shownPalette = handleActions(
   {
-    [addColor]: (state, { payload: { color } }) => {
-      return {
+    [addShownColor]: (state, { payload: { hexCode } }) => {
+      return [
         ...state,
-        shownPalette: [...state.shownPalette, color],
-      };
+        {
+          ...defaultShownColor,
+          hexCode,
+        },
+      ];
     },
-    [removeColor]: (state, { payload: { color } }) => {
-      const shownPalette = state.shownPalette.filter(shownColor => {
-        return shownColor.hex !== color.hex;
+    [removeShownColor]: (state, { payload: { hexCode } }) => {
+      const shownPalette = state.filter(shownColor => {
+        return shownColor.hexCode !== hexCode;
       });
 
-      return {
-        ...state,
-        shownPalette,
-      };
+      return shownPalette;
+    },
+    [changeShownColor]: (state, { payload: { hexCode, newHexCode } }) => {
+      const shownPalette = state.map(shownColor => {
+        if (shownColor.hexCode !== hexCode) {
+          return shownColor;
+        }
+
+        return {
+          ...shownColor,
+          hexCode: newHexCode,
+        };
+      });
+
+      return shownPalette;
     },
   },
   initialState

@@ -49,7 +49,7 @@ class ColorItem extends Component {
             <ColorPickerTool hexCode={hexCode} />
           </div>
         </div>
-        <ColorItemFooter active={isActive} />
+        <ColorItemFooter active={isActive} hexCode={hexCode} />
       </li>
     );
   }

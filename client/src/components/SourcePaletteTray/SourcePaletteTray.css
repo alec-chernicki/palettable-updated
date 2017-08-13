@@ -1,6 +1,7 @@
 .source-palette-tray {
   background-color: #333333;
   padding: 10px 0 30px;
+  flex-shrink: 0;
 }
 
 .source-title {

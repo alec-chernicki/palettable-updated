@@ -61,10 +61,8 @@ ColorName.propTypes = {
   hexCode: PropTypes.string.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
-  onBlur: () => dispatch();
-};
+// const mapDispatchToProps = dispatch => {
+//   onBlur: () => dispatch();
+// };
 
-export default connect(() => {}, mapDispatchToProps)(
-  CSSModules(ColorName, styles)
-);
+export default CSSModules(ColorName, styles);

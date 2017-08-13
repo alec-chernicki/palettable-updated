@@ -1,6 +1,11 @@
 import { createActions } from 'redux-actions';
 
-export const { addColor, removeColor } = createActions({
-  ADD_COLOR: color => ({ color }),
-  REMOVE_COLOR: color => ({ color }),
+export const {
+  addShownColor,
+  removeShownColor,
+  changeShownColor,
+} = createActions({
+  ADD_SHOWN_COLOR: hexCode => ({ hexCode: `#${hexCode}` }),
+  REMOVE_SHOWN_COLOR: hexCode => ({ hexCode: `#${hexCode}` }),
+  CHANGE_SHOWN_COLOR: hexCode => ({ hexCode: `#${hexCode}` }),
 });
