@@ -13,19 +13,17 @@ const likedColors = handleActions(
       return [...state, hexCode];
     },
     [removeLikedColor]: (state, { payload: { hexCode } }) => {
-      const likedColors = state.filter(likedColor => {
+      return state.filter(likedColor => {
         return likedColor !== hexCode;
       });
-
-      return likedColors;
     },
-    [changeLikedColor]: (state, { payload: { hexCode, newHexCode } }) => {
+    [changeLikedColor]: (state, { payload: { oldHexCode, newHexCode } }) => {
       return state.map(likedColor => {
-        if (likedColor !== hexCode) {
+        if (likedColor !== oldHexCode) {
           return likedColor;
         }
 
-        return likedColor;
+        return newHexCode;
       });
     },
   },

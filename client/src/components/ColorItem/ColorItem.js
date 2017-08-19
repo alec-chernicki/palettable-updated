@@ -1,13 +1,14 @@
 import styles from './ColorItem.css';
 import CSSModules from 'react-css-modules';
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import ColorName from '../ColorName/ColorName';
 import SliderIcon from '../SliderIcon/SliderIcon';
 import UILoader from 'UILibrary/loader/UILoader';
 import ColorItemFooter from './ColorItemFooter';
 import ColorPickerTool from './Tools/ColorPickerTool';
+import RemoveTool from './Tools/RemoveTool';
 
-class ColorItem extends Component {
+class ColorItem extends PureComponent {
   render() {
     const { hexCode, isLastItem } = this.props;
 
@@ -21,6 +22,7 @@ class ColorItem extends Component {
           <ColorName hexCode={hexCode} />
           <div styleName="toolbox">
             <ColorPickerTool hexCode={hexCode} />
+            <RemoveTool hexCode={hexCode} />
           </div>
         </div>
         <ColorItemFooter active={isLastItem} hexCode={hexCode} />

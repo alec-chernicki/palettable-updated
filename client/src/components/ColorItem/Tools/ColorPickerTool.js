@@ -3,7 +3,7 @@ import ColorPicker from '../../ColorPicker/ColorPicker';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SliderIcon from '../../SliderIcon/SliderIcon';
 
-class ColorPickerTool extends React.Component {
+class ColorPickerTool extends React.PureComponent {
   constructor(props) {
     super(props);
 

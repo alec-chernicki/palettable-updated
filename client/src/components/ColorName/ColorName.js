@@ -2,6 +2,7 @@ import styles from './ColorName.css';
 import CSSModules from 'react-css-modules';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { changeLikedColor } from 'redux/actions/likedColors';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 
 class ColorName extends Component {
@@ -21,12 +22,7 @@ class ColorName extends Component {
     });
   }
   handleBlur(e) {
-    this.props.onBlur({
-      hexCode: this.props.color,
-      newHexCode: e.target.value,
-    });
-
-    this.props.onBlur(this.props.color, e.target.value);
+    this.props.onBlur(e.target.value);
   }
   render() {
     const { shownColor } = this.state;
@@ -61,8 +57,17 @@ ColorName.propTypes = {
   hexCode: PropTypes.string.isRequired,
 };
 
-// const mapDispatchToProps = dispatch => {
-//   onBlur: () => dispatch();
-// };
+const mapDispatchToProps = (dispatch, { hexCode }) => {
+  return {
+    onBlur: newHexCode => {
+      dispatch(
+        changeLikedColor({
+          oldHexCode: hexCode,
+          newHexCode: newHexCode,
+        })
+      );
+    },
+  };
+};
 
-export default CSSModules(ColorName, styles);
+export default connect(null, mapDispatchToProps)(CSSModules(ColorName, styles));

@@ -1,24 +1,22 @@
-import { put, takeLatest, select } from 'redux-saga/effects';
-import { addShownColor } from 'redux/actions/shownPalette';
+import { put, takeEvery, select } from 'redux-saga/effects';
 import { requestPalette, setIsStale } from 'redux/actions/dataStatus';
+import { dislikeColor } from 'redux/actions/dislikedColors';
+import { changeLikedColor } from 'redux/actions/likedColors';
 import suggestedColorSelector from 'redux/selectors/suggestedColorSelector';
-import { addLikedColor } from 'redux/actions/suggestedColors';
+// const canAddColorSelector = state => state.shownPalette.length < 5;
+// const isSourcePaletteInvalidSelector = state => state.dataStatus.isStale;
 
-const canAddColorSelector = state => state.shownPalette.length < 5;
-const isSourcePaletteInvalidSelector = state => state.dataStatus.isStale;
-
-function* dislikeColor(stuff) {
-  const canAddColor = yield select(canAddColorSelector);
-  const isSourcePaletteInvalid = yield select(isSourcePaletteInvalidSelector);
-  const suggestedColor = yield select(suggestedColorSelector);
-
-  yield put(setIsStale());
+function* dislikeColorGenerator({ payload: { hexCode } }) {
+  yield put(setIsStale(true));
   yield put(requestPalette());
-  yield put(addShownColor(suggestedColor));
+
+  const newHexCode = yield select(suggestedColorSelector);
+
+  yield put(changeLikedColor({ oldHexCode: hexCode, newHexCode }));
 }
 
 function* dislikeColorSaga() {
-  yield takeLatest(addLikedColor().type, dislikeColor);
+  yield takeEvery(dislikeColor().type, dislikeColorGenerator);
 }
 
 export default dislikeColorSaga;

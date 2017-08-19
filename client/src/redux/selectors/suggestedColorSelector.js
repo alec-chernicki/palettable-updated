@@ -10,7 +10,6 @@ const suggestedColorSelector = createSelector(
   dislikedColorsSelector,
   likedColorsSelector,
   (suggestedColors, dislikedColors, likedColors) => {
-    debugger;
     const remainingColors = _.difference(suggestedColors, [
       ...dislikedColors,
       ...likedColors,

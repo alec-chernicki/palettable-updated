@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 import { requestPalette } from 'redux/actions/dataStatus';
+import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import ColorItem from 'components/ColorItem/ColorItem';
 
 class ColorList extends React.Component {
@@ -14,7 +15,7 @@ class ColorList extends React.Component {
   }
   renderColors() {
     const { likedColors } = this.props;
-
+    console.log(likedColors);
     return likedColors.map((hexCode, index) => {
       const isLastItem = likedColors.length - 1 === index;
 
@@ -25,15 +26,9 @@ class ColorList extends React.Component {
   }
   render() {
     return (
-      <ReactCSSTransitionGroup
-        component="ul"
-        styleName="color-list"
-        transitionName={'color-animation'}
-        transitionEnterTimeout={300}
-        transitionLeaveTimeout={350}
-      >
+      <div styleName="color-list">
         {this.renderColors()}
-      </ReactCSSTransitionGroup>
+      </div>
     );
   }
 }
@@ -43,9 +38,9 @@ ColorList.propTypes = {
   requestPalette: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ likedColors }) => {
+const mapStateToProps = state => {
   return {
-    likedColors,
+    likedColors: likedColorsSelector(state),
   };
 };
 
