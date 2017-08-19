@@ -5,13 +5,13 @@ import Title from '../Title/Title';
 import ColorList from '../ColorList/ColorList';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import UILoader from 'UILibrary/loader/UILoader';
-import SourcePaletteTray from 'components/SourcePaletteTray/SourcePaletteTray';
+import SuggestedColorsTray from 'components/SuggestedColorsTray/SuggestedColorsTray';
 
 const App = () => {
   return (
     <div styleName="app">
       <NavigationBar />
-      <SourcePaletteTray />
+      <SuggestedColorsTray />
       <ColorList />
     </div>
   );

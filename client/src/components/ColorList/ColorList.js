@@ -12,13 +12,15 @@ class ColorList extends React.Component {
 
     requestPalette();
   }
-  handleLike() {}
-  handleDislike() {}
   renderColors() {
-    const { shownPalette } = this.props;
+    const { likedColors } = this.props;
 
-    return shownPalette.map(({ hexCode }) => {
-      return <ColorItem key={hexCode} hexCode={hexCode} />;
+    return likedColors.map((hexCode, index) => {
+      const isLastItem = likedColors.length - 1 === index;
+
+      return (
+        <ColorItem key={index} hexCode={hexCode} isLastItem={isLastItem} />
+      );
     });
   }
   render() {
@@ -37,13 +39,13 @@ class ColorList extends React.Component {
 }
 
 ColorList.propTypes = {
-  shownPalette: PropTypes.array.isRequired,
+  likedColors: PropTypes.array.isRequired,
   requestPalette: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ shownPalette }) => {
+const mapStateToProps = ({ likedColors }) => {
   return {
-    shownPalette,
+    likedColors,
   };
 };
 

@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import dataStatus from './dataStatus';
-import sourcePalette from './sourcePalette';
-import shownPalette from './shownPalette';
+import suggestedColors from './suggestedColors';
+import likedColors from './likedColors';
+import dislikedColors from './dislikedColors';
 
 const rootReducer = combineReducers({
   dataStatus,
-  shownPalette,
-  sourcePalette,
+  likedColors,
+  dislikedColors,
+  suggestedColors,
 });
 
 export default rootReducer;

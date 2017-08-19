@@ -1,31 +1,28 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
-import { addShownColor } from 'redux/actions/shownPalette';
+import { addLikedColor, likeColor } from 'redux/actions/likedColors';
 import { requestPalette } from 'redux/actions/dataStatus';
 import suggestedColorSelector from 'redux/selectors/suggestedColorSelector';
-import { likeSourceColor } from 'redux/actions/sourcePalette';
 
-const canAddColorSelector = state => state.shownPalette.length < 5;
+const canAddColorSelector = state => state.likedColors.length < 5;
 const isSourcePaletteInvalidSelector = state => state.dataStatus.isStale;
 
-function* likeColor(stuff) {
+function* likeColorGenerator(stuff) {
   const canAddColor = yield select(canAddColorSelector);
   const isSourcePaletteInvalid = yield select(isSourcePaletteInvalidSelector);
   const suggestedColor = yield select(suggestedColorSelector);
 
-  console.log(suggestedColor);
-
   if (isSourcePaletteInvalid) {
     yield put(requestPalette());
-    yield put(addShownColor(suggestedColor));
+    yield put(addLikedColor(suggestedColor));
   }
 
   if (canAddColor) {
-    yield put(addShownColor(suggestedColor));
+    yield put(addLikedColor(suggestedColor));
   }
 }
 
 function* likeColorSaga() {
-  yield takeLatest(likeSourceColor().type, likeColor);
+  yield takeLatest(likeColor().type, likeColorGenerator);
 }
 
 export default likeColorSaga;

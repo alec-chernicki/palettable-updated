@@ -3,8 +3,8 @@ import { createActions } from 'redux-actions';
 export const {
   receivePalette,
   requestPalette,
-  dislikeSourceColor,
-  likeSourceColor,
+  addDislikedColor,
+  addLikedColor,
 } = createActions({
   RECEIVE_PALETTE: sourcePalette => sourcePalette,
   REQUEST_PALETTE: () => {},

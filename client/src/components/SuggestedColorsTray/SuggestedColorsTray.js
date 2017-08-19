@@ -1,14 +1,13 @@
-import styles from './SourcePaletteTray.css';
+import styles from './SuggestedColorsTray.css';
 import CSSModules from 'react-css-modules';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-class SourcePaletteTray extends React.Component {
+class SuggestedColorsTray extends React.Component {
   renderColors() {
-    const { shownPalette } = this.props;
+    const { suggestedColors } = this.props;
 
-    return shownPalette.map((color, key) => {
-      const { hexCode } = color;
+    return suggestedColors.map((hexCode, key) => {
       const styles = {
         backgroundColor: hexCode,
       };
@@ -30,10 +29,12 @@ class SourcePaletteTray extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ suggestedColors }) => {
   return {
-    shownPalette: state.sourcePalette,
+    suggestedColors,
   };
 };
 
-export default connect(mapStateToProps)(CSSModules(SourcePaletteTray, styles));
+export default connect(mapStateToProps)(
+  CSSModules(SuggestedColorsTray, styles)
+);

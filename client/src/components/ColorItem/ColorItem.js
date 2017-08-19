@@ -8,48 +8,22 @@ import ColorItemFooter from './ColorItemFooter';
 import ColorPickerTool from './Tools/ColorPickerTool';
 
 class ColorItem extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isActive: false,
-    };
-
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-  }
-
-  handleMouseEnter() {
-    this.setState({ isActive: true });
-  }
-
-  handleMouseLeave() {
-    this.setState({ isActive: false });
-  }
-
   render() {
-    const { hexCode } = this.props;
-    const { isActive } = this.state;
+    const { hexCode, isLastItem } = this.props;
 
     const style = {
       backgroundColor: hexCode,
     };
 
     return (
-      <li
-        key={hexCode}
-        style={style}
-        styleName="color-item"
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
-      >
+      <li key={hexCode} style={style} styleName="color-item">
         <div>
           <ColorName hexCode={hexCode} />
           <div styleName="toolbox">
             <ColorPickerTool hexCode={hexCode} />
           </div>
         </div>
-        <ColorItemFooter active={isActive} hexCode={hexCode} />
+        <ColorItemFooter active={isLastItem} hexCode={hexCode} />
       </li>
     );
   }

@@ -4,10 +4,8 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import UIButton from 'UILibrary/button/UIButton';
 import { connect } from 'react-redux';
-import {
-  dislikeSourceColor,
-  likeSourceColor,
-} from 'redux/actions/sourcePalette';
+import { addDislikedColor } from 'redux/actions/dislikedColors';
+import { likeColor } from 'redux/actions/likedColors';
 
 class ColorItemFooter extends React.Component {
   render() {
@@ -43,8 +41,8 @@ const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch, { hexCode }) => {
   return {
-    onLike: () => dispatch(likeSourceColor(hexCode)),
-    onDislike: () => dispatch(dislikeSourceColor(hexCode)),
+    onLike: () => dispatch(likeColor(hexCode)),
+    onDislike: () => dispatch(addDislikedColor(hexCode)),
   };
 };
 
