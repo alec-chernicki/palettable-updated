@@ -7,10 +7,14 @@ import ColorPickerTool from './Tools/ColorPickerTool';
 import RemoveTool from './Tools/RemoveTool';
 import { MoonLoader } from 'halogen';
 import { connect } from 'react-redux';
+import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 
 class ColorItem extends PureComponent {
   renderLoader() {
-    return <MoonLoader color="#333" />;
+    const { hexCode } = this.props;
+    const interfaceAttributes = getInterfaceAttributes(hexCode);
+
+    return <MoonLoader color={interfaceAttributes.color} />;
   }
   renderTools() {
     const { hexCode } = this.props;
