@@ -1,6 +1,6 @@
 .slider-icon {
   cursor: pointer;
-  margin: 65px auto 0;
+  margin: 25px auto;
   opacity: 0.35;
   position: relative;
   transition: opacity 0.25s ease-in-out;
@@ -13,15 +13,32 @@
   position: relative;
 }
 
-.item-line {
+.dark {
+  composes: item-container;
+}
+
+.dark .item-line,
+.dark .item-circle {
+  background-color: #333;
+}
+
+.light {
+  composes: item-container;
+}
+
+.light .item-line,
+.light .item-circle {
   background-color: #FFF;
+}
+
+
+.item-line {
   border-radius: 2px;
   height: 3px;
   width: 100%;
 }
 
 .item-circle {
-  background-color: #FFF;
   border-radius: 50%;
   bottom: 0;
   height: 7px;

@@ -1,7 +1,7 @@
 .remove-tool {
+  margin: 25px auto;
   cursor: pointer;
   height: 40px;
-  margin: 0 auto;
   width: 40px;
   display: block;
 }

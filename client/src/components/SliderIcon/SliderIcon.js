@@ -2,6 +2,7 @@ import styles from './SliderIcon.css';
 import CSSModules from 'react-css-modules';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 
 class SliderIcon extends React.Component {
   constructor(props) {
@@ -16,21 +17,17 @@ class SliderIcon extends React.Component {
   }
 
   handleMouseEnter(e) {
-    // e.stopPropogation();
-
     this.setState({ active: true });
   }
 
   handleMouseLeave(e) {
-    // e.stopPropogation();
-
     this.setState({ active: false });
   }
 
   render() {
-    const { onClick } = this.props;
+    const { onClick, hexCode } = this.props;
     const { active } = this.state;
-
+    const interfaceAttributes = getInterfaceAttributes(hexCode);
     const componentClass = classNames({
       active: active,
       inactive: !active,
@@ -43,15 +40,15 @@ class SliderIcon extends React.Component {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        <div styleName="item-container">
+        <div styleName={interfaceAttributes.className}>
           <div styleName="item-line" />
           <div styleName="item-circle" />
         </div>
-        <div styleName="item-container">
+        <div styleName={interfaceAttributes.className}>
           <div styleName="item-line" />
           <div styleName="item-circle" />
         </div>
-        <div styleName="item-container">
+        <div styleName={interfaceAttributes.className}>
           <div styleName="item-line" />
           <div styleName="item-circle" />
         </div>
@@ -63,6 +60,7 @@ class SliderIcon extends React.Component {
 SliderIcon.propTypes = {
   onClick: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired,
+  hexCode: PropTypes.string.isRequired,
 };
 
 export default CSSModules(SliderIcon, styles);

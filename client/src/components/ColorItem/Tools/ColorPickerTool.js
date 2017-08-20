@@ -36,11 +36,12 @@ class ColorPickerTool extends React.PureComponent {
   }
 
   render() {
-    const { color } = this.props;
+    const { color, hexCode } = this.props;
 
     return (
       <div>
         <SliderIcon
+          hexCode={hexCode}
           toggled={color.pickerActive}
           onToggle={this.handlePickerToggle}
         />

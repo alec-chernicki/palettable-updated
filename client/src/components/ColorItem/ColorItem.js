@@ -10,13 +10,29 @@ import { connect } from 'react-redux';
 
 class ColorItem extends PureComponent {
   renderLoader() {
+    return <MoonLoader color="#333" />;
+  }
+  renderTools() {
+    const { hexCode } = this.props;
+    return (
+      <div>
+        <ColorName hexCode={hexCode} />
+        <div styleName="toolbox">
+          <ColorPickerTool hexCode={hexCode} />
+          <RemoveTool hexCode={hexCode} />
+        </div>
+      </div>
+    );
+  }
+
+  renderContent() {
     const { isFetching } = this.props;
-    console.log(isFetching);
-    if (!isFetching) {
-      return null;
+
+    if (isFetching) {
+      return this.renderLoader();
     }
 
-    return <MoonLoader color="#333" />;
+    return this.renderTools();
   }
   render() {
     const { hexCode, isLastItem } = this.props;
@@ -26,15 +42,8 @@ class ColorItem extends PureComponent {
     };
 
     return (
-      <li key={hexCode} style={style} styleName="color-item">
-        {this.renderLoader()}
-        <div>
-          <ColorName hexCode={hexCode} />
-          <div styleName="toolbox">
-            <ColorPickerTool hexCode={hexCode} />
-            <RemoveTool hexCode={hexCode} />
-          </div>
-        </div>
+      <li style={style} styleName="color-item">
+        {this.renderContent()}
         <ColorItemFooter
           isLastItem={isLastItem}
           active={isLastItem}
