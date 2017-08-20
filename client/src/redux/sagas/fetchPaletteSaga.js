@@ -4,6 +4,7 @@ import { addLikedColor } from 'redux/actions/likedColors';
 import { setIsFetching, setIsStale } from 'redux/actions/dataStatus';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import PaletteAPI from 'api/PaletteAPI';
+import url from 'utils/url';
 
 const isInitialCallSelector = state => !likedColorsSelector(state).length;
 
@@ -20,6 +21,8 @@ export function* fetchPaletteGenerator(stuff) {
 
     if (isInitialCall) {
       yield put(addLikedColor(palette[0]));
+      const newPalette = yield select(likedColorsSelector);
+      yield url.setColors(newPalette);
     }
   } catch (e) {
     yield put({ type: 'USER_FETCH_FAILED', message: e.message });

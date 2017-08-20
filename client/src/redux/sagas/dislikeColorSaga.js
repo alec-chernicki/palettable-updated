@@ -6,6 +6,7 @@ import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import dislikedColorsSelector from 'redux/selectors/dislikedColorsSelector';
 import suggestedColorSelector from 'redux/selectors/suggestedColorSelector';
 import { receivePalette } from 'redux/actions/suggestedColors';
+import url from 'utils/url';
 import PaletteAPI from 'api/PaletteAPI';
 // const canAddColorSelector = state => state.shownPalette.length < 5;
 // const isSourcePaletteInvalidSelector = state => state.dataStatus.isStale;
@@ -16,17 +17,20 @@ function* dislikeColorGenerator({ payload: { hexCode } }) {
 
   const likedColors = yield select(likedColorsSelector);
   const dislikedColors = yield select(dislikedColorsSelector);
-  const newPalette = yield call(() =>
+  const newSuggestedColors = yield call(() =>
     PaletteAPI.getWithColors(likedColors, dislikedColors)
   );
 
-  yield put(receivePalette(newPalette));
+  yield put(receivePalette(newSuggestedColors));
   yield put(setIsFetching(false));
   yield put(setIsStale(false));
 
   const newHexCode = yield select(suggestedColorSelector);
 
   yield put(changeLikedColor({ oldHexCode: hexCode, newHexCode }));
+
+  const newPalette = yield select(likedColorsSelector);
+  yield url.setColors(newPalette);
 }
 
 function* dislikeColorSaga() {
