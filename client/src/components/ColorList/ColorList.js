@@ -1,9 +1,8 @@
 import styles from './ColorList.css';
 import CSSModules from 'react-css-modules';
 import React, { PropTypes } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
-import { requestPalette } from 'redux/actions/dataStatus';
+import { requestPalette } from 'redux/actions/suggestedColors';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import ColorItem from 'components/ColorItem/ColorItem';
 
@@ -15,7 +14,6 @@ class ColorList extends React.Component {
   }
   renderColors() {
     const { likedColors } = this.props;
-    console.log(likedColors);
     return likedColors.map((hexCode, index) => {
       const isLastItem = likedColors.length - 1 === index;
 

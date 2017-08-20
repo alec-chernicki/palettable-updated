@@ -2,12 +2,14 @@ import styles from './SuggestedColorsTray.css';
 import CSSModules from 'react-css-modules';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 
 class SuggestedColorsTray extends React.Component {
   renderColors() {
     const { suggestedColors } = this.props;
 
     return suggestedColors.map((hexCode, key) => {
+      const interfaceAttributes = getInterfaceAttributes(hexCode);
       const styles = {
         backgroundColor: hexCode,
       };

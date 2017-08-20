@@ -4,15 +4,15 @@ const RANDOM_ENDPOINT = '/api/random';
 const CHANGE_ENDPOINT = '/api/change';
 
 const PaletteAPI = {
-  getWithColors(allColors, dislikedColors) {
+  getWithColors(likedColors, dislikedColors) {
     const options = {
       params: {
-        colors: allColors,
+        colors: likedColors,
         dislikedColors,
       },
     };
 
-    return axios.get(CHANGE_ENDPOINT, options);
+    return axios.get(CHANGE_ENDPOINT, options).then(({ data }) => data);
   },
 
   getRandom() {

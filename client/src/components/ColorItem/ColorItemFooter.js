@@ -32,10 +32,11 @@ ColorItemFooter.propTypes = {
   onLike: PropTypes.func.isRequired,
   onDislike: PropTypes.func.isRequired,
   hexCode: PropTypes.string.isRequired,
+  isLastItem: PropTypes.bool.isRequired,
 };
 
 ColorItemFooter.defaultProps = {
-  active: false,
+  isLastItem: false,
 };
 
 const mapStateToProps = () => ({});

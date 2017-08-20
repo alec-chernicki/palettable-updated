@@ -1,6 +1,6 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { addLikedColor, likeColor } from 'redux/actions/likedColors';
-import { requestPalette } from 'redux/actions/dataStatus';
+import { requestPalette } from 'redux/actions/suggestedColors';
 import suggestedColorSelector from 'redux/selectors/suggestedColorSelector';
 
 const canAddColorSelector = state => state.likedColors.length < 5;

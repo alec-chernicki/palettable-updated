@@ -1,13 +1,8 @@
 import { createActions } from 'redux-actions';
 
-export const {
-  receivePalette,
-  requestPalette,
-  addDislikedColor,
-  addLikedColor,
-} = createActions({
+export const { receivePalette, requestPalette } = createActions({
   RECEIVE_PALETTE: sourcePalette => sourcePalette,
+
+  // Actions handled by sagas
   REQUEST_PALETTE: () => {},
-  DISLIKE_SOURCE_COLOR: hexCode => ({ hexCode, disliked: true }),
-  LIKE_SOURCE_COLOR: hexCode => ({ hexCode, liked: true }),
 });

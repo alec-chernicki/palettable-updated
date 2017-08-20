@@ -1,19 +1,21 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
-import { receivePalette } from 'redux/actions/suggestedColors';
+import { requestPalette, receivePalette } from 'redux/actions/suggestedColors';
 import { addLikedColor } from 'redux/actions/likedColors';
-import { requestPalette, setIsStale } from 'redux/actions/dataStatus';
+import { setIsFetching, setIsStale } from 'redux/actions/dataStatus';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import PaletteAPI from 'api/PaletteAPI';
 
 const isInitialCallSelector = state => !likedColorsSelector(state).length;
 
-function* fetchPalette(stuff) {
+export function* fetchPaletteGenerator(stuff) {
+  yield put(setIsFetching(true));
+
   try {
     const isInitialCall = yield select(isInitialCallSelector);
-    console.log(isInitialCall);
     const palette = yield call(PaletteAPI.getRandom);
 
     yield put(receivePalette(palette));
+    yield put(setIsFetching(false));
     yield put(setIsStale(false));
 
     if (isInitialCall) {
@@ -24,8 +26,6 @@ function* fetchPalette(stuff) {
   }
 }
 
-function* fetchPaletteSaga() {
-  yield takeLatest(requestPalette().type, fetchPalette);
+export function* fetchPaletteSaga() {
+  yield takeLatest(requestPalette().type, fetchPaletteGenerator);
 }
-
-export default fetchPaletteSaga;

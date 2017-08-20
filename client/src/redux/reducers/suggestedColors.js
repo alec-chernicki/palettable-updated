@@ -1,9 +1,5 @@
 import { handleActions } from 'redux-actions';
-import {
-  receivePalette,
-  addDislikedColor,
-  addLikedColor,
-} from 'redux/actions/suggestedColors';
+import { receivePalette } from 'redux/actions/suggestedColors';
 
 const defaultState = [];
 

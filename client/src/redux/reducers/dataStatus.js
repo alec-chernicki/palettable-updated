@@ -1,12 +1,12 @@
 import { handleActions, combineActions } from 'redux-actions';
-import { requestPalette, setIsStale } from '../actions/dataStatus';
+import { setIsFetching, setIsStale } from 'redux/actions/dataStatus';
 
 const initialState = {
   isFetching: false,
   isStale: false,
 };
 
-const combinedActions = combineActions(requestPalette, setIsStale);
+const combinedActions = combineActions(setIsFetching, setIsStale);
 
 const dataStatus = handleActions(
   {
