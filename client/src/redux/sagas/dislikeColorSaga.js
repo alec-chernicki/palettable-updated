@@ -1,7 +1,7 @@
 import { put, takeLatest, select, call } from 'redux-saga/effects';
 import { setIsStale, setIsFetching } from 'redux/actions/dataStatus';
 import { dislikeColor } from 'redux/actions/dislikedColors';
-import { changeLikedColor } from 'redux/actions/likedColors';
+import { changeColor } from 'redux/actions/likedColors';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import dislikedColorsSelector from 'redux/selectors/dislikedColorsSelector';
 import suggestedColorSelector from 'redux/selectors/suggestedColorSelector';
@@ -27,7 +27,7 @@ function* dislikeColorGenerator({ payload: { hexCode } }) {
 
   const newHexCode = yield select(suggestedColorSelector);
 
-  yield put(changeLikedColor({ oldHexCode: hexCode, newHexCode }));
+  yield put(changeColor({ oldHexCode: hexCode, newHexCode }));
 
   const newPalette = yield select(likedColorsSelector);
   yield url.setColors(newPalette);

@@ -2,7 +2,7 @@ import styles from './ColorName.css';
 import CSSModules from 'react-css-modules';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { changeLikedColor } from 'redux/actions/likedColors';
+import { changeColor } from 'redux/actions/likedColors';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 
 class ColorName extends Component {
@@ -61,7 +61,7 @@ const mapDispatchToProps = (dispatch, { hexCode }) => {
   return {
     onBlur: newHexCode => {
       dispatch(
-        changeLikedColor({
+        changeColor({
           oldHexCode: hexCode,
           newHexCode: newHexCode,
         })
