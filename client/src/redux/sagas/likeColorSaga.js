@@ -8,7 +8,7 @@ import url from 'utils/url';
 const canAddColorSelector = state => state.likedColors.length < 5;
 const isSourcePaletteInvalidSelector = state => state.dataStatus.isStale;
 
-function* likeColorGenerator(stuff) {
+function* likeColorGenerator() {
   const canAddColor = yield select(canAddColorSelector);
   const isSourcePaletteInvalid = yield select(isSourcePaletteInvalidSelector);
   const suggestedColor = yield select(suggestedColorSelector);

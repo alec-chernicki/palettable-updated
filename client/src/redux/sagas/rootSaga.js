@@ -3,6 +3,7 @@ import { fetchPaletteSaga } from './fetchPaletteSaga';
 import likeColorSaga from './likeColorSaga';
 import dislikeColorSaga from './dislikeColorSaga';
 import changeColorSaga from './changeColorSaga';
+import removeColorSaga from './removeColorSaga';
 
 function* rootSaga() {
   yield all([
@@ -10,6 +11,7 @@ function* rootSaga() {
     likeColorSaga(),
     dislikeColorSaga(),
     changeColorSaga(),
+    removeColorSaga(),
   ]);
 }
 

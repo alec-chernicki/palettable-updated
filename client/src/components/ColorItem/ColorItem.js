@@ -30,9 +30,9 @@ class ColorItem extends PureComponent {
   }
 
   renderContent() {
-    const { isFetching } = this.props;
+    const { isFetching, isLastItem } = this.props;
 
-    if (isFetching) {
+    if (isFetching && isLastItem) {
       return this.renderLoader();
     }
 

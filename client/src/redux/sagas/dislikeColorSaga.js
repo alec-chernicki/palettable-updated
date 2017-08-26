@@ -8,8 +8,6 @@ import suggestedColorSelector from 'redux/selectors/suggestedColorSelector';
 import { receivePalette } from 'redux/actions/suggestedColors';
 import url from 'utils/url';
 import PaletteAPI from 'api/PaletteAPI';
-// const canAddColorSelector = state => state.shownPalette.length < 5;
-// const isSourcePaletteInvalidSelector = state => state.dataStatus.isStale;
 
 function* dislikeColorGenerator({ payload: { hexCode } }) {
   yield put(setIsFetching(true));

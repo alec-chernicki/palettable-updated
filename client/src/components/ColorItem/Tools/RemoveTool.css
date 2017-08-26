@@ -5,3 +5,19 @@
   width: 40px;
   display: block;
 }
+
+.light {
+  composes: remove-tool;
+}
+
+.light svg {
+  fill: #FFF !important;
+}
+
+.dark {
+  composes: remove-tool;
+}
+
+.dark svg {
+  fill: #333 !important;
+}

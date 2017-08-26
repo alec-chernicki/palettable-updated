@@ -4,6 +4,7 @@ export const {
   addLikedColor,
   removeLikedColor,
   changeLikedColor,
+  removeColor,
   likeColor,
   changeColor,
 } = createActions({
@@ -15,6 +16,7 @@ export const {
   }),
 
   // Actions handled by sagas
+  REMOVE_COLOR: hexCode => ({ hexCode }),
   LIKE_COLOR: hexCode => ({ hexCode }),
   CHANGE_COLOR: ({ oldHexCode, newHexCode } = {}) => ({
     oldHexCode,
