@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import shortId from 'shortid';
 import {
   addLikedColor,
   removeLikedColor,
@@ -25,6 +26,7 @@ const likedColors = handleActions(
 
         return {
           ...likedColor,
+          id: shortId.generate(),
           hexCode: newHexCode,
         };
       });
