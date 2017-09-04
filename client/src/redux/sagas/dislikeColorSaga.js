@@ -9,7 +9,7 @@ import { receivePalette } from 'redux/actions/suggestedColors';
 import url from 'utils/url';
 import PaletteAPI from 'api/PaletteAPI';
 
-function* dislikeColorGenerator({ payload: { hexCode } }) {
+function* dislikeColorGenerator({ payload: { color } }) {
   yield put(setIsFetching(true));
   yield put(setIsStale(true));
 
@@ -23,9 +23,9 @@ function* dislikeColorGenerator({ payload: { hexCode } }) {
   yield put(setIsFetching(false));
   yield put(setIsStale(false));
 
-  const newHexCode = yield select(suggestedColorSelector);
+  const { hexCode } = yield select(suggestedColorSelector);
 
-  yield put(changeColor({ oldHexCode: hexCode, newHexCode }));
+  yield put(changeColor({ color, newHexCode: hexCode }));
 
   const newPalette = yield select(likedColorsSelector);
   yield url.setColors(newPalette);

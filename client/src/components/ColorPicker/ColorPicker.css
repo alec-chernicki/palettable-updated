@@ -28,16 +28,16 @@
   display: flex;
 }
 
-.popover {
+/*.popover {
   position: absolute;
   z-index: 2;
   left: 0;
   right: 0;
   margin: 15px auto 0;
-}
+}*/
 
 
-.popover:before {
+/*.popover:before {
   content: '';
   box-shadow: 0 8px 16px rgba(0,0,0,.15);
   height: 100%;
@@ -65,7 +65,7 @@
   border-right: 15px solid transparent;
   border-bottom: 15px solid #FFF;
   z-index: 900;
-}
+}*/
 
 .cover {
   position: fixed;
@@ -102,7 +102,7 @@
   height: 100% !important;
 }
 
-.color-picker-animation-enter {
+/*.color-picker-animation-enter {
   transform: scale(0.01, 0.01);
 }
 
@@ -120,4 +120,4 @@
   transform-origin: 50% 0%;
   transform: scale(0.01, 0.01);
   transition: transform 175ms cubic-bezier(.56, -.22, .83, .89);
-}
+}*/

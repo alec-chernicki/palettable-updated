@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { removeColor } from 'redux/actions/likedColors';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 
-const RemoveTool = ({ onClick, hexCode }) => {
-  const interfaceAttributes = getInterfaceAttributes(hexCode);
+const RemoveTool = ({ onClick, color }) => {
+  const interfaceAttributes = getInterfaceAttributes(color.hexCode);
 
   return (
     <svg
@@ -26,12 +26,12 @@ const RemoveTool = ({ onClick, hexCode }) => {
 };
 
 RemoveTool.propTypes = {
-  hexCode: PropTypes.string.isRequired,
+  color: PropTypes.object.isRequired,
 };
 
-const mapDispatchToProps = (dispatch, { hexCode }) => {
+const mapDispatchToProps = (dispatch, { color }) => {
   return {
-    onClick: () => dispatch(removeColor(hexCode)),
+    onClick: () => dispatch(removeColor(color)),
   };
 };
 

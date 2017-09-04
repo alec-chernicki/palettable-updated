@@ -4,29 +4,34 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { changeColor } from 'redux/actions/likedColors';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
+import isHex from 'utils/isHex';
 
 class ColorName extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      shownColor: props.hexCode,
+      shownHexCode: props.color.hexCode,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
   handleChange(e) {
-    this.setState({
-      shownColor: e.target.value,
-    });
+    this.setState({ shownHexCode: e.target.value });
   }
   handleBlur(e) {
+    const { value } = e.target;
+
+    if (!isHex(value)) {
+      return;
+    }
+
     this.props.onBlur(e.target.value);
   }
   render() {
-    const { shownColor } = this.state;
-    const { hexCode } = this.props;
+    const { shownHexCode } = this.state;
+    const { color: { hexCode } } = this.props;
     const interfaceAttributes = getInterfaceAttributes(hexCode);
 
     const style = {
@@ -37,7 +42,7 @@ class ColorName extends Component {
       <input
         type="text"
         styleName={interfaceAttributes.className}
-        value={shownColor}
+        value={shownHexCode}
         style={style}
         onChange={this.handleChange}
         onBlur={this.handleBlur}
@@ -54,15 +59,15 @@ ColorName.defaultProps = {
 ColorName.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
-  hexCode: PropTypes.string.isRequired,
+  color: PropTypes.object.isRequired,
 };
 
-const mapDispatchToProps = (dispatch, { hexCode }) => {
+const mapDispatchToProps = (dispatch, { color }) => {
   return {
     onBlur: newHexCode => {
       dispatch(
         changeColor({
-          oldHexCode: hexCode,
+          color,
           newHexCode: newHexCode,
         })
       );

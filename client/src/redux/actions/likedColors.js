@@ -8,18 +8,18 @@ export const {
   likeColor,
   changeColor,
 } = createActions({
-  ADD_LIKED_COLOR: hexCode => ({ hexCode }),
-  REMOVE_LIKED_COLOR: hexCode => ({ hexCode }),
-  CHANGE_LIKED_COLOR: ({ oldHexCode, newHexCode }) => ({
-    oldHexCode,
+  ADD_LIKED_COLOR: color => ({ color }),
+  REMOVE_LIKED_COLOR: color => ({ color }),
+  CHANGE_LIKED_COLOR: ({ payload: { color, newHexCode } }) => ({
+    color,
     newHexCode,
   }),
 
   // Actions handled by sagas
-  REMOVE_COLOR: hexCode => ({ hexCode }),
-  LIKE_COLOR: hexCode => ({ hexCode }),
-  CHANGE_COLOR: ({ oldHexCode, newHexCode } = {}) => ({
-    oldHexCode,
+  REMOVE_COLOR: color => ({ color }),
+  LIKE_COLOR: color => ({ color }),
+  CHANGE_COLOR: ({ color, newHexCode } = {}) => ({
+    color,
     newHexCode,
   }),
 });

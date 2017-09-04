@@ -9,21 +9,24 @@ const initialState = [];
 
 const likedColors = handleActions(
   {
-    [addLikedColor]: (state, { payload: { hexCode } }) => {
-      return [...state, hexCode];
+    [addLikedColor]: (state, { payload: { color } }) => {
+      return [...state, color];
     },
-    [removeLikedColor]: (state, { payload: { hexCode } }) => {
+    [removeLikedColor]: (state, { payload: { color } }) => {
       return state.filter(likedColor => {
-        return likedColor !== hexCode;
+        return likedColor.id !== color.id;
       });
     },
-    [changeLikedColor]: (state, { payload: { oldHexCode, newHexCode } }) => {
+    [changeLikedColor]: (state, { payload: { color, newHexCode } }) => {
       return state.map(likedColor => {
-        if (likedColor !== oldHexCode) {
+        if (likedColor.id !== color.id) {
           return likedColor;
         }
 
-        return newHexCode;
+        return {
+          ...likedColor,
+          hexCode: newHexCode,
+        };
       });
     },
   },

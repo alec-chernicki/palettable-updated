@@ -4,9 +4,10 @@ import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import url from 'utils/url';
 
 function* changeColorGenerator({ payload }) {
-  yield put(changeLikedColor(payload));
+  yield put(changeLikedColor({ payload }));
 
   const newPalette = yield select(likedColorsSelector);
+
   yield url.setColors(newPalette);
 }
 

@@ -5,8 +5,8 @@ const initialState = [];
 
 const dislikedColors = handleActions(
   {
-    [addDislikedColor]: (state, { payload: { hexCode } }) => {
-      return [...state, hexCode];
+    [addDislikedColor]: (state, { payload: { color } }) => {
+      return [...state, color];
     },
   },
   initialState

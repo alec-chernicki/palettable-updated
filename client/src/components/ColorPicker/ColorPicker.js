@@ -10,8 +10,7 @@ class ColorPicker extends Component {
   }
   render() {
     return (
-      <div styleName="popover">
-        <div styleName="cover" onClick={this.props.onToggle} />
+      <div>
         <div styleName="picker">
           <div styleName="saturation">
             <Saturation

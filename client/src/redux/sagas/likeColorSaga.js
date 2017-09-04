@@ -3,6 +3,7 @@ import { addLikedColor, likeColor } from 'redux/actions/likedColors';
 import { requestPalette } from 'redux/actions/suggestedColors';
 import suggestedColorSelector from 'redux/selectors/suggestedColorSelector';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
+import urlAdapter from 'adapters/urlAdapter';
 import url from 'utils/url';
 
 const canAddColorSelector = state => state.likedColors.length < 5;
@@ -23,6 +24,7 @@ function* likeColorGenerator() {
   }
 
   const newPalette = yield select(likedColorsSelector);
+
   yield url.setColors(newPalette);
 }
 

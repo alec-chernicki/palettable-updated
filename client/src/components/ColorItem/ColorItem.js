@@ -11,19 +11,19 @@ import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 
 class ColorItem extends PureComponent {
   renderLoader() {
-    const { hexCode } = this.props;
+    const { color: { hexCode } } = this.props;
     const interfaceAttributes = getInterfaceAttributes(hexCode);
 
     return <MoonLoader color={interfaceAttributes.color} />;
   }
   renderTools() {
-    const { hexCode } = this.props;
+    const { color } = this.props;
     return (
       <div>
-        <ColorName hexCode={hexCode} />
+        <ColorName color={color} />
         <div styleName="toolbox">
-          <ColorPickerTool hexCode={hexCode} />
-          <RemoveTool hexCode={hexCode} />
+          <ColorPickerTool color={color} />
+          <RemoveTool color={color} />
         </div>
       </div>
     );
@@ -39,10 +39,10 @@ class ColorItem extends PureComponent {
     return this.renderTools();
   }
   render() {
-    const { hexCode, isLastItem } = this.props;
+    const { color, isLastItem } = this.props;
 
     const style = {
-      backgroundColor: hexCode,
+      backgroundColor: color.hexCode,
     };
 
     return (
@@ -51,7 +51,7 @@ class ColorItem extends PureComponent {
         <ColorItemFooter
           isLastItem={isLastItem}
           active={isLastItem}
-          hexCode={hexCode}
+          color={color}
         />
       </li>
     );
@@ -59,6 +59,7 @@ class ColorItem extends PureComponent {
 }
 
 ColorItem.propTypes = {
+  color: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
   isLastItem: PropTypes.bool.isRequired,
 };

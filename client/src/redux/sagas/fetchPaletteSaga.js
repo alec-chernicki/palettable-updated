@@ -8,7 +8,7 @@ import url from 'utils/url';
 
 const isInitialCallSelector = state => !likedColorsSelector(state).length;
 
-export function* fetchPaletteGenerator(stuff) {
+export function* fetchPaletteGenerator() {
   yield put(setIsFetching(true));
 
   try {

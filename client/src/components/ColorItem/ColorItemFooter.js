@@ -31,7 +31,7 @@ class ColorItemFooter extends React.Component {
 ColorItemFooter.propTypes = {
   onLike: PropTypes.func.isRequired,
   onDislike: PropTypes.func.isRequired,
-  hexCode: PropTypes.string.isRequired,
+  color: PropTypes.object.isRequired,
   isLastItem: PropTypes.bool.isRequired,
 };
 
@@ -41,10 +41,10 @@ ColorItemFooter.defaultProps = {
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = (dispatch, { hexCode }) => {
+const mapDispatchToProps = (dispatch, { color }) => {
   return {
-    onLike: () => dispatch(likeColor(hexCode)),
-    onDislike: () => dispatch(dislikeColor(hexCode)),
+    onLike: () => dispatch(likeColor(color)),
+    onDislike: () => dispatch(dislikeColor(color)),
   };
 };
 

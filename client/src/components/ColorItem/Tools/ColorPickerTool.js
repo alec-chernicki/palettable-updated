@@ -2,64 +2,71 @@ import React, { PropTypes } from 'react';
 import ColorPicker from '../../ColorPicker/ColorPicker';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SliderIcon from '../../SliderIcon/SliderIcon';
+import { connect } from 'react-redux';
+import { Manager, Target, Popper, Arrow } from 'react-popper';
+import { changeColor } from 'redux/actions/likedColors';
 
 class ColorPickerTool extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.handlePickerToggle = this.handlePickerToggle.bind(this);
-    this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handlePickerToggle() {
-    const { onTogglePicker, color } = this.props;
+  handleChange(colorData) {
+    const { onChange, color } = this.props;
 
-    onTogglePicker(color);
-  }
-
-  handleColorChange(newColor) {
-    const { onSubmit, color } = this.props;
-
-    onSubmit(color, newColor.hex.toUpperCase());
+    onChange({ color: color, newHexCode: colorData.hex.toUpperCase() });
   }
 
   renderColorPicker() {
-    const { hexCode } = this.props;
+    const { color: { hexCode } } = this.props;
 
     return (
-      <ColorPicker
-        onChange={this.handleColorChange}
-        onToggle={this.handlePickerToggle}
-        color={hexCode}
-      />
+      <Popper placement="bottom">
+        <ColorPicker onChange={this.handleChange} color={hexCode} />
+        <Arrow />
+      </Popper>
     );
   }
 
   render() {
-    const { color, hexCode } = this.props;
+    const { color } = this.props;
 
     return (
-      <div>
-        <SliderIcon
-          hexCode={hexCode}
-          toggled={color.pickerActive}
-          onToggle={this.handlePickerToggle}
-        />
-        {/* <ReactCSSTransitionGroup
-          transitionName={"color-picker-animation"}
+      <Manager>
+        <Target>
+          <SliderIcon
+            hexCode={color.hexCode}
+            toggled={color.pickerActive}
+            onToggle={this.handlePickerToggle}
+          />
+        </Target>
+        <ReactCSSTransitionGroup
+          transitionName={'color-picker-animation'}
           transitionEnterTimeout={175}
           transitionLeaveTimeout={175}
-          >
+        >
           {this.renderColorPicker()}
-        </ReactCSSTransitionGroup> */}
-      </div>
+        </ReactCSSTransitionGroup>
+      </Manager>
     );
   }
 }
 
-ColorPickerTool.defaultProps = {
-  color: {},
-  hexCode: PropTypes.string.isRequired,
+ColorPickerTool.propTypes = {
+  color: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
-export default ColorPickerTool;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onChange: hexCode => dispatch(changeColor(hexCode)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ColorPickerTool);

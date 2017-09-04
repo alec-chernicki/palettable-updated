@@ -1,4 +1,5 @@
 import axios from 'axios';
+import paletteAdapter from 'adapters/paletteAdapter';
 
 const RANDOM_ENDPOINT = '/api/random';
 const CHANGE_ENDPOINT = '/api/change';
@@ -12,11 +13,17 @@ const PaletteAPI = {
       },
     };
 
-    return axios.get(CHANGE_ENDPOINT, options).then(({ data }) => data);
+    return axios
+      .get(CHANGE_ENDPOINT, options)
+      .then(({ data }) => data)
+      .then(paletteAdapter);
   },
 
   getRandom() {
-    return axios.get(RANDOM_ENDPOINT).then(({ data }) => data);
+    return axios
+      .get(RANDOM_ENDPOINT)
+      .then(({ data }) => data)
+      .then(paletteAdapter);
   },
 };
 

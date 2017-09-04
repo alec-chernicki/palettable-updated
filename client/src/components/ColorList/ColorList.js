@@ -14,12 +14,10 @@ class ColorList extends React.Component {
   }
   renderColors() {
     const { likedColors } = this.props;
-    return likedColors.map((hexCode, index) => {
+    return likedColors.map((color, index) => {
       const isLastItem = likedColors.length - 1 === index;
 
-      return (
-        <ColorItem key={index} hexCode={hexCode} isLastItem={isLastItem} />
-      );
+      return <ColorItem key={index} color={color} isLastItem={isLastItem} />;
     });
   }
   render() {
