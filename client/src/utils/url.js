@@ -10,9 +10,13 @@ const _colorsToString = colors => {
 };
 
 const _stringToColors = () => {
-  const path = window.location.pathname;
-  const colorsArray = path.replace('/', '').split('-');
+  const path = window.location.pathname.replace('/', '');
 
+  if (!path) {
+    return [];
+  }
+
+  const colorsArray = path.split('-');
   const formattedColors = colorsArray.map(color => `#${color}`);
 
   return paletteAdapter(formattedColors);

@@ -12,7 +12,7 @@ export function* fetchPaletteGenerator() {
   const isInitialCall = yield select(isInitialCallSelector);
   const paletteFromUrl = url.getColors().reverse();
 
-  if (isInitialCall && paletteFromUrl.length) {
+  if (isInitialCall && !!paletteFromUrl.length) {
     yield put(receivePalette(paletteFromUrl));
 
     for (let i = paletteFromUrl.length; i >= 1; i--) {
