@@ -6,26 +6,36 @@ import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import PaletteAPI from 'api/PaletteAPI';
 import url from 'utils/url';
 
-const isInitialCallSelector = state => !likedColorsSelector(state).length;
+const isInitialCallSelector = state => likedColorsSelector(state).length === 0;
 
 export function* fetchPaletteGenerator() {
-  yield put(setIsFetching(true));
+  const isInitialCall = yield select(isInitialCallSelector);
+  const paletteFromUrl = url.getColors().reverse();
 
-  try {
-    const isInitialCall = yield select(isInitialCallSelector);
-    const palette = yield call(PaletteAPI.getRandom);
+  if (isInitialCall && paletteFromUrl.length) {
+    yield put(receivePalette(paletteFromUrl));
 
-    yield put(receivePalette(palette));
-    yield put(setIsFetching(false));
-    yield put(setIsStale(false));
-
-    if (isInitialCall) {
-      yield put(addLikedColor(palette[0]));
-      const newPalette = yield select(likedColorsSelector);
-      yield url.setColors(newPalette);
+    for (let i = paletteFromUrl.length; i >= 1; i--) {
+      yield put(addLikedColor(paletteFromUrl[i - 1]));
     }
-  } catch (e) {
-    yield put({ type: 'USER_FETCH_FAILED', message: e.message });
+  } else {
+    try {
+      yield put(setIsFetching(true));
+
+      const palette = yield call(PaletteAPI.getRandom);
+
+      yield put(receivePalette(palette));
+      yield put(setIsFetching(false));
+      yield put(setIsStale(false));
+
+      if (isInitialCall) {
+        yield put(addLikedColor(palette[0]));
+        const newPalette = yield select(likedColorsSelector);
+        yield url.setColors(newPalette);
+      }
+    } catch (e) {
+      yield put({ type: 'USER_FETCH_FAILED', message: e.message });
+    }
   }
 }
 

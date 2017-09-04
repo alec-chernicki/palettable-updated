@@ -13,7 +13,9 @@ const _stringToColors = () => {
   const path = window.location.pathname;
   const colorsArray = path.replace('/', '').split('-');
 
-  return colorsArray.map(paletteAdapter);
+  const formattedColors = colorsArray.map(color => `#${color}`);
+
+  return paletteAdapter(formattedColors);
 };
 
 const url = {
