@@ -5,3 +5,12 @@
   flex-basis: 100%;
   background-color: #222;
 }
+
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #222;
+}

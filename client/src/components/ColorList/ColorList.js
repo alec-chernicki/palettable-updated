@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { requestPalette } from 'redux/actions/suggestedColors';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import ColorItem from 'components/ColorItem/ColorItem';
+import getInterfaceAttributes from 'utils/getInterfaceAttributes';
+import { MoonLoader } from 'halogen';
 
 class ColorList extends React.Component {
   componentDidMount() {
@@ -20,12 +22,30 @@ class ColorList extends React.Component {
       return <ColorItem key={index} color={color} isLastItem={isLastItem} />;
     });
   }
-  render() {
+  renderList() {
     return (
       <div styleName="color-list">
         {this.renderColors()}
       </div>
     );
+  }
+  renderLoader() {
+    const interfaceAttributes = getInterfaceAttributes('#222');
+
+    return (
+      <div styleName="loader-container">
+        <MoonLoader color={interfaceAttributes.color} />
+      </div>
+    );
+  }
+  render() {
+    const { likedColors } = this.props;
+
+    if (!likedColors.length) {
+      return this.renderLoader();
+    }
+
+    return this.renderList();
   }
 }
 
