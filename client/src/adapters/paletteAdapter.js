@@ -1,3 +1,5 @@
+import shortid from 'shortid';
+
 const paletteAdapter = data => {
   if (!Array.isArray(data)) {
     return [];
@@ -5,7 +7,7 @@ const paletteAdapter = data => {
 
   return data.map((hexCode, index) => {
     return {
-      id: index,
+      id: shortid.generate(),
       hexCode: hexCode,
     };
   });

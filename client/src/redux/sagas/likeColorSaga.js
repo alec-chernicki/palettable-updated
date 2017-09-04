@@ -21,11 +21,11 @@ function* likeColorGenerator() {
 
   if (canAddColor) {
     yield put(addLikedColor(suggestedColor));
+
+    const newPalette = yield select(likedColorsSelector);
+
+    yield url.setColors(newPalette);
   }
-
-  const newPalette = yield select(likedColorsSelector);
-
-  yield url.setColors(newPalette);
 }
 
 function* likeColorSaga() {

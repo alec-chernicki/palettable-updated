@@ -42,7 +42,7 @@ class ColorName extends Component {
       <input
         type="text"
         styleName={interfaceAttributes.className}
-        value={shownHexCode}
+        value={hexCode}
         style={style}
         onChange={this.handleChange}
         onBlur={this.handleBlur}
