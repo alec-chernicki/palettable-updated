@@ -3,8 +3,8 @@ import { removeLikedColor, removeColor } from 'redux/actions/likedColors';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import url from 'utils/url';
 
-function* removeColorGenerator({ payload: { hexCode } }) {
-  yield put(removeLikedColor(hexCode));
+function* removeColorGenerator({ payload: { color } }) {
+  yield put(removeLikedColor(color));
 
   const newPalette = yield select(likedColorsSelector);
   yield url.setColors(newPalette);

@@ -22,7 +22,7 @@ class ColorItem extends PureComponent {
       <div>
         <ColorName color={color} />
         <div styleName="toolbox">
-          <ColorPickerTool color={color} />
+          {/* <ColorPickerTool color={color} /> */}
           <RemoveTool color={color} />
         </div>
       </div>
