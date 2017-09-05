@@ -1,10 +1,13 @@
 import { browserHistory } from 'react-router';
 import paletteAdapter from 'adapters/paletteAdapter';
+import Color from 'color';
 
 const _colorsToString = colors => {
   return colors
-    .map(color => {
-      return color.hexCode.replace('#', '');
+    .map(colorItem => {
+      const formattedColor = Color(colorItem.hexCode).hex();
+
+      return formattedColor.replace('#', '');
     })
     .join('-');
 };

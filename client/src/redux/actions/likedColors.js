@@ -1,4 +1,5 @@
 import { createActions } from 'redux-actions';
+import Color from 'color';
 
 export const {
   addLikedColor,
@@ -12,7 +13,7 @@ export const {
   REMOVE_LIKED_COLOR: color => ({ color }),
   CHANGE_LIKED_COLOR: ({ payload: { color, newHexCode } }) => ({
     color,
-    newHexCode,
+    newHexCode: Color(newHexCode).hex(),
   }),
 
   // Actions handled by sagas
@@ -20,6 +21,6 @@ export const {
   LIKE_COLOR: color => ({ color }),
   CHANGE_COLOR: ({ color, newHexCode } = {}) => ({
     color,
-    newHexCode,
+    newHexCode: Color(newHexCode).hex(),
   }),
 });

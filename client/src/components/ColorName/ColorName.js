@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { changeColor } from 'redux/actions/likedColors';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 import isHex from 'utils/isHex';
+import Color from 'color';
 
 class ColorName extends Component {
   constructor(props) {
@@ -18,7 +19,13 @@ class ColorName extends Component {
     this.handleBlur = this.handleBlur.bind(this);
   }
   handleChange(e) {
-    this.setState({ shownHexCode: e.target.value });
+    const { value } = e.target;
+
+    this.setState({ shownHexCode: value });
+
+    if (isHex(value)) {
+      this.props.onBlur(value);
+    }
   }
   handleBlur(e) {
     const { color: { hexCode } } = this.props;
@@ -28,6 +35,7 @@ class ColorName extends Component {
       return this.setState({ shownHexCode: hexCode });
     }
 
+    this.setState({ shownHexCode: Color(value).hex() });
     this.props.onBlur(e.target.value);
   }
   render() {

@@ -8,6 +8,7 @@
   width: 100%;
   z-index: 100;
   overflow: hidden;
+  transition: all 125ms ease-out;
 }
 
 .toolbox {
