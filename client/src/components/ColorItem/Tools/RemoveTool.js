@@ -31,7 +31,7 @@ const RemoveTool = ({ onClick, color, isOnlyItem }) => {
 
 RemoveTool.propTypes = {
   color: PropTypes.object.isRequired,
-  isOnlyItem: PropTypes.array.isRequired,
+  isOnlyItem: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {

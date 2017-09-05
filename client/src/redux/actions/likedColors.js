@@ -2,6 +2,7 @@ import { createActions } from 'redux-actions';
 import Color from 'color';
 
 export const {
+  setIsColorPickerActive,
   addLikedColor,
   removeLikedColor,
   changeLikedColor,
@@ -9,6 +10,10 @@ export const {
   likeColor,
   changeColor,
 } = createActions({
+  SET_IS_COLOR_PICKER_ACTIVE: (color, isColorPickerActive) => ({
+    color,
+    isColorPickerActive,
+  }),
   ADD_LIKED_COLOR: color => ({ color }),
   REMOVE_LIKED_COLOR: color => ({ color }),
   CHANGE_LIKED_COLOR: ({ payload: { color, newHexCode } }) => ({

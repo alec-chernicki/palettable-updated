@@ -4,13 +4,14 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SliderIcon from '../../SliderIcon/SliderIcon';
 import { connect } from 'react-redux';
 import { Manager, Target, Popper, Arrow } from 'react-popper';
-import { changeColor } from 'redux/actions/likedColors';
+import { changeColor, setIsColorPickerActive } from 'redux/actions/likedColors';
 
 class ColorPickerTool extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(colorData) {
@@ -19,13 +20,28 @@ class ColorPickerTool extends React.PureComponent {
     onChange({ color: color, newHexCode: colorData.hex.toUpperCase() });
   }
 
+  handleClick(e) {
+    const { onClick } = this.props;
+
+    e.stopPropagation();
+    onClick();
+  }
+
   renderColorPicker() {
-    const { color: { hexCode } } = this.props;
+    const { color: { hexCode, isColorPickerActive }, onBlur } = this.props;
+
+    if (!isColorPickerActive) {
+      return null;
+    }
 
     return (
       <Popper placement="bottom">
-        <ColorPicker onChange={this.handleChange} color={hexCode} />
         <Arrow />
+        <ColorPicker
+          onBlur={onBlur}
+          onChange={this.handleChange}
+          color={hexCode}
+        />
       </Popper>
     );
   }
@@ -38,17 +54,11 @@ class ColorPickerTool extends React.PureComponent {
         <Target>
           <SliderIcon
             hexCode={color.hexCode}
-            toggled={color.pickerActive}
-            onToggle={this.handlePickerToggle}
+            active={color.isColorPickerActive}
+            onClick={this.handleClick}
           />
         </Target>
-        <ReactCSSTransitionGroup
-          transitionName={'color-picker-animation'}
-          transitionEnterTimeout={175}
-          transitionLeaveTimeout={175}
-        >
-          {this.renderColorPicker()}
-        </ReactCSSTransitionGroup>
+        {this.renderColorPicker()}
       </Manager>
     );
   }
@@ -63,8 +73,10 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, { color }) => {
   return {
+    onBlur: () => dispatch(setIsColorPickerActive(color, false)),
+    onClick: () => dispatch(setIsColorPickerActive(color, true)),
     onChange: hexCode => dispatch(changeColor(hexCode)),
   };
 };
