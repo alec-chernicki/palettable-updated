@@ -21,10 +21,11 @@ class ColorName extends Component {
     this.setState({ shownHexCode: e.target.value });
   }
   handleBlur(e) {
+    const { color: { hexCode } } = this.props;
     const { value } = e.target;
 
     if (!isHex(value)) {
-      return;
+      return this.setState({ shownHexCode: hexCode });
     }
 
     this.props.onBlur(e.target.value);
@@ -42,7 +43,7 @@ class ColorName extends Component {
       <input
         type="text"
         styleName={interfaceAttributes.className}
-        value={hexCode}
+        value={shownHexCode}
         style={style}
         onChange={this.handleChange}
         onBlur={this.handleBlur}

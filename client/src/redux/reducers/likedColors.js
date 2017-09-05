@@ -6,12 +6,15 @@ import {
   changeLikedColor,
 } from '../actions/likedColors';
 
+const defaultLikedColor = {
+  editedHexCode: '',
+};
 const initialState = [];
 
 const likedColors = handleActions(
   {
     [addLikedColor]: (state, { payload: { color } }) => {
-      return [...state, color];
+      return [...state, { ...defaultLikedColor, ...color }];
     },
     [removeLikedColor]: (state, { payload: { color } }) => {
       return state.filter(likedColor => {

@@ -8,7 +8,9 @@ class NavigationBar extends React.Component {
   render() {
     return (
       <div styleName="navigation-bar">
-        <h1>PALETTABLE</h1>
+        <a href="/">
+          <h1>PALETTABLE</h1>
+        </a>
         <div>
           <UILink>Help</UILink>
           <UIButton>Save</UIButton>
