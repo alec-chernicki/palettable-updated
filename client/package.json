@@ -52,6 +52,7 @@
     "react-error-overlay": "^1.0.9",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
+    "react-transition-group": "^2.2.0",
     "redux": "^3.5.2",
     "redux-actions": "^2.2.1",
     "redux-saga": "^0.15.6",

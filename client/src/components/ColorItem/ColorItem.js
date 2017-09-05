@@ -8,24 +8,52 @@ import RemoveTool from './Tools/RemoveTool';
 import { MoonLoader } from 'halogen';
 import { connect } from 'react-redux';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
+import CSSTransition from 'react-transition-group/CSSTransition';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 class ColorItem extends PureComponent {
   renderLoader() {
-    const { color: { hexCode } } = this.props;
+    const { color: { hexCode }, styles } = this.props;
     const interfaceAttributes = getInterfaceAttributes(hexCode);
 
-    return <MoonLoader color={interfaceAttributes.color} />;
+    return (
+      <CSSTransition
+        key="loader"
+        timeout={500}
+        classNames={{
+          enter: styles['fade-enter'],
+          enterActive: styles['fade-enter-active'],
+          exit: styles['fade-exit'],
+          exitActive: styles['fade-exit-active'],
+        }}
+      >
+        <div styleName="loader-container">
+          <MoonLoader color={interfaceAttributes.color} />
+        </div>
+      </CSSTransition>
+    );
   }
   renderTools() {
-    const { color } = this.props;
+    const { color, styles } = this.props;
     return (
-      <div>
-        <ColorName color={color} />
-        <div styleName="toolbox">
-          {/* <ColorPickerTool color={color} /> */}
-          <RemoveTool color={color} />
+      <CSSTransition
+        key="tools"
+        timeout={75}
+        classNames={{
+          enter: styles['fade-enter'],
+          enterActive: styles['fade-enter-active'],
+          exit: styles['fade-exit'],
+          exitActive: styles['fade-exit-active'],
+        }}
+      >
+        <div styleName="tools">
+          <ColorName color={color} />
+          <div styleName="tool-icons">
+            {/* <ColorPickerTool color={color} /> */}
+            <RemoveTool color={color} />
+          </div>
         </div>
-      </div>
+      </CSSTransition>
     );
   }
 
@@ -47,7 +75,9 @@ class ColorItem extends PureComponent {
 
     return (
       <li style={style} styleName="color-item">
-        {this.renderContent()}
+        <TransitionGroup>
+          {this.renderContent()}
+        </TransitionGroup>
         <ColorItemFooter
           isLastItem={isLastItem}
           active={isLastItem}

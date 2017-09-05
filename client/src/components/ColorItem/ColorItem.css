@@ -1,59 +1,58 @@
+@keyframes fade-in {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
+.loader-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .color-item {
   align-items: center;
   display: flex;
   justify-content: center;
   position: relative;
-  transition: all 0.2s;
-  transition: width 300ms ease-in;
   width: 100%;
   z-index: 100;
   overflow: hidden;
-  transition: all 125ms ease-out;
+  transition: all 150ms ease-out;
 }
 
-.toolbox {
+.tools {
+  /*animation: fade-in 125ms ease-out;*/
+}
+
+.tool-icons {
   position: relative;
   z-index: 1000;
 }
 
-.color-animation-enter {
-  width: 0.01%;
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 75ms ease-out;
+}
+
+.fade-exit {
+  opacity: 1;
   overflow: hidden;
 }
 
-.color-animation-enter-active {
-  width: 100%;
-  transition: width 300ms linear;
-}
-
-.color-animation-leave {
-  width: 100%;
-  overflow: hidden;
-}
-
-.color-animation-leave-active {
-  width: 0.01%;
-  transition: width 300ms linear;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 0.8;
-    transform: translateY(0px);
-  }
-}
-
-@keyframes bounce-with-delay {
-  0%, 80%, 100% {
-    transform: scale(0);
-    opacity: 0.3;
-  }
-  40% {
-    transform: scale(1.0);
-    opacity: 1;
-  }
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 75ms ease-out;
 }

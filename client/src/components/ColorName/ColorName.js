@@ -12,11 +12,23 @@ class ColorName extends Component {
     super(props);
 
     this.state = {
+      isEditing: false,
       shownHexCode: props.color.hexCode,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+  }
+  componentWillReceiveProps(nextProps) {
+    const { shownHexCode, isEditing } = this.state;
+
+    if (nextProps.color.hexCode !== shownHexCode && !isEditing) {
+      this.setState({ shownHexCode: nextProps.color.hexCode });
+    }
+  }
+  handleFocus() {
+    this.setState({ isEditing: true });
   }
   handleChange(e) {
     const { value } = e.target;
@@ -53,6 +65,7 @@ class ColorName extends Component {
         styleName={interfaceAttributes.className}
         value={shownHexCode}
         style={style}
+        onFocus={this.handleFocus}
         onChange={this.handleChange}
         onBlur={this.handleBlur}
       />
