@@ -49,7 +49,9 @@ class ColorList extends React.PureComponent {
             exitActive: styles['flex-exit-active'],
           }}
         >
-          <ColorItem color={color} isLastItem={isLastItem} />
+          <div>
+            <ColorItem color={color} isLastItem={isLastItem} />
+          </div>
         </CSSTransition>
       );
     });

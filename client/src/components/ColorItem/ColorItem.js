@@ -19,7 +19,7 @@ class ColorItem extends React.PureComponent {
     return (
       <CSSTransition
         key="loader"
-        timeout={500}
+        timeout={400}
         classNames={{
           enter: styles['fade-enter'],
           enterActive: styles['fade-enter-active'],
@@ -38,7 +38,7 @@ class ColorItem extends React.PureComponent {
     return (
       <CSSTransition
         key="tools"
-        timeout={75}
+        timeout={200}
         classNames={{
           enter: styles['fade-enter'],
           enterActive: styles['fade-enter-active'],

@@ -16,6 +16,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  animation-delay: 125ms;
+  animation: fade-in 125 ease-out;
+
 }
 
 .color-item {
@@ -42,14 +45,13 @@
   }
 }
 
-
 .fade-enter {
   opacity: 0.01;
 }
 
 .fade-enter-active {
   opacity: 1;
-  transition: opacity 75ms ease-out;
+  transition: opacity 200ms ease-out 200ms;
 }
 
 .fade-exit {
@@ -59,5 +61,5 @@
 
 .fade-exit-active {
   opacity: 0.01;
-  transition: opacity 75ms ease-out;
+  transition: opacity 200ms ease-out;
 }
