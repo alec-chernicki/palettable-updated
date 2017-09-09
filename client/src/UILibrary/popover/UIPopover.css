@@ -1,0 +1,59 @@
+.popper-arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+  margin: 10px;
+}
+
+.popper[data-placement^="top"] {
+  margin-bottom: 10px;
+}
+
+.popper[data-placement^="top"] .popper-arrow {
+  border-width: 10px 10px 0 10px;
+  border-color: #FFF transparent transparent transparent;
+  bottom: -10px;
+  left: calc(50% - 10px);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.popper[data-placement^="bottom"] {
+  margin-top: 10px;
+}
+
+.popper[data-placement^="bottom"] .popper-arrow {
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #FFF transparent;
+  top: -10px;
+  left: calc(50% - 10px);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.popper[data-placement^="right"] {
+  margin-left: 10px;
+}
+
+.popper[data-placement^="right"] .popper-arrow {
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #FFF transparent transparent;
+  left: -10px;
+  top: calc(50% - 10px);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.popper[data-placement^="left"] {
+  margin-right: 10px;
+}
+
+.popper[data-placement^="left"] .popper-arrow {
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #FFF;
+  right: -10px;
+  top: calc(50% - 10px);
+  margin-left: 0;
+  margin-right: 0;
+}

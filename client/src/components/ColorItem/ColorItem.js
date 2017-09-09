@@ -1,6 +1,6 @@
 import styles from './ColorItem.css';
 import CSSModules from 'react-css-modules';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes } from 'react';
 import ColorName from '../ColorName/ColorName';
 import ColorItemFooter from './ColorItemFooter';
 import ColorPickerTool from './Tools/ColorPickerTool';
@@ -11,7 +11,7 @@ import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 
-class ColorItem extends PureComponent {
+class ColorItem extends React.PureComponent {
   renderLoader() {
     const { color: { hexCode }, styles } = this.props;
     const interfaceAttributes = getInterfaceAttributes(hexCode);
@@ -46,7 +46,7 @@ class ColorItem extends PureComponent {
           exitActive: styles['fade-exit-active'],
         }}
       >
-        <div styleName="tools">
+        <div>
           <ColorName color={color} />
           <div styleName="tool-icons">
             <ColorPickerTool color={color} />

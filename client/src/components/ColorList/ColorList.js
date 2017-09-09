@@ -7,8 +7,10 @@ import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import ColorItem from 'components/ColorItem/ColorItem';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 import { MoonLoader } from 'halogen';
+import CSSTransition from 'react-transition-group/CSSTransition';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 
-class ColorList extends React.Component {
+class ColorList extends React.PureComponent {
   componentDidMount() {
     const { requestPalette } = this.props;
 
@@ -16,6 +18,7 @@ class ColorList extends React.Component {
   }
   renderColors() {
     const { likedColors } = this.props;
+
     return likedColors.map((color, index) => {
       const isLastItem = likedColors.length - 1 === index;
 
@@ -34,7 +37,9 @@ class ColorList extends React.Component {
 
     return (
       <div styleName="loader-container">
-        <MoonLoader color={interfaceAttributes.color} />
+        <div styleName="loader" key="loader">
+          <MoonLoader color={interfaceAttributes.color} />
+        </div>
       </div>
     );
   }

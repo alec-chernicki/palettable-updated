@@ -13,7 +13,7 @@ class NavigationBar extends React.Component {
         </a>
         <div>
           <UILink>Help</UILink>
-          <UIButton>Save</UIButton>
+          <UIButton>Export</UIButton>
         </div>
       </div>
     );

@@ -1,9 +1,19 @@
+@keyframes fade-in {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
 .color-list {
+  animation: fade-in 200ms ease-out;
   display: flex;
   width: 100%;
+  height: 100%;
   flex-grow: 2;
   flex-basis: 100%;
-  background-color: #222;
 }
 
 .loader-container {
@@ -12,5 +22,17 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  background-color: #222;
+}
+
+.loader {
+  animation: fade-in 300ms ease-out;
+  animation-delay: 500ms;
+  animation-fill-mode: backwards;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .color-list {
+    flex-direction: column;
+  }
 }

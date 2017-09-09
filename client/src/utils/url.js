@@ -1,5 +1,6 @@
 import { browserHistory } from 'react-router';
 import paletteAdapter from 'adapters/paletteAdapter';
+import isHex from 'utils/isHex';
 import Color from 'color';
 
 const _colorsToString = colors => {
@@ -20,7 +21,7 @@ const _stringToColors = () => {
   }
 
   const colorsArray = path.split('-');
-  const formattedColors = colorsArray.map(color => `#${color}`);
+  const formattedColors = colorsArray.map(color => `#${color}`).filter(isHex);
 
   return paletteAdapter(formattedColors);
 };

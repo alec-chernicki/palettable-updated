@@ -1,13 +1,13 @@
 import styles from './ColorName.css';
 import CSSModules from 'react-css-modules';
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { changeColor } from 'redux/actions/likedColors';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 import isHex from 'utils/isHex';
 import Color from 'color';
 
-class ColorName extends Component {
+class ColorName extends React.Component {
   constructor(props) {
     super(props);
 

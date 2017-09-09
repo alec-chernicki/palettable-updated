@@ -5,6 +5,7 @@ import SliderIcon from '../../SliderIcon/SliderIcon';
 import { connect } from 'react-redux';
 import { Manager, Target, Popper, Arrow } from 'react-popper';
 import { changeColor, setIsColorPickerActive } from 'redux/actions/likedColors';
+import UIPopover from 'UILibrary/popover/UIPopover';
 
 class ColorPickerTool extends React.PureComponent {
   constructor(props) {
@@ -28,21 +29,14 @@ class ColorPickerTool extends React.PureComponent {
   }
 
   renderColorPicker() {
-    const { color: { hexCode, isColorPickerActive }, onBlur } = this.props;
-
-    if (!isColorPickerActive) {
-      return null;
-    }
+    const { color: { hexCode }, onBlur } = this.props;
 
     return (
-      <Popper placement="bottom">
-        <Arrow />
-        <ColorPicker
-          onBlur={onBlur}
-          onChange={this.handleChange}
-          color={hexCode}
-        />
-      </Popper>
+      <ColorPicker
+        onBlur={onBlur}
+        onChange={this.handleChange}
+        color={hexCode}
+      />
     );
   }
 
@@ -50,16 +44,17 @@ class ColorPickerTool extends React.PureComponent {
     const { color } = this.props;
 
     return (
-      <Manager>
-        <Target>
-          <SliderIcon
-            hexCode={color.hexCode}
-            active={color.isColorPickerActive}
-            onClick={this.handleClick}
-          />
-        </Target>
-        {this.renderColorPicker()}
-      </Manager>
+      <UIPopover
+        placement="bottom"
+        isOpen={color.isColorPickerActive}
+        content={this.renderColorPicker()}
+      >
+        <SliderIcon
+          hexCode={color.hexCode}
+          active={color.isColorPickerActive}
+          onClick={this.handleClick}
+        />
+      </UIPopover>
     );
   }
 }

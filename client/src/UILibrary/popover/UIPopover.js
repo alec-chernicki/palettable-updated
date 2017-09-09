@@ -1,53 +1,49 @@
+import styles from './UIPopover.css';
+import CSSModules from 'react-css-modules';
 import React, { PropTypes } from 'react';
-import { partial } from 'lodash';
 import { Manager, Target, Popper, Arrow } from 'react-popper';
 
 const placementProps = ['top', 'bottom', 'left', 'right'];
 
 class UIPopover extends React.Component {
-  constructor(props) {
-    super(props);
+  renderContent() {
+    const { placement, content, isOpen, styles } = this.props;
 
-    this.state = {
-      isActive: props.isActive,
-    };
+    if (!isOpen) {
+      return null;
+    }
 
-    this.setIsActive = this.setIsActive.bind(this);
-  }
-
-  componentDidMount() {
-    window.addEventListener('click', partial(this.setIsActive, false));
-  }
-
-  setIsActive(isActive) {
-    this.setState({ isActive });
+    return (
+      <Popper placement={placement} className={styles['popper']}>
+        {content}
+        <Arrow className={styles['popper-arrow']} />
+      </Popper>
+    );
   }
 
   render() {
-    const { children, placement } = this.props;
+    const { children } = this.props;
 
     return (
       <Manager>
         <Target>
           {children}
         </Target>
-        <Popper placement={placement}>
-          <Arrow />
-        </Popper>
+        {this.renderContent()}
       </Manager>
     );
   }
 }
 
 UIPopover.defaultProps = {
-  isActive: false,
+  isOpen: false,
+  placement: 'top',
 };
 
 UIPopover.propTypes = {
-  id: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   placement: PropTypes.oneOf(placementProps),
   children: PropTypes.node.isRequired,
 };
 
-export default UIPopover;
+export default CSSModules(UIPopover, styles);

@@ -8,6 +8,7 @@
   border-radius: 4px;
   position: relative;
   z-index: 1100;
+  box-shadow: rgba(0,0,0,0.05) 0 0 0 1px;
 }
 
 .saturation {
