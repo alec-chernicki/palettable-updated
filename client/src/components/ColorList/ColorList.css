@@ -47,7 +47,7 @@
 
 .flex-enter-active {
   flex: 1 !important;
-  transition: flex 350ms ease !important;
+  transition: flex 400ms ease-out;
 }
 
 .flex-exit {
@@ -56,5 +56,5 @@
 
 .flex-exit-active {
   flex: 0.00001 !important;
-  transition: flex 350ms ease !important;
+  transition: flex 400ms ease-out;
 }

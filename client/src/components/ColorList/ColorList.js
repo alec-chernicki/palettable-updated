@@ -41,7 +41,7 @@ class ColorList extends React.PureComponent {
         <CSSTransition
           key={index}
           className={styles['flex-item-wrapper']}
-          timeout={350}
+          timeout={400}
           classNames={{
             enter: styles['flex-enter'],
             enterActive: styles['flex-enter-active'],
