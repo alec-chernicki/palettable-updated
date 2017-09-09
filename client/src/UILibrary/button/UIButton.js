@@ -11,7 +11,7 @@ const useProps = {
 
 class UIButton extends React.Component {
   render() {
-    const { children, onClick, external, use } = this.props;
+    const { children, onClick, external, use, href } = this.props;
     const componentClass = classNames({
       primary: use === useProps.primary,
       positive: use === useProps.positive,
@@ -19,8 +19,8 @@ class UIButton extends React.Component {
     });
 
     return (
-      <a onClick={onClick} styleName={componentClass}>
-        {this.props.children}
+      <a onClick={onClick} styleName={componentClass} href={href}>
+        {children}
       </a>
     );
   }

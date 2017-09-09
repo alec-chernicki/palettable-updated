@@ -1,7 +1,11 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { requestPalette, receivePalette } from 'redux/actions/suggestedColors';
 import { addLikedColor } from 'redux/actions/likedColors';
-import { setIsFetching, setIsStale } from 'redux/actions/dataStatus';
+import {
+  setIsFetching,
+  setIsStale,
+  setHasFetchFailed,
+} from 'redux/actions/dataStatus';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import PaletteAPI from 'api/PaletteAPI';
 import url from 'utils/url';
@@ -33,7 +37,8 @@ export function* fetchPaletteGenerator() {
       }
     }
   } catch (e) {
-    yield put({ type: 'USER_FETCH_FAILED', message: e.message });
+    yield put(setIsFetching(false));
+    yield put(setHasFetchFailed(true));
   }
 }
 

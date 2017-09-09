@@ -7,8 +7,8 @@ import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import ColorItem from 'components/ColorItem/ColorItem';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 import { MoonLoader } from 'halogen';
-import CSSTransition from 'react-transition-group/CSSTransition';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import hasFetchFailedSelector from 'redux/selectors/hasFetchFailedSelector';
+import UIButton from 'UILibrary/button/UIButton';
 
 class ColorList extends React.PureComponent {
   componentDidMount() {
@@ -16,6 +16,19 @@ class ColorList extends React.PureComponent {
 
     requestPalette();
   }
+
+  renderError() {
+    return (
+      <div styleName="loader-container">
+        <div>
+          <h1>Well, this is embarassing.</h1>
+          <p>Unfortunately we weren't able to get suggested palettes.</p>
+          <UIButton href="/">Refresh the page</UIButton>
+        </div>
+      </div>
+    );
+  }
+
   renderColors() {
     const { likedColors } = this.props;
 
@@ -25,6 +38,7 @@ class ColorList extends React.PureComponent {
       return <ColorItem key={index} color={color} isLastItem={isLastItem} />;
     });
   }
+
   renderList() {
     return (
       <div styleName="color-list">
@@ -32,6 +46,7 @@ class ColorList extends React.PureComponent {
       </div>
     );
   }
+
   renderLoader() {
     const interfaceAttributes = getInterfaceAttributes('#222');
 
@@ -43,8 +58,13 @@ class ColorList extends React.PureComponent {
       </div>
     );
   }
+
   render() {
-    const { likedColors } = this.props;
+    const { likedColors, hasFetchFailed } = this.props;
+
+    if (hasFetchFailed) {
+      return this.renderError();
+    }
 
     if (!likedColors.length) {
       return this.renderLoader();
@@ -62,6 +82,7 @@ ColorList.propTypes = {
 const mapStateToProps = state => {
   return {
     likedColors: likedColorsSelector(state),
+    hasFetchFailed: hasFetchFailedSelector(state),
   };
 };
 
