@@ -1,4 +1,4 @@
-@keyframes bounce-in {
+@keyframes slide-in {
   from {
     transform: translateY(100%);
   }
@@ -38,7 +38,8 @@
 
 .active {
   composes: color-footer;
-  animation: bounce-in 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation: slide-in 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation-delay: 350ms;
   animation-fill-mode: backwards;
 }
 

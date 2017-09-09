@@ -3,12 +3,14 @@ import CSSModules from 'react-css-modules';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { requestPalette } from 'redux/actions/suggestedColors';
+import { MoonLoader } from 'halogen';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import ColorItem from 'components/ColorItem/ColorItem';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
-import { MoonLoader } from 'halogen';
 import hasFetchFailedSelector from 'redux/selectors/hasFetchFailedSelector';
 import UIButton from 'UILibrary/button/UIButton';
+import CSSTransition from 'react-transition-group/CSSTransition';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 class ColorList extends React.PureComponent {
   componentDidMount() {
@@ -35,15 +37,30 @@ class ColorList extends React.PureComponent {
     return likedColors.map((color, index) => {
       const isLastItem = likedColors.length - 1 === index;
 
-      return <ColorItem key={index} color={color} isLastItem={isLastItem} />;
+      return (
+        <CSSTransition
+          key={index}
+          className={styles['flex-item-wrapper']}
+          timeout={350}
+          classNames={{
+            enter: styles['flex-enter'],
+            enterActive: styles['flex-enter-active'],
+            exit: styles['flex-exit'],
+            exitActive: styles['flex-exit-active'],
+          }}
+        >
+          <ColorItem color={color} isLastItem={isLastItem} />
+        </CSSTransition>
+      );
     });
   }
 
   renderList() {
+    const { styles } = this.props;
     return (
-      <div styleName="color-list">
+      <TransitionGroup className={styles['color-list']}>
         {this.renderColors()}
-      </div>
+      </TransitionGroup>
     );
   }
 

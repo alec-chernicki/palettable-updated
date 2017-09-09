@@ -36,3 +36,25 @@
     flex-direction: column;
   }
 }
+
+.flex-item-wrapper {
+  flex: 1;
+}
+
+.flex-enter {
+  flex: 0.00001 !important;
+}
+
+.flex-enter-active {
+  flex: 1 !important;
+  transition: flex 350ms ease !important;
+}
+
+.flex-exit {
+  flex: 1 !important;
+}
+
+.flex-exit-active {
+  flex: 0.00001 !important;
+  transition: flex 350ms ease !important;
+}
