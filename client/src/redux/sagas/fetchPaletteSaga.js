@@ -1,6 +1,6 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { requestPalette, receivePalette } from 'redux/actions/suggestedColors';
-import { addLikedColor } from 'redux/actions/likedColors';
+import { addLikedColor, addLikedColors } from 'redux/actions/likedColors';
 import {
   setIsFetching,
   setIsStale,
@@ -27,9 +27,7 @@ export function* fetchPaletteGenerator() {
 
     if (isInitialCall) {
       if (paletteFromUrl.length) {
-        for (let i = paletteFromUrl.length; i >= 1; i--) {
-          yield put(addLikedColor(paletteFromUrl[i - 1]));
-        }
+        yield put(addLikedColors(paletteFromUrl));
       } else {
         yield put(addLikedColor(palette[0]));
         const newPalette = yield select(likedColorsSelector);

@@ -3,6 +3,7 @@ import shortId from 'shortid';
 import {
   setIsColorPickerActive,
   addLikedColor,
+  addLikedColors,
   removeLikedColor,
   changeLikedColor,
 } from '../actions/likedColors';
@@ -35,6 +36,14 @@ const likedColors = handleActions(
 
     [addLikedColor]: (state, { payload: { color } }) => {
       return [...state, { ...defaultLikedColor, ...color }];
+    },
+
+    [addLikedColors]: (state, { payload: { colors } }) => {
+      const colorsWithDefaults = colors.map(color => {
+        return { ...defaultLikedColor, ...color };
+      });
+
+      return [...state, ...colorsWithDefaults];
     },
 
     [removeLikedColor]: (state, { payload: { color } }) => {

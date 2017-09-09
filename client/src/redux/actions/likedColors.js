@@ -4,6 +4,7 @@ import Color from 'color';
 export const {
   setIsColorPickerActive,
   addLikedColor,
+  addLikedColors,
   removeLikedColor,
   changeLikedColor,
   removeColor,
@@ -15,6 +16,7 @@ export const {
     isColorPickerActive,
   }),
   ADD_LIKED_COLOR: color => ({ color }),
+  ADD_LIKED_COLORS: colors => ({ colors }),
   REMOVE_LIKED_COLOR: color => ({ color }),
   CHANGE_LIKED_COLOR: ({ payload: { color, newHexCode } }) => ({
     color,
