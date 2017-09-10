@@ -6,10 +6,43 @@ import UIButton from 'UILibrary/button/UIButton';
 import { connect } from 'react-redux';
 import { dislikeColor } from 'redux/actions/dislikedColors';
 import { likeColor } from 'redux/actions/likedColors';
+import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 
 class ColorItemFooter extends React.Component {
+  renderMessage() {
+    return <p styleName="message">Maximum of 5 colors</p>;
+  }
+
+  renderButtons() {
+    const { onLike, onDislike, styles } = this.props;
+
+    return [
+      <UIButton key="dislike" use="negative" onClick={onDislike}>
+        Dislike
+      </UIButton>,
+      <UIButton
+        key="like"
+        use="positive"
+        className={styles['button-like']}
+        onClick={onLike}
+      >
+        Like
+      </UIButton>,
+    ];
+  }
+
+  renderContent() {
+    const { isAtMaximum } = this.props;
+
+    if (isAtMaximum) {
+      return this.renderMessage();
+    }
+
+    return this.renderButtons();
+  }
+
   render() {
-    const { active, onLike, onDislike } = this.props;
+    const { active } = this.props;
     const componentClass = classNames({
       active: active,
       inactive: !active,
@@ -17,12 +50,7 @@ class ColorItemFooter extends React.Component {
 
     return (
       <div styleName={componentClass}>
-        <UIButton use="negative" className="button-dislike" onClick={onDislike}>
-          Dislike
-        </UIButton>
-        <UIButton use="positive" className="button-like" onClick={onLike}>
-          Like
-        </UIButton>
+        {this.renderContent()}
       </div>
     );
   }
@@ -33,13 +61,17 @@ ColorItemFooter.propTypes = {
   onDislike: PropTypes.func.isRequired,
   color: PropTypes.object.isRequired,
   isLastItem: PropTypes.bool.isRequired,
+  isAtMaximum: PropTypes.bool.isRequired,
 };
 
 ColorItemFooter.defaultProps = {
   isLastItem: false,
+  isAtMaximum: false,
 };
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  isAtMaximum: likedColorsSelector(state).length >= 5,
+});
 
 const mapDispatchToProps = (dispatch, { color }) => {
   return {
