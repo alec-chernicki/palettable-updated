@@ -16,7 +16,7 @@ export function* fetchPaletteGenerator() {
   yield put(setIsFetching(true));
 
   const isInitialCall = yield select(isInitialCallSelector);
-  const paletteFromUrl = url.getColors().reverse();
+  const paletteFromUrl = url.getColors();
 
   try {
     const palette = yield call(PaletteAPI.getRandom);
@@ -30,9 +30,10 @@ export function* fetchPaletteGenerator() {
         yield put(addLikedColors(paletteFromUrl));
       } else {
         yield put(addLikedColor(palette[0]));
-        const newPalette = yield select(likedColorsSelector);
-        yield url.setColors(newPalette);
       }
+
+      const newPalette = yield select(likedColorsSelector);
+      yield url.setColors(newPalette);
     }
   } catch (e) {
     yield put(setIsFetching(false));
