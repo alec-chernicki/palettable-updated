@@ -3,10 +3,12 @@ import { addLikedColor, likeColor } from 'redux/actions/likedColors';
 import { requestPalette } from 'redux/actions/suggestedColors';
 import suggestedColorSelector from 'redux/selectors/suggestedColorSelector';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
-import urlAdapter from 'adapters/urlAdapter';
 import url from 'utils/url';
 
-const canAddColorSelector = state => state.likedColors.length < 5;
+const canAddColorSelector = ({ likedColors, dataStatus }) => {
+  return likedColors.length < 5 && dataStatus.isFetching === false;
+};
+
 const isSourcePaletteInvalidSelector = state => state.dataStatus.isStale;
 
 function* likeColorGenerator() {
@@ -14,18 +16,20 @@ function* likeColorGenerator() {
   const isSourcePaletteInvalid = yield select(isSourcePaletteInvalidSelector);
   const suggestedColor = yield select(suggestedColorSelector);
 
+  if (!canAddColor) {
+    return;
+  }
+
   if (isSourcePaletteInvalid) {
     yield put(requestPalette());
     yield put(addLikedColor(suggestedColor));
   }
 
-  if (canAddColor) {
-    yield put(addLikedColor(suggestedColor));
+  yield put(addLikedColor(suggestedColor));
 
-    const newPalette = yield select(likedColorsSelector);
+  const newPalette = yield select(likedColorsSelector);
 
-    yield url.setColors(newPalette);
-  }
+  yield url.setColors(newPalette);
 }
 
 function* likeColorSaga() {
