@@ -3,57 +3,86 @@
   height: 0;
   border-style: solid;
   position: absolute;
-  margin: 10px;
+  margin: 13px;
 }
 
 .popper[data-placement^="top"] {
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 .popper[data-placement^="top"] .popper-arrow {
-  border-width: 10px 10px 0 10px;
+  border-width: 13px 13px 0 13px;
   border-color: #FFF transparent transparent transparent;
-  bottom: -10px;
-  left: calc(50% - 10px);
+  bottom: -13px;
+  left: calc(50% - 13px);
   margin-top: 0;
   margin-bottom: 0;
 }
 
 .popper[data-placement^="bottom"] {
-  margin-top: 10px;
+  margin-top: 25px;
 }
 
 .popper[data-placement^="bottom"] .popper-arrow {
-  border-width: 0 10px 10px 10px;
+  border-width: 0 13px 13px 13px;
   border-color: transparent transparent #FFF transparent;
-  top: -10px;
-  left: calc(50% - 10px);
+  top: -13px;
+  left: calc(50% - 13px);
   margin-top: 0;
   margin-bottom: 0;
 }
 
 .popper[data-placement^="right"] {
-  margin-left: 10px;
+  margin-left: 25px;
 }
 
 .popper[data-placement^="right"] .popper-arrow {
-  border-width: 10px 10px 10px 0;
+  border-width: 13px 13px 13px 0;
   border-color: transparent #FFF transparent transparent;
-  left: -10px;
-  top: calc(50% - 10px);
+  left: -13px;
+  top: calc(50% - 13px);
   margin-left: 0;
   margin-right: 0;
 }
 
 .popper[data-placement^="left"] {
-  margin-right: 10px;
+  margin-right: 25px;
 }
 
 .popper[data-placement^="left"] .popper-arrow {
-  border-width: 10px 0 10px 10px;
+  border-width: 13px 0 13px 13px;
   border-color: transparent transparent transparent #FFF;
-  right: -10px;
-  top: calc(50% - 10px);
+  right: -13px;
+  top: calc(50% - 13px);
   margin-left: 0;
   margin-right: 0;
+}
+
+.popper-animation-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.popover-enter {
+  opacity: 0.001;
+  transform: scale(0.7);
+}
+
+.popover-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 200ms ease;
+}
+
+.popover-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.popover-exit-active {
+  opacity: 0.001;
+  transform: scale(0.7);
+  transition: all 200ms ease;
 }
