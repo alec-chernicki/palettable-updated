@@ -1,4 +1,4 @@
-import { put, takeLatest, select, call } from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { changeLikedColor, changeColor } from 'redux/actions/likedColors';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import url from 'utils/url';

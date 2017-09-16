@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { createSelector } from 'reselect';
 import dislikedColorsSelector from 'redux/selectors/dislikedColorsSelector';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';

@@ -32,6 +32,10 @@ class UIButton extends React.Component {
   }
 }
 
+UIButton.propTypes = {
+  use: PropTypes.oneOf(Object.keys(useProps)),
+};
+
 UIButton.defaultProps = {
   use: useProps.primary,
 };
