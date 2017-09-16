@@ -1,6 +1,7 @@
 import styles from './ColorName.css';
 import CSSModules from 'react-css-modules';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 import { changeColor } from 'redux/actions/likedColors';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';

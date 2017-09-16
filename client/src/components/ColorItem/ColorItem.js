@@ -1,6 +1,7 @@
 import styles from './ColorItem.css';
 import CSSModules from 'react-css-modules';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import ColorName from '../ColorName/ColorName';
 import ColorItemFooter from './ColorItemFooter';
 import ColorPickerTool from './Tools/ColorPickerTool';

@@ -1,5 +1,6 @@
 import styles from './RemoveTool.css';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import CSSModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { removeColor } from 'redux/actions/likedColors';

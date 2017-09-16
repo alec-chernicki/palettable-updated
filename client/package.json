@@ -43,6 +43,8 @@
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.6",
     "promise": "7.1.1",
+    "prop-types": "^15.5.10",
+    "raven-js": "^3.17.0",
     "react": "^15.0.1",
     "react-addons-css-transition-group": "^15.0.2",
     "react-color": "^2.1.0",

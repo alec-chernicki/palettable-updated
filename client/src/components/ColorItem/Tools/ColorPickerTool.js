@@ -1,9 +1,8 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import ColorPicker from '../../ColorPicker/ColorPicker';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SliderIcon from '../../SliderIcon/SliderIcon';
 import { connect } from 'react-redux';
-import { Manager, Target, Popper, Arrow } from 'react-popper';
 import { changeColor, setIsColorPickerActive } from 'redux/actions/likedColors';
 import UIPopover from 'UILibrary/popover/UIPopover';
 

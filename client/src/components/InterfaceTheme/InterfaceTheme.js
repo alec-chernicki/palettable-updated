@@ -1,5 +1,6 @@
 import './InterfaceTheme.css';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import colorInterpreter from 'color';
 
 const InterfaceTheme = ({ color, children }) => {

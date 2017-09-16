@@ -1,20 +1,22 @@
 import './Onboarding.css';
 
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+
+import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import StepThree from './StepThree';
 import InterfaceTheme from '../InterfaceTheme/InterfaceTheme';
 
-const Onboarding = ({ color, isCompleted, step }) => (
+const Onboarding = ({ color, isCompleted, step }) =>
   <div>
     {!isCompleted &&
       <InterfaceTheme color={color}>
         <div className="cover onboarding" />
         <ReactCSSTransitionGroup
           className="onboarding-container"
-          transitionName={"onboarding-animation"}
+          transitionName={'onboarding-animation'}
           transitionEnterTimeout={150}
           transitionLeaveTimeout={150}
         >
@@ -23,8 +25,7 @@ const Onboarding = ({ color, isCompleted, step }) => (
           {step === 3 && <StepThree />}
         </ReactCSSTransitionGroup>
       </InterfaceTheme>}
-  </div>
-);
+  </div>;
 
 Onboarding.propTypes = {
   step: PropTypes.number.isRequired,

@@ -35,12 +35,23 @@ const likedColors = handleActions(
     },
 
     [addLikedColor]: (state, { payload: { color } }) => {
-      return [...state, { ...defaultLikedColor, ...color }];
+      return [
+        ...state,
+        {
+          ...defaultLikedColor,
+          ...color,
+          id: shortId.generate(),
+        },
+      ];
     },
 
     [addLikedColors]: (state, { payload: { colors } }) => {
       const colorsWithDefaults = colors.map(color => {
-        return { ...defaultLikedColor, ...color };
+        return {
+          ...defaultLikedColor,
+          ...color,
+          id: shortId.generate(),
+        };
       });
 
       return [...state, ...colorsWithDefaults];
@@ -60,7 +71,6 @@ const likedColors = handleActions(
 
         return {
           ...likedColor,
-          id: shortId.generate(),
           hexCode: newHexCode,
         };
       });

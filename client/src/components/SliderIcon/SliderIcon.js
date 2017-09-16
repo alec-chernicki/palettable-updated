@@ -1,6 +1,7 @@
 import styles from './SliderIcon.css';
 import CSSModules from 'react-css-modules';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 

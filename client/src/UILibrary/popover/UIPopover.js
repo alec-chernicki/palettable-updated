@@ -1,9 +1,9 @@
 import styles from './UIPopover.css';
 import CSSModules from 'react-css-modules';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Manager, Target, Popper, Arrow } from 'react-popper';
 import CSSTransition from 'react-transition-group/CSSTransition';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 const placementProps = ['top', 'bottom', 'left', 'right'];
 
@@ -11,13 +11,12 @@ class UIPopover extends React.Component {
   renderContent() {
     const { placement, content, isOpen, styles } = this.props;
 
-    if (!isOpen) {
-      return null;
-    }
-
     return (
       <CSSTransition
-        timeout={50000}
+        in={isOpen}
+        mountOnEnter={true}
+        unmountOnExit={true}
+        timeout={200}
         classNames={{
           enter: styles['popover-enter'],
           enterActive: styles['popover-enter-active'],
@@ -43,9 +42,7 @@ class UIPopover extends React.Component {
         <Target>
           {children}
         </Target>
-        <TransitionGroup>
-          {this.renderContent()}
-        </TransitionGroup>
+        {this.renderContent()}
       </Manager>
     );
   }

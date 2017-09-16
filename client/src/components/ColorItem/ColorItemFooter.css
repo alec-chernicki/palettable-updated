@@ -7,10 +7,6 @@
   }
 }
 
-.button-like {
-  margin-left: 20px;
-}
-
 .color-footer {
   position: absolute;
   bottom: 0;
@@ -21,8 +17,6 @@
   width: 100%;
   max-width: 50vw;
   right: auto;
-  display: flex;
-  justify-content: space-between;
   filter: drop-shadow(0 -1px 0 rgba(0,0,0,0.05));
 }
 
@@ -32,9 +26,18 @@
   }
 }
 
-.color-footer > * {
+.buttons {
+  display: flex;
+}
+
+.buttons > * {
   flex: 1 1 50%;
 }
+
+.button-dislike {
+  margin-right: 20px;
+}
+
 
 .active {
   composes: color-footer;
@@ -50,7 +53,7 @@
 
 .message {
   color: #222;
-  margin: 0;
   text-align: center;
   padding: 10px 20px;
+  margin: 0 0 10px 0;
 }

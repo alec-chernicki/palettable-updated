@@ -1,6 +1,7 @@
 import styles from './ColorItemFooter.css';
 import CSSModules from 'react-css-modules';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames';
 import UIButton from 'UILibrary/button/UIButton';
 import { connect } from 'react-redux';
@@ -10,35 +11,51 @@ import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 
 class ColorItemFooter extends React.Component {
   renderMessage() {
+    const { isAtMaximum } = this.props;
+
+    if (!isAtMaximum) {
+      return null;
+    }
+
     return <p styleName="message">Maximum of 5 colors</p>;
   }
 
-  renderButtons() {
-    const { onLike, onDislike, styles } = this.props;
-
-    return [
-      <UIButton key="dislike" use="negative" onClick={onDislike}>
-        Dislike
-      </UIButton>,
-      <UIButton
-        key="like"
-        use="positive"
-        className={styles['button-like']}
-        onClick={onLike}
-      >
-        Like
-      </UIButton>,
-    ];
+  renderExportButton() {
+    return <UIButton>Export</UIButton>;
   }
 
-  renderContent() {
+  renderLikeButton() {
+    const { onLike } = this.props;
+
+    return (
+      <UIButton use="positive" onClick={onLike}>
+        Like
+      </UIButton>
+    );
+  }
+
+  renderSecondaryActionButton() {
     const { isAtMaximum } = this.props;
 
     if (isAtMaximum) {
-      return this.renderMessage();
+      return this.renderExportButton();
     }
 
-    return this.renderButtons();
+    return this.renderLikeButton();
+  }
+
+  renderPrimaryActionButton() {
+    const { onDislike, styles } = this.props;
+
+    return (
+      <UIButton
+        use="negative"
+        className={styles['button-dislike']}
+        onClick={onDislike}
+      >
+        Dislike
+      </UIButton>
+    );
   }
 
   render() {
@@ -50,7 +67,11 @@ class ColorItemFooter extends React.Component {
 
     return (
       <div styleName={componentClass}>
-        {this.renderContent()}
+        {this.renderMessage()}
+        <div styleName="buttons">
+          {this.renderPrimaryActionButton()}
+          {this.renderSecondaryActionButton()}
+        </div>
       </div>
     );
   }
