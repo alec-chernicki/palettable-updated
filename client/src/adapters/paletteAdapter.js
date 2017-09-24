@@ -1,10 +1,7 @@
+// @flow
 import shortid from 'shortid';
 
-const paletteAdapter = data => {
-  if (!Array.isArray(data)) {
-    return [];
-  }
-
+const paletteAdapter = (data: Array<string>): Array<Object> => {
   const palette = data.map((hexCode, index) => {
     return {
       id: shortid.generate(),

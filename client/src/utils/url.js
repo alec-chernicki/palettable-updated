@@ -1,12 +1,12 @@
 // @flow
-import paletteAdapter from 'adapters/paletteAdapter';
-import isHex from 'utils/isHex';
+import paletteAdapter from '../adapters/paletteAdapter';
+import isHex from '../utils/isHex';
 import Color from 'color';
 
 const _colorsToString = (colors: Array<Object>): string => {
   return colors
     .map(colorItem => {
-      const formattedColor = Color(colorItem.hexCode).hex();
+      const formattedColor: string = Color(colorItem.hexCode).hex();
 
       return formattedColor.replace('#', '');
     })
@@ -14,14 +14,16 @@ const _colorsToString = (colors: Array<Object>): string => {
 };
 
 const _stringToColors = () => {
-  const path = window.location.pathname.replace('/', '');
+  const path: string = window.location.pathname.replace('/', '');
 
   if (!path) {
     return [];
   }
 
-  const colorsArray = path.split('-');
-  const formattedColors = colorsArray.map(color => `#${color}`).filter(isHex);
+  const colorsArray: Array<string> = path.split('-');
+  const formattedColors: Array<string> = colorsArray
+    .map(color => `#${color}`)
+    .filter(isHex);
 
   return paletteAdapter(formattedColors);
 };

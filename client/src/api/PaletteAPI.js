@@ -1,11 +1,12 @@
+// @flow
 import axios from 'axios';
-import paletteAdapter from 'adapters/paletteAdapter';
+import paletteAdapter from '../adapters/paletteAdapter';
 
-const RANDOM_ENDPOINT = '/api/random';
-const CHANGE_ENDPOINT = '/api/change';
+const RANDOM_ENDPOINT: string = '/api/random';
+const CHANGE_ENDPOINT: string = '/api/change';
 
 const PaletteAPI = {
-  getWithColors(likedColors, dislikedColors) {
+  getWithColors(likedColors: Array<string>, dislikedColors: Array<string>) {
     const options = {
       params: {
         colors: likedColors,
@@ -14,7 +15,7 @@ const PaletteAPI = {
     };
 
     return axios
-      .get(CHANGE_ENDPOINT, options)
+      .get((CHANGE_ENDPOINT: string), options)
       .then(({ data }) => data)
       .then(paletteAdapter);
   },

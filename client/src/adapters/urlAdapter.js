@@ -1,4 +1,6 @@
-const urlAdapter = colors => {
+// @flow
+
+const urlAdapter = (colors: Array<Object>): Array<string> => {
   if (!Array.isArray(colors)) {
     return [];
   }

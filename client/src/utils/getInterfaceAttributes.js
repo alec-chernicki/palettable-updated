@@ -1,6 +1,7 @@
+// @flow
 import Color from 'color';
 
-const _getInterfaceColor = colorObject => {
+const _getInterfaceColor = (colorObject): string => {
   const black = Color('#333');
   const white = Color('#FFF');
 
@@ -11,11 +12,13 @@ const _getInterfaceColor = colorObject => {
   return interfaceColor.hex();
 };
 
-const _getInterfaceClassName = colorObject => {
+const _getInterfaceClassName = (colorObject): string => {
   return colorObject.dark() ? 'light' : 'dark';
 };
 
-const getInterfaceAttributes = hexCode => {
+const getInterfaceAttributes = (
+  hexCode: string
+): { color: string, className: string } => {
   const colorObject = Color(hexCode);
 
   return {
