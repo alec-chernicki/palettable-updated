@@ -26,7 +26,9 @@ class ColorList extends React.PureComponent {
         <div>
           <h1>Well, this is embarassing.</h1>
           <p>Unfortunately we weren't able to get suggested palettes.</p>
-          <UIButton href="/">Refresh the page</UIButton>
+          <UIButton use="positive" href="/">
+            Refresh the page
+          </UIButton>
         </div>
       </div>
     );

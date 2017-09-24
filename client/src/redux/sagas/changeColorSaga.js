@@ -8,6 +8,7 @@ function* changeColorGenerator({ payload }) {
   const newPalette = yield select(likedColorsSelector);
 
   yield browserHistory.push(url.stringifyColors(newPalette));
+
   yield put(changeLikedColor({ payload }));
 }
 
