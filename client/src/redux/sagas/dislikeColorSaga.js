@@ -11,6 +11,7 @@ import dislikedColorsSelector from 'redux/selectors/dislikedColorsSelector';
 import suggestedColorSelector from 'redux/selectors/suggestedColorSelector';
 import { receivePalette } from 'redux/actions/suggestedColors';
 import url from 'utils/url';
+import { browserHistory } from 'react-router';
 import PaletteAPI from 'api/PaletteAPI';
 import Raven from 'raven-js';
 
@@ -35,7 +36,7 @@ function* dislikeColorGenerator({ payload: { color } }) {
     yield put(changeColor({ color, newHexCode: hexCode }));
 
     const newPalette = yield select(likedColorsSelector);
-    yield url.setColors(newPalette);
+    yield browserHistory.push(url.stringifyColors(newPalette));
   } catch (e) {
     Raven.captureException(e);
     yield put(setIsFetching(false));

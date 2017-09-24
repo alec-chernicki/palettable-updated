@@ -9,6 +9,7 @@ import {
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 import PaletteAPI from 'api/PaletteAPI';
 import url from 'utils/url';
+import { browserHistory } from 'react-router';
 import Raven from 'raven-js';
 
 const isInitialCallSelector = state => likedColorsSelector(state).length === 0;
@@ -17,7 +18,7 @@ export function* fetchPaletteGenerator() {
   yield put(setIsFetching(true));
 
   const isInitialCall = yield select(isInitialCallSelector);
-  const paletteFromUrl = url.getColors();
+  const paletteFromUrl = url.parseColors();
 
   try {
     const palette = yield call(PaletteAPI.getRandom);
@@ -34,9 +35,10 @@ export function* fetchPaletteGenerator() {
       }
 
       const newPalette = yield select(likedColorsSelector);
-      yield url.setColors(newPalette);
+      yield browserHistory.push(url.stringifyColors(newPalette));
     }
   } catch (e) {
+    debugger;
     Raven.captureException(e);
     yield put(setIsFetching(false));
     yield put(setHasFetchFailed(true));

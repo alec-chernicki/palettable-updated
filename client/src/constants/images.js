@@ -1,5 +1,3 @@
-import deleteImage from 'images/trash.svg';
+import deleteImage from 'images/delete.svg';
 
-export default {
-  delete: deleteImage,
-};
+export const URL_ICON = deleteImage;

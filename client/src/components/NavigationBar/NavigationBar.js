@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './NavigationBar.css';
 import CSSModules from 'react-css-modules';
 import UIButton from 'UILibrary/button/UIButton';
-import UILink from 'UILibrary/button/UILink';
+import { connect } from 'react-redux';
+import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 
 class NavigationBar extends React.Component {
   render() {
@@ -12,12 +14,23 @@ class NavigationBar extends React.Component {
           <h1>PALETTABLE</h1>
         </a>
         <div>
-          <UILink>Help</UILink>
-          <UIButton>Export</UIButton>
+          <UIButton to="/(:palette)/export">Export</UIButton>
         </div>
       </div>
     );
   }
 }
 
-export default CSSModules(NavigationBar, styles);
+NavigationBar.propTypes = {
+  likedColors: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = state => {
+  return {
+    likedColors: likedColorsSelector(state),
+  };
+};
+
+export default connect(mapStateToProps, null)(
+  CSSModules(NavigationBar, styles)
+);

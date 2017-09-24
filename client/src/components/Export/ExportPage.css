@@ -1,0 +1,16 @@
+.export-page {
+  background-color: #E6EAEC;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.export-page h2 {
+  color: #222;
+}
+
+.export-buttons {
+  display: flex;
+}

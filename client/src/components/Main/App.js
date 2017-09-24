@@ -1,18 +1,33 @@
 import styles from './App.css';
 import CSSModules from 'react-css-modules';
 import React from 'react';
-import ColorList from '../ColorList/ColorList';
 import NavigationBar from '../NavigationBar/NavigationBar';
-import SuggestedColorsTray from 'components/SuggestedColorsTray/SuggestedColorsTray';
+import { connect } from 'react-redux';
+import { requestPalette } from 'redux/actions/suggestedColors';
 
-const App = () => {
-  return (
-    <div styleName="app">
-      <NavigationBar />
-      {/* <SuggestedColorsTray /> */}
-      <ColorList />
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    const { requestPalette } = this.props;
+
+    requestPalette();
+  }
+
+  render() {
+    const { children } = this.props;
+
+    return (
+      <div styleName="app">
+        <NavigationBar />
+        {children}
+      </div>
+    );
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    requestPalette: () => dispatch(requestPalette()),
+  };
 };
 
-export default CSSModules(App, styles);
+export default connect(null, mapDispatchToProps)(CSSModules(App, styles));

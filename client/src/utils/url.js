@@ -1,4 +1,3 @@
-import { browserHistory } from 'react-router';
 import paletteAdapter from 'adapters/paletteAdapter';
 import isHex from 'utils/isHex';
 import Color from 'color';
@@ -27,11 +26,10 @@ const _stringToColors = () => {
 };
 
 const url = {
-  setColors(colors) {
-    const formattedColors = _colorsToString(colors);
-    browserHistory.push(`/${formattedColors}`);
+  stringifyColors(colors) {
+    return _colorsToString(colors);
   },
-  getColors() {
+  parseColors() {
     return _stringToColors();
   },
 };

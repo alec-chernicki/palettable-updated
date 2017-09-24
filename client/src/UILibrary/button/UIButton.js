@@ -3,6 +3,10 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './UIButton.css';
 import classNames from 'classnames';
+import { Link } from 'react-router';
+
+const LinkOriginal = props => <a {...props} />;
+const LinkWithRouter = props => <Link {...props} />;
 
 const useProps = {
   primary: 'primary',
@@ -12,22 +16,25 @@ const useProps = {
 
 class UIButton extends React.Component {
   render() {
-    const { children, onClick, className, use, href } = this.props;
+    const { children, onClick, className, use, href, to } = this.props;
     const componentClass = classNames({
       primary: use === useProps.primary,
       positive: use === useProps.positive,
       negative: use === useProps.negative,
     });
 
+    const ComponentToRender = to ? LinkWithRouter : LinkOriginal;
+
     return (
-      <a
+      <ComponentToRender
         onClick={onClick}
         styleName={componentClass}
         className={className}
         href={href}
+        to={to}
       >
         {children}
-      </a>
+      </ComponentToRender>
     );
   }
 }
