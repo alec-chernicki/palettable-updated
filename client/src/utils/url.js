@@ -1,8 +1,9 @@
+// @flow
 import paletteAdapter from 'adapters/paletteAdapter';
 import isHex from 'utils/isHex';
 import Color from 'color';
 
-const _colorsToString = colors => {
+const _colorsToString = (colors: Array<Object>): string => {
   return colors
     .map(colorItem => {
       const formattedColor = Color(colorItem.hexCode).hex();
@@ -26,7 +27,7 @@ const _stringToColors = () => {
 };
 
 const url = {
-  stringifyColors(colors) {
+  stringifyColors(colors: Array<Object>): string {
     return _colorsToString(colors);
   },
   parseColors() {
