@@ -1,3 +1,4 @@
+// @flow
 const dislikedColorsSelector = state => {
   return state.dislikedColors;
 };

@@ -1,9 +1,10 @@
+// @flow
 import { handleActions, combineActions } from 'redux-actions';
 import {
   setIsFetching,
   setIsStale,
   setHasFetchFailed,
-} from 'redux/actions/dataStatus';
+} from '../actions/dataStatus';
 
 const initialState = {
   isFetching: false,

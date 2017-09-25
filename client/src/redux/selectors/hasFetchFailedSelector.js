@@ -1,4 +1,5 @@
-const hasFetchFailed = state => {
+// @flow
+const hasFetchFailed = (state): boolean => {
   return state.dataStatus.hasFetchFailed;
 };
 

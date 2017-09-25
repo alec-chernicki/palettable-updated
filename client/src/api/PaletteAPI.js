@@ -2,8 +2,8 @@
 import axios from 'axios';
 import paletteAdapter from '../adapters/paletteAdapter';
 
-const RANDOM_ENDPOINT: string = '/api/random';
-const CHANGE_ENDPOINT: string = '/api/change';
+const RANDOM_ENDPOINT = '/api/random';
+const CHANGE_ENDPOINT = '/api/change';
 
 const PaletteAPI = {
   getWithColors(likedColors: Array<string>, dislikedColors: Array<string>) {

@@ -1,3 +1,4 @@
+// @flow
 import { handleActions } from 'redux-actions';
 import { addDislikedColor } from '../actions/dislikedColors';
 

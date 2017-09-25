@@ -1,3 +1,4 @@
+// @flow
 import { combineReducers } from 'redux';
 import dataStatus from './dataStatus';
 import suggestedColors from './suggestedColors';
