@@ -1,10 +1,20 @@
 // @flow
-type ReceivePaletteAction = { type: 'RECEIVE_PALETTE', payload: string };
-type RequestPaletteAction = { type: 'REQUEST_PALETTE', payload: null };
+type ReceivePaletteAction = {
+  type: 'RECEIVE_PALETTE',
+  payload: string
+};
+type RequestPaletteAction = {
+  type: 'REQUEST_PALETTE',
+  payload: null
+};
 
-export type DislikedColorActions = ReceivePaletteAction | RequestPaletteAction;
+export type DislikedColorActions =
+  | ReceivePaletteAction
+  | RequestPaletteAction;
 
-export const receivePalette = (sourcePalette: string): ReceivePaletteAction => {
+export const receivePalette = (
+  sourcePalette: string
+): ReceivePaletteAction => {
   return { type: 'RECEIVE_PALETTE', payload: sourcePalette };
 };
 
