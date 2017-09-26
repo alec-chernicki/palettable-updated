@@ -1,10 +1,17 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+// @flow
+import * as React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './UISelectableButton.css';
-import classNames from 'classnames';
 
-class UISelectableButton extends React.Component {
+type Props = {
+  +image: string,
+  +children: React.Node,
+  +onClick: () => mixed,
+  +className: string,
+  +href: string,
+};
+
+class UISelectableButton extends React.Component<Props> {
   renderImage() {
     const { image } = this.props;
 
@@ -31,9 +38,5 @@ class UISelectableButton extends React.Component {
     );
   }
 }
-
-UISelectableButton.propTypes = {
-  image: PropTypes.string.isRequired,
-};
 
 export default CSSModules(UISelectableButton, styles);

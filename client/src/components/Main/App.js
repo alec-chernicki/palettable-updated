@@ -1,11 +1,17 @@
+// @flow
 import styles from './App.css';
 import CSSModules from 'react-css-modules';
-import React from 'react';
+import * as React from 'react';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { connect } from 'react-redux';
-import { requestPalette } from 'redux/actions/suggestedColors';
+import { requestPalette } from '../../redux/actions/suggestedColors';
 
-class App extends React.Component {
+type Props = {
+  requestPalette: () => mixed,
+  children: React.Node,
+};
+
+class App extends React.Component<Props> {
   componentDidMount() {
     const { requestPalette } = this.props;
 

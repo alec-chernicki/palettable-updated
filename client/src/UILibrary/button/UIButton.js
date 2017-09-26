@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+// @flow
+import * as React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './UIButton.css';
 import classNames from 'classnames';
@@ -14,7 +14,20 @@ const useProps = {
   negative: 'negative',
 };
 
-class UIButton extends React.Component {
+type Props = {
+  +children: React.Node,
+  +onClick: () => mixed,
+  +className: string,
+  +use: 'primary' | 'positive' | 'negative',
+  +href: string,
+  +to: string,
+};
+
+class UIButton extends React.Component<Props> {
+  static defaultProps = {
+    use: useProps.primary,
+  };
+
   render() {
     const { children, onClick, className, use, href, to } = this.props;
     const componentClass = classNames({
@@ -38,13 +51,5 @@ class UIButton extends React.Component {
     );
   }
 }
-
-UIButton.propTypes = {
-  use: PropTypes.oneOf(Object.keys(useProps)),
-};
-
-UIButton.defaultProps = {
-  use: useProps.primary,
-};
 
 export default CSSModules(UIButton, styles);

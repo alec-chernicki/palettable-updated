@@ -12,7 +12,7 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": [
+    "src/*.js": [
       "prettier --single-quote --trailing-comma --write",
       "git add"
     ]

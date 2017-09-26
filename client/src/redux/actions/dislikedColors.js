@@ -1,9 +1,14 @@
 // @flow
-import { createActions } from 'redux-actions';
+type AddDislikedColorAction = { type: 'ADD_DISLIKED_COLOR', payload: string };
+type DislikedColorAction = { type: 'DISLIKE_COLOR', payload: string };
 
-export const { addDislikedColor, dislikeColor } = createActions({
-  ADD_DISLIKED_COLOR: color => ({ color }),
+export type DislikedColorActions = AddDislikedColorAction | DislikedColorAction;
 
-  // Actions handled by sagas
-  DISLIKE_COLOR: color => ({ color }),
-});
+export const addDislikedColor = (color: string): AddDislikedColorAction => {
+  return { type: 'ADD_DISLIKED_COLOR', payload: color };
+};
+
+// Handled by Sagas
+export const dislikeColor = (color: string): DislikedColorAction => {
+  return { type: 'DISLIKE_COLOR', payload: color };
+};

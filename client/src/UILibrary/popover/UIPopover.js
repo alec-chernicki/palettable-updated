@@ -1,13 +1,24 @@
+// @flow
 import styles from './UIPopover.css';
 import CSSModules from 'react-css-modules';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import { Manager, Target, Popper, Arrow } from 'react-popper';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
-const placementProps = ['top', 'bottom', 'left', 'right'];
+type Props = {
+  +isOpen: boolean,
+  +placement: 'top' | 'bottom' | 'left' | 'right',
+  +children: React.Node,
+  +content: React.Node,
+  +styles: Object,
+};
 
-class UIPopover extends React.Component {
+class UIPopover extends React.Component<Props> {
+  static defaultProps = {
+    isOpen: false,
+    placement: 'top',
+  };
+
   renderContent() {
     const { placement, content, isOpen, styles } = this.props;
 
@@ -47,16 +58,5 @@ class UIPopover extends React.Component {
     );
   }
 }
-
-UIPopover.defaultProps = {
-  isOpen: false,
-  placement: 'top',
-};
-
-UIPopover.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  placement: PropTypes.oneOf(placementProps),
-  children: PropTypes.node.isRequired,
-};
 
 export default CSSModules(UIPopover, styles);

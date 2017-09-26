@@ -1,7 +1,5 @@
 import './Onboarding.css';
-
 import PropTypes from 'prop-types';
-
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import StepOne from './StepOne';

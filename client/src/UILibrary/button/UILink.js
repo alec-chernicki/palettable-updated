@@ -1,8 +1,14 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './UILink.css';
 
-class UILink extends React.Component {
+type Props = {
+  children: React.Node,
+  onClick: () => mixed,
+};
+
+class UILink extends React.Component<Props> {
   render() {
     const { children, onClick } = this.props;
 

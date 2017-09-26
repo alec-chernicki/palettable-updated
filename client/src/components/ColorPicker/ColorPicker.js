@@ -1,3 +1,4 @@
+// @flow
 import styles from './ColorPicker.css';
 import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
@@ -5,7 +6,12 @@ import React, { Component } from 'react';
 import { CustomPicker } from 'react-color';
 import { Hue, Saturation } from 'react-color/lib/components/common';
 
-class ColorPicker extends Component {
+type Props = {
+  +onBlur: () => mixed,
+  +onChange: () => mixed,
+};
+
+class ColorPicker extends Component<Props> {
   constructor(props) {
     super(props);
 
@@ -46,9 +52,5 @@ class ColorPicker extends Component {
     );
   }
 }
-
-ColorPicker.propTypes = {
-  onChange: PropTypes.func.isRequired,
-};
 
 export default CustomPicker(CSSModules(ColorPicker, styles));

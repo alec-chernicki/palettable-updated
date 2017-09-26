@@ -1,11 +1,20 @@
+// @flow
 import styles from './SliderIcon.css';
 import CSSModules from 'react-css-modules';
-import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import getInterfaceAttributes from 'utils/getInterfaceAttributes';
+import getInterfaceAttributes from '../../utils/getInterfaceAttributes';
 
-class SliderIcon extends React.Component {
+type Props = {
+  onClick: () => mixed,
+  hexCode: string,
+};
+
+type State = {
+  active: boolean,
+};
+
+class SliderIcon extends React.Component<Props, State> {
   constructor(props) {
     super(props);
 
@@ -57,11 +66,5 @@ class SliderIcon extends React.Component {
     );
   }
 }
-
-SliderIcon.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  active: PropTypes.bool.isRequired,
-  hexCode: PropTypes.string.isRequired,
-};
 
 export default CSSModules(SliderIcon, styles);

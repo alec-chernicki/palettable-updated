@@ -1,14 +1,24 @@
+// @flow
 import styles from './ColorName.css';
 import CSSModules from 'react-css-modules';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeColor } from 'redux/actions/likedColors';
-import getInterfaceAttributes from 'utils/getInterfaceAttributes';
-import isHex from 'utils/isHex';
+import { changeColor } from '../../redux/actions/likedColors';
+import getInterfaceAttributes from '../../utils/getInterfaceAttributes';
+import isHex from '../../utils/isHex';
 import Color from 'color';
 
-class ColorName extends React.Component {
+type Props = {
+  color: { hexCode: string },
+  onBlur: () => mixed,
+};
+
+type State = {
+  isEditing: boolean,
+  shownHexCode: string,
+};
+
+class ColorName extends React.Component<Props, State> {
   constructor(props) {
     super(props);
 
@@ -74,20 +84,9 @@ class ColorName extends React.Component {
   }
 }
 
-ColorName.defaultProps = {
-  onBlur: () => {},
-  onChange: () => {},
-};
-
-ColorName.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired,
-  color: PropTypes.object.isRequired,
-};
-
 const mapDispatchToProps = (dispatch, { color }) => {
   return {
-    onBlur: newHexCode => {
+    onBlur: (newHexCode: string) => {
       dispatch(
         changeColor({
           color,

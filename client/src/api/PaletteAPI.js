@@ -15,7 +15,7 @@ const PaletteAPI = {
     };
 
     return axios
-      .get((CHANGE_ENDPOINT: string), options)
+      .get(CHANGE_ENDPOINT, options)
       .then(({ data }) => data)
       .then(paletteAdapter);
   },

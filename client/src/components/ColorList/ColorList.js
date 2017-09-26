@@ -1,19 +1,26 @@
+// @flow
 import styles from './ColorList.css';
 import CSSModules from 'react-css-modules';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { requestPalette } from 'redux/actions/suggestedColors';
+import { requestPalette } from '../../redux/actions/suggestedColors';
 import { MoonLoader } from 'halogen';
-import likedColorsSelector from 'redux/selectors/likedColorsSelector';
-import ColorItem from 'components/ColorItem/ColorItem';
-import getInterfaceAttributes from 'utils/getInterfaceAttributes';
-import hasFetchFailedSelector from 'redux/selectors/hasFetchFailedSelector';
-import UIButton from 'UILibrary/button/UIButton';
+import likedColorsSelector from '../../redux/selectors/likedColorsSelector';
+import ColorItem from '../../components/ColorItem/ColorItem';
+import getInterfaceAttributes from '../../utils/getInterfaceAttributes';
+import hasFetchFailedSelector from '../../redux/selectors/hasFetchFailedSelector';
+import UIButton from '../../UILibrary/button/UIButton';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 
-class ColorList extends React.PureComponent {
+type Props = {
+  +likedColors: Array<Object>,
+  +requestPalette: () => mixed,
+  +styles: Object,
+  +hasFetchFailed: boolean,
+};
+
+class ColorList extends React.PureComponent<Props> {
   componentDidMount() {
     const { requestPalette } = this.props;
 
@@ -95,11 +102,6 @@ class ColorList extends React.PureComponent {
     return this.renderList();
   }
 }
-
-ColorList.propTypes = {
-  likedColors: PropTypes.array.isRequired,
-  requestPalette: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = state => {
   return {

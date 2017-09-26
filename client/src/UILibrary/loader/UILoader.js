@@ -1,10 +1,18 @@
-import PropTypes from 'prop-types';
+// @flow
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 import styles from './UILoader.css';
 
-class UILoader extends React.Component {
+type Props = {
+  +active: boolean,
+};
+
+class UILoader extends React.Component<Props> {
+  static defaultProps = {
+    active: false,
+  };
+
   render() {
     const { active } = this.props;
     const componentClass = classNames({
@@ -21,9 +29,5 @@ class UILoader extends React.Component {
     );
   }
 }
-
-UILoader.defaultProps = {
-  active: false,
-};
 
 export default CSSModules(UILoader, styles);
