@@ -1,11 +1,11 @@
 // @flow
 type AddDislikedColorAction = {
   type: 'ADD_DISLIKED_COLOR',
-   payload: string
+   payload: Object
  };
 type DislikedColorAction = {
    type: 'DISLIKE_COLOR',
-   payload: string
+   payload: Object
  };
 
 export type DislikedColorActions =
@@ -13,14 +13,14 @@ export type DislikedColorActions =
   | DislikedColorAction;
 
 export const addDislikedColor = (
-  color: string
+  color: Object
 ): AddDislikedColorAction => {
   return { type: 'ADD_DISLIKED_COLOR', payload: color };
 };
 
 // Handled by Sagas
 export const dislikeColor = (
-  color: string
+  color: Object
 ): DislikedColorAction => {
   return { type: 'DISLIKE_COLOR', payload: color };
 };

@@ -1,14 +1,14 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
-import { requestPalette, receivePalette } from 'redux/actions/suggestedColors';
-import { addLikedColor, addLikedColors } from 'redux/actions/likedColors';
+import { requestPalette, receivePalette } from '../actions/suggestedColors';
+import { addLikedColor, addLikedColors } from '../actions/likedColors';
 import {
   setIsFetching,
   setIsStale,
   setHasFetchFailed,
-} from 'redux/actions/dataStatus';
-import likedColorsSelector from 'redux/selectors/likedColorsSelector';
-import PaletteAPI from 'api/PaletteAPI';
-import url from 'utils/url';
+} from '../actions/dataStatus';
+import likedColorsSelector from '../selectors/likedColorsSelector';
+import PaletteAPI from '../../api/PaletteAPI';
+import url from '../../utils/url';
 import { browserHistory } from 'react-router';
 import Raven from 'raven-js';
 
@@ -45,6 +45,8 @@ export function* fetchPaletteGenerator() {
   }
 }
 
-export function* fetchPaletteSaga() {
+function* fetchPaletteSaga() {
   yield takeLatest(requestPalette().type, fetchPaletteGenerator);
 }
+
+export default fetchPaletteSaga;

@@ -1,6 +1,5 @@
-// @flow
 import { handleActions } from 'redux-actions';
-import { receivePalette } from 'redux/actions/suggestedColors';
+import { receivePalette } from '../actions/suggestedColors';
 
 const defaultState = [];
 

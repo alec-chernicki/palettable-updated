@@ -1,33 +1,98 @@
-import { createActions } from 'redux-actions';
-import Color from 'color';
+// @flow
+import type { ColorType } from '../../constants/FlowTypes';
 
-export const {
-  setIsColorPickerActive,
-  addLikedColor,
-  addLikedColors,
-  removeLikedColor,
-  changeLikedColor,
-  removeColor,
-  likeColor,
-  changeColor,
-} = createActions({
-  SET_IS_COLOR_PICKER_ACTIVE: (color, isColorPickerActive) => ({
-    color,
-    isColorPickerActive,
-  }),
-  ADD_LIKED_COLOR: color => ({ color }),
-  ADD_LIKED_COLORS: colors => ({ colors }),
-  REMOVE_LIKED_COLOR: color => ({ color }),
-  CHANGE_LIKED_COLOR: ({ payload: { color, newHexCode } }) => ({
-    color,
-    newHexCode: Color(newHexCode).hex(),
-  }),
+type SetIsColorPickerActiveAction = {
+  type: 'SET_IS_COLOR_PICKER_ACTIVE',
+  payload: { color: ColorType, isColorPickerActive: boolean }
+};
 
-  // Actions handled by sagas
-  REMOVE_COLOR: color => ({ color }),
-  LIKE_COLOR: color => ({ color }),
-  CHANGE_COLOR: ({ color, newHexCode } = {}) => ({
-    color,
-    newHexCode: Color(newHexCode).hex(),
-  }),
-});
+type AddLikedColorAction = {
+  type: 'ADD_LIKED_COLOR',
+  payload: { color: ColorType }
+};
+
+type AddLikedColorsAction = {
+  type: 'ADD_LIKED_COLORS',
+  payload: { colors: Array<ColorType> }
+};
+
+type RemoveLikedColorAction = {
+  type: 'REMOVE_LIKED_COLOR',
+  payload: { color: ColorType }
+};
+
+type changeLikedColorAction = {
+  type: 'CHANGE_LIKED_COLOR',
+  payload: { color: ColorType, newHexCode: string }
+};
+
+type LikeColorAction = {
+  type: 'LIKE_COLOR',
+  payload: { color: ColorType }
+};
+
+type RemoveColorAction = {
+  type: 'REMOVE_COLOR',
+  payload: { color: ColorType }
+};
+
+type ChangeColorAction = {
+  type: 'CHANGE_COLOR',
+  payload: { color: ColorType, newHexCode: string }
+};
+
+export type LikedColorsActions =
+  | SetIsColorPickerActiveAction
+  | AddLikedColorAction
+  | AddLikedColorsAction
+  | RemoveLikedColorAction
+  | changeLikedColorAction
+
+export const setIsColorPickerActive = (
+  color: ColorType,
+  isColorPickerActive: boolean
+): SetIsColorPickerActiveAction => {
+  return { type: 'SET_IS_COLOR_PICKER_ACTIVE', payload: { color, isColorPickerActive }};
+};
+
+export const addLikedColor = (
+  color: ColorType
+): AddLikedColorAction => {
+  return { type: 'ADD_LIKED_COLOR', payload: { color }};
+};
+
+export const addLikedColors = (
+  colors: Array<ColorType>
+): AddLikedColorsAction => {
+  return { type: 'ADD_LIKED_COLORS', payload: { colors }};
+};
+
+export const removeLikedColor = (
+  color: ColorType
+): RemoveLikedColorAction => {
+  return { type: 'REMOVE_LIKED_COLOR', payload: { color }};
+};
+
+export const changeLikedColor = (
+  { color, newHexCode } : { color: ColorType, newHexCode: string }
+): changeLikedColorAction => {
+  return { type: 'CHANGE_LIKED_COLOR', payload: { color, newHexCode }}
+};
+
+export const likeColor = (
+  color: ColorType
+): LikeColorAction => {
+  return { type: 'LIKE_COLOR', payload: { color }}
+};
+
+export const removeColor = (
+  color: ColorType
+): RemoveColorAction => {
+  return { type: 'REMOVE_COLOR', payload: { color }}
+};
+
+export const changeColor = (
+  { color, newHexCode } : { color: ColorType, newHexCode: string }
+): ChangeColorAction => {
+  return { type: 'CHANGE_COLOR', payload: { color, newHexCode }}
+};

@@ -1,16 +1,29 @@
 // @flow
-import { handleActions } from 'redux-actions';
-import { addDislikedColor } from '../actions/dislikedColors';
+import type { DislikedColorActions } from '../actions/dislikedColors';
+import type { ColorType } from '../../constants/FlowTypes';
+
+type State = Array<ColorType>;
 
 const initialState = [];
 
-const dislikedColors = handleActions(
-  {
-    [addDislikedColor]: (state, { payload: { color } }) => {
-      return [...state, color];
-    },
-  },
-  initialState
-);
+const dislikedColorsReducer = (
+  state: State = initialState,
+  action: DislikedColorActions
+): State => {
+  switch (action.type) {
+    case "DISLIKE_COLOR":
+      return [
+        ...state,
+        action.payload
+      ];
+    case "ADD_DISLIKED_COLOR":
+      return [
+        ...state,
+        action.payload
+      ];
+    default:
+      return state;
+  }
+}
 
-export default dislikedColors;
+export default dislikedColorsReducer;

@@ -1,4 +1,3 @@
-// @flow
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { removeLikedColor, removeColor } from '../actions/likedColors';
 import likedColorsSelector from '../selectors/likedColorsSelector';

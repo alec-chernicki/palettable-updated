@@ -1,4 +1,3 @@
-// @flow
 import { handleActions } from 'redux-actions';
 import shortId from 'shortid';
 import {

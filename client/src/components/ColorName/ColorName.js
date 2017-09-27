@@ -26,11 +26,8 @@ class ColorName extends React.Component<Props, State> {
       isEditing: false,
       shownHexCode: props.color.hexCode,
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
   }
+
   componentWillReceiveProps(nextProps) {
     const { shownHexCode, isEditing } = this.state;
 
@@ -38,10 +35,12 @@ class ColorName extends React.Component<Props, State> {
       this.setState({ shownHexCode: nextProps.color.hexCode });
     }
   }
-  handleFocus() {
+
+  handleFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ isEditing: true });
   }
-  handleChange(e) {
+
+  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     this.setState({ shownHexCode: value });
@@ -50,7 +49,8 @@ class ColorName extends React.Component<Props, State> {
       this.props.onBlur(value);
     }
   }
-  handleBlur(e) {
+
+  handleBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { color: { hexCode } } = this.props;
     const { value } = e.target;
 
@@ -61,6 +61,7 @@ class ColorName extends React.Component<Props, State> {
     this.setState({ shownHexCode: Color(value).hex() });
     this.props.onBlur(e.target.value);
   }
+
   render() {
     const { shownHexCode } = this.state;
     const { color: { hexCode } } = this.props;
