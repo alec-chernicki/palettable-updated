@@ -1,82 +1,52 @@
-import { handleActions } from 'redux-actions';
+// @flow
 import shortId from 'shortid';
-import {
-  setIsColorPickerActive,
-  addLikedColor,
-  addLikedColors,
-  removeLikedColor,
-  changeLikedColor,
-} from '../actions/likedColors';
+import type { LikedColorsActions } from '../actions/likedColors';
+import type { ColorType } from '../../constants/FlowTypes';
 
-const defaultLikedColor = {
-  isColorPickerActive: false,
-};
+type State = ColorType[];
+
 const initialState = [];
 
-const likedColors = handleActions(
-  {
-    [setIsColorPickerActive]: (
-      state,
-      { payload: { color, isColorPickerActive = false } }
-    ) => {
-      return state.map(likedColor => {
-        if (likedColor.id !== color.id) {
-          return {
-            ...likedColor,
-            isColorPickerActive: false,
-          };
-        }
+const likedColorsReducer = (state: State = initialState, action: LikedColorsActions): State => {
+  switch (action.type) {
+    case "ADD_LIKED_COLOR":
+      const newLikedColor: ColorType = {
+        ...action.payload,
+        id: shortId.generate(),
+      };
 
+      return [...state, newLikedColor];
+
+    case "ADD_LIKED_COLORS":
+      const colorsWithIds = action.payload.map(color => {
         return {
-          ...likedColor,
-          isColorPickerActive,
-        };
-      });
-    },
-
-    [addLikedColor]: (state, { payload: { color } }) => {
-      return [
-        ...state,
-        {
-          ...defaultLikedColor,
-          ...color,
-          id: shortId.generate(),
-        },
-      ];
-    },
-
-    [addLikedColors]: (state, { payload: { colors } }) => {
-      const colorsWithDefaults = colors.map(color => {
-        return {
-          ...defaultLikedColor,
           ...color,
           id: shortId.generate(),
         };
       });
 
-      return [...state, ...colorsWithDefaults];
-    },
+      return [...state, ...colorsWithIds];
 
-    [removeLikedColor]: (state, { payload: { color } }) => {
-      return state.filter(likedColor => {
-        return likedColor.id !== color.id;
-      });
-    },
-
-    [changeLikedColor]: (state, { payload: { color, newHexCode } }) => {
-      return state.map(likedColor => {
-        if (likedColor.id !== color.id) {
-          return likedColor;
+    case "CHANGE_LIKED_COLOR":
+      return state.map(color => {
+        if (color.id !== action.payload.color.id) {
+          return color;
         }
 
         return {
-          ...likedColor,
-          hexCode: newHexCode,
+          ...color,
+          hexCode: action.payload.newHexCode
         };
       });
-    },
-  },
-  initialState
-);
 
-export default likedColors;
+    case "REMOVE_LIKED_COLOR":
+      return state.filter((color: ColorType) => {
+        return color.id !== action.payload.id;
+      });
+
+    default:
+      return state;
+  }
+};
+
+export default likedColorsReducer;

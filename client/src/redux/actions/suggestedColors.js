@@ -1,19 +1,21 @@
 // @flow
+import type { ColorType } from '../../constants/FlowTypes';
+
 type ReceivePaletteAction = {
   type: 'RECEIVE_PALETTE',
-  payload: string
+  payload: Array<ColorType>
 };
 type RequestPaletteAction = {
   type: 'REQUEST_PALETTE',
   payload: null
 };
 
-export type DislikedColorActions =
+export type SuggestedColorActions =
   | ReceivePaletteAction
   | RequestPaletteAction;
 
 export const receivePalette = (
-  sourcePalette: string
+  sourcePalette:  Array<ColorType>
 ): ReceivePaletteAction => {
   return { type: 'RECEIVE_PALETTE', payload: sourcePalette };
 };
