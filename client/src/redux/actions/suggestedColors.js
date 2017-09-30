@@ -9,6 +9,7 @@ type ReceivePaletteAction = {
   type: typeof RECEIVE_PALETTE,
   payload: Array<ColorType>
 };
+
 type RequestPaletteAction = {
   type: typeof REQUEST_PALETTE,
   payload: null

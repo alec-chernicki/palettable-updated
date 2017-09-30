@@ -8,6 +8,7 @@ type AddDislikedColorAction = {
   type: typeof ADD_DISLIKED_COLOR,
    payload: Object
  };
+ 
 type DislikedColorAction = {
    type: typeof DISLIKE_COLOR,
    payload: Object

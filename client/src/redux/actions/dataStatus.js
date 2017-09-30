@@ -9,10 +9,12 @@ type SetIsFetchingAction = {
   type: typeof SET_IS_FETCHING,
   payload: boolean
 };
+
 type SetIsStaleAction = {
   type: typeof SET_IS_STALE,
   payload: boolean
 };
+
 type SetHasFetchFailedAction = {
   type: typeof SET_HAS_FETCH_FAILED,
   payload: boolean,
