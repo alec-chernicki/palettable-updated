@@ -6,7 +6,7 @@ import {
   ADD_DISLIKED_COLOR
 } from '../actions/ActionTypes';
 
-type State = Array<ColorType>;
+type State = ColorType[];
 
 const initialState = [];
 
@@ -26,7 +26,7 @@ const dislikedColorsReducer = (
         ...state,
         action.payload
       ];
-      
+
     default:
       return state;
   }

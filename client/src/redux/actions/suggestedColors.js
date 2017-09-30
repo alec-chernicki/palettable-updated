@@ -1,12 +1,16 @@
 // @flow
 import type { ColorType } from '../../constants/FlowTypes';
+import {
+  RECEIVE_PALETTE,
+  REQUEST_PALETTE
+} from './ActionTypes';
 
 type ReceivePaletteAction = {
-  type: 'RECEIVE_PALETTE',
+  type: typeof RECEIVE_PALETTE,
   payload: Array<ColorType>
 };
 type RequestPaletteAction = {
-  type: 'REQUEST_PALETTE',
+  type: typeof REQUEST_PALETTE,
   payload: null
 };
 
@@ -17,10 +21,10 @@ export type SuggestedColorActions =
 export const receivePalette = (
   sourcePalette:  Array<ColorType>
 ): ReceivePaletteAction => {
-  return { type: 'RECEIVE_PALETTE', payload: sourcePalette };
+  return { type: RECEIVE_PALETTE, payload: sourcePalette };
 };
 
 // Handled by Sagas
 export const requestPalette = (): RequestPaletteAction => {
-  return { type: 'REQUEST_PALETTE', payload: null };
+  return { type: REQUEST_PALETTE, payload: null };
 };
