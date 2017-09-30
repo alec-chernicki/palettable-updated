@@ -2,6 +2,12 @@
 import shortId from 'shortid';
 import type { LikedColorsActions } from '../actions/likedColors';
 import type { ColorType } from '../../constants/FlowTypes';
+import {
+  ADD_LIKED_COLOR,
+  ADD_LIKED_COLORS,
+  REMOVE_LIKED_COLOR,
+  CHANGE_LIKED_COLOR,
+} from '../actions/ActionTypes';
 
 type State = ColorType[];
 
@@ -9,7 +15,7 @@ const initialState = [];
 
 const likedColorsReducer = (state: State = initialState, action: LikedColorsActions): State => {
   switch (action.type) {
-    case "ADD_LIKED_COLOR":
+    case ADD_LIKED_COLOR:
       const newLikedColor: ColorType = {
         ...action.payload,
         id: shortId.generate(),
@@ -17,7 +23,7 @@ const likedColorsReducer = (state: State = initialState, action: LikedColorsActi
 
       return [...state, newLikedColor];
 
-    case "ADD_LIKED_COLORS":
+    case ADD_LIKED_COLORS:
       const colorsWithIds = action.payload.map(color => {
         return {
           ...color,
@@ -27,21 +33,25 @@ const likedColorsReducer = (state: State = initialState, action: LikedColorsActi
 
       return [...state, ...colorsWithIds];
 
-    case "CHANGE_LIKED_COLOR":
-      return state.map(color => {
-        if (color.id !== action.payload.color.id) {
-          return color;
+    case CHANGE_LIKED_COLOR:
+      const { color, newHexCode } = action.payload;
+
+      return state.map(likedColor => {
+        if (likedColor.id !== color.id) {
+          return likedColor;
         }
 
         return {
-          ...color,
-          hexCode: action.payload.newHexCode
+          ...likedColor,
+          hexCode: newHexCode
         };
       });
 
-    case "REMOVE_LIKED_COLOR":
-      return state.filter((color: ColorType) => {
-        return color.id !== action.payload.id;
+    case REMOVE_LIKED_COLOR:
+      const { id } = action.payload;
+
+      return state.filter(color => {
+        return color.id !== id;
       });
 
     default:
