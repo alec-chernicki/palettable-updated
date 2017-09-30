@@ -13,7 +13,10 @@ type State = ColorType[];
 
 const initialState = [];
 
-const likedColorsReducer = (state: State = initialState, action: LikedColorsActions): State => {
+export default function reducer (
+  state: State = initialState,
+  action: LikedColorsActions
+): State {
   switch (action.type) {
     case ADD_LIKED_COLOR:
       const newLikedColor: ColorType = {
@@ -24,7 +27,7 @@ const likedColorsReducer = (state: State = initialState, action: LikedColorsActi
       return [...state, newLikedColor];
 
     case ADD_LIKED_COLORS:
-      const colorsWithIds = action.payload.map(color => {
+      const colorsWithIds: ColorType[] = action.payload.map(color => {
         return {
           ...color,
           id: shortId.generate(),
@@ -59,4 +62,6 @@ const likedColorsReducer = (state: State = initialState, action: LikedColorsActi
   }
 };
 
-export default likedColorsReducer;
+export const likedColorsEpic = (action$, store) => {
+
+};

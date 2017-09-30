@@ -10,10 +10,10 @@ type State = ColorType[];
 
 const initialState = [];
 
-const dislikedColorsReducer = (
+export default function reducer (
   state: State = initialState,
   action: DislikedColorActions
-): State => {
+): State {
   switch (action.type) {
     case DISLIKE_COLOR:
       return [
@@ -31,5 +31,3 @@ const dislikedColorsReducer = (
       return state;
   }
 }
-
-export default dislikedColorsReducer;

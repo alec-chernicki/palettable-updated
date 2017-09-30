@@ -3,7 +3,7 @@ import React from 'react';
 import ColorPicker from '../../ColorPicker/ColorPicker';
 import SliderIcon from '../../SliderIcon/SliderIcon';
 import { connect } from 'react-redux';
-import { changeColor, setIsColorPickerActive } from 'redux/actions/likedColors';
+import { changeColor } from 'redux/actions/likedColors';
 import UIPopover from 'UILibrary/popover/UIPopover';
 
 class ColorPickerTool extends React.PureComponent {
@@ -69,8 +69,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, { color }) => {
   return {
-    onBlur: () => dispatch(setIsColorPickerActive(color, false)),
-    onClick: () => dispatch(setIsColorPickerActive(color, true)),
+    // onBlur: () => dispatch(setIsColorPickerActive(color, false)),
+    // onClick: () => dispatch(setIsColorPickerActive(color, true)),
     onChange: hexCode => dispatch(changeColor(hexCode)),
   };
 };
