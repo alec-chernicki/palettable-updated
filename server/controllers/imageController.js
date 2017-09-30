@@ -1,4 +1,4 @@
-'use strict';
+// @flow
 const Canvas = require('canvas');
 const colorInterpreter = require('color');
 

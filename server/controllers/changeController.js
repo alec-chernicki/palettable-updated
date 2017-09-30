@@ -1,3 +1,4 @@
+// @flow
 const axios = require('axios');
 const _ = require('lodash');
 const colornamer = require('color-namer');
