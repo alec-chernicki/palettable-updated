@@ -1,25 +1,22 @@
 // @flow
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer from './reducers/rootReducer';
-import { combineEpics } from 'redux-observable';
+import { createEpicMiddleware } from 'redux-observable';
+import { rootReducer, rootEpic } from './reducers/rootReducer';
 import rootSaga from './sagas/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
+const epicMiddleware = createEpicMiddleware(rootEpic);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const configureStore = initialState => {
-  const store = createStore(
+  return createStore(
     rootReducer,
     initialState,
-    compose(
-      applyMiddleware(sagaMiddleware),
-      window.devToolsExtension ? window.devToolsExtension() : f => f
+    composeEnhancers(
+      applyMiddleware(epicMiddleware),
     )
   );
-
-  sagaMiddleware.run(rootSaga);
-
-  return store;
 };
 
 export default configureStore;

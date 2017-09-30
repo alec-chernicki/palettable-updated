@@ -21,6 +21,10 @@ type Props = {
 };
 
 class ColorList extends React.PureComponent<Props> {
+  static defaultProps = {
+    likedColors: [],
+  }
+
   componentDidMount() {
     const { requestPalette } = this.props;
 

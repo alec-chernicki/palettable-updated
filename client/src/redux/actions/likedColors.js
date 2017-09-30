@@ -57,14 +57,10 @@ export const changeLikedColor = (
   return { type: CHANGE_LIKED_COLOR, payload: { color, newHexCode }}
 };
 
-
-
-
-
 export const likeColor = (
   color: ColorType
 ): AddLikedColorAction => {
-  return { type: ADD_LIKED_COLOR, payload: color };
+  return { type: 'LIKE_COLOR', payload: color };
 };
 
 export const changeColor = (

@@ -18,10 +18,10 @@ const initialState = {
   hasFetchFailed: false,
 };
 
-const dataStatusReducer = (
+export default function reducer (
   state: State = initialState,
   action: DataStatusActions
-): State => {
+): State {
   switch (action.type) {
     case SET_HAS_FETCH_FAILED:
       return {
@@ -42,5 +42,3 @@ const dataStatusReducer = (
       return state;
   }
 };
-
-export default dataStatusReducer;

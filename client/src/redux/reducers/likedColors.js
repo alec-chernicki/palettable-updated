@@ -2,7 +2,9 @@
 import shortId from 'shortid';
 import type { LikedColorsActions } from '../actions/likedColors';
 import type { ColorType } from '../../constants/FlowTypes';
+import { addLikedColor } from '../actions/likedColors';
 import {
+  LIKE_COLOR,
   ADD_LIKED_COLOR,
   ADD_LIKED_COLORS,
   REMOVE_LIKED_COLOR,
@@ -62,6 +64,13 @@ export default function reducer (
   }
 };
 
-export const likedColorsEpic = (action$, store) => {
 
+const canAddColorSelector = ({ likedColors, dataStatus }) => {
+  return likedColors.length < 5 && dataStatus.isFetching === false;
+};
+
+export const likedColorsEpic = (action$, store) => {
+  return action$.ofType(LIKE_COLOR)
+    .filter(() => canAddColorSelector(store.getState()))
+    .map(() => addLikedColor());
 };

@@ -2,14 +2,17 @@
 import { combineReducers } from 'redux';
 import dataStatus from './dataStatus';
 import suggestedColors from './suggestedColors';
-import likedColors from './likedColors';
+import likedColorsReducer, { likedColorsEpic } from './likedColors';
 import dislikedColors from './dislikedColors';
+import { combineEpics } from 'redux-observable';
 
-const rootReducer = combineReducers({
+export const rootEpic = combineEpics(
+  likedColorsEpic,
+);
+
+export const rootReducer = combineReducers({
   dataStatus,
-  likedColors,
+  likedColorsReducer,
   dislikedColors,
   suggestedColors,
 });
-
-export default rootReducer;
