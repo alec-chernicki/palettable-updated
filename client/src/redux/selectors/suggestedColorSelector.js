@@ -1,14 +1,21 @@
+// @flow
 import { createSelector } from 'reselect';
-import dislikedColorsSelector from 'redux/selectors/dislikedColorsSelector';
-import likedColorsSelector from 'redux/selectors/likedColorsSelector';
+import dislikedColorsSelector from '../selectors/dislikedColorsSelector';
+import likedColorsSelector from '../selectors/likedColorsSelector';
+import type { ColorType } from '../../constants/FlowTypes';
+import type { ReduxStore } from '../reducers/rootReducer';
 
-const suggestedColorsSelector = state => state.suggestedColors;
+const suggestedColorsSelector = (state: ReduxStore) => state.suggestedColors;
 
 const suggestedColorSelector = createSelector(
   suggestedColorsSelector,
   dislikedColorsSelector,
   likedColorsSelector,
-  (suggestedColors, dislikedColors, likedColors) => {
+  (
+    suggestedColors: ColorType[],
+    dislikedColors: ColorType[],
+    likedColors: ColorType[]
+  ): ColorType => {
     const flattenedDislikedColors = dislikedColors.map(color => color.hexCode);
     const flattenedLikedColors = likedColors.map(color => color.hexCode);
     const remainingColors = suggestedColors

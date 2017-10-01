@@ -63,14 +63,3 @@ export default function reducer (
       return state;
   }
 };
-
-
-const canAddColorSelector = ({ likedColors, dataStatus }) => {
-  return likedColors.length < 5 && dataStatus.isFetching === false;
-};
-
-export const likedColorsEpic = (action$, store) => {
-  return action$.ofType(LIKE_COLOR)
-    .filter(() => canAddColorSelector(store.getState()))
-    .map(() => addLikedColor());
-};

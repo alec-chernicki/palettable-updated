@@ -1,5 +1,7 @@
 // @flow
 export const LIKE_COLOR = 'LIKE_COLOR';
+export const CHANGE_COLOR = 'CHANGE_COLOR';
+export const REMOVE_COLOR = 'REMOVE_COLOR';
 export const ADD_LIKED_COLOR = 'ADD_LIKED_COLOR';
 export const ADD_LIKED_COLORS  = 'ADD_LIKED_COLORS';
 export const REMOVE_LIKED_COLOR = 'REMOVE_LIKED_COLOR';

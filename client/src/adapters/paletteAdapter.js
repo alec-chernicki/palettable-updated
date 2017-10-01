@@ -1,7 +1,8 @@
 // @flow
 import shortid from 'shortid';
+import type { ColorType } from '../constants/FlowTypes';
 
-const paletteAdapter = (data: Array<string>): Array<Object> => {
+const paletteAdapter = (data: Array<string>): Array<ColorType> => {
   const palette = data.map((hexCode, index) => {
     return {
       id: shortid.generate(),

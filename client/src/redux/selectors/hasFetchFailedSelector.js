@@ -1,5 +1,7 @@
 // @flow
-const hasFetchFailed = (state): boolean => {
+import type { ReduxStore } from '../reducers/rootReducer';
+
+const hasFetchFailed = (state: ReduxStore) => {
   return state.dataStatus.hasFetchFailed;
 };
 

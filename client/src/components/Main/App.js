@@ -5,17 +5,27 @@ import * as React from 'react';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { connect } from 'react-redux';
 import { requestPalette } from '../../redux/actions/suggestedColors';
+import { addLikedColors } from '../../redux/actions/likedColors';
+import url from '../../utils/url';
+import type { ColorType } from '../../constants/FlowTypes';
 
 type Props = {
-  requestPalette: () => mixed,
+  hydrateFromUrl: (ColorType[]) => void,
+  requestRandomPalette: () => mixed,
   children: React.Node,
 };
 
 class App extends React.Component<Props> {
   componentDidMount() {
-    const { requestPalette } = this.props;
+    const { requestRandomPalette, hydrateFromUrl } = this.props;
+    const paletteFromUrl = url.parseColors();
 
-    requestPalette();
+    if (paletteFromUrl) {
+      hydrateFromUrl(paletteFromUrl);
+      return;
+    }
+
+    requestRandomPalette();
   }
 
   render() {
@@ -32,7 +42,8 @@ class App extends React.Component<Props> {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestPalette: () => dispatch(requestPalette()),
+    requestRandomPalette: () => dispatch(requestPalette()),
+    hydrateFromUrl: (colors) => dispatch(addLikedColors(colors)),
   };
 };
 

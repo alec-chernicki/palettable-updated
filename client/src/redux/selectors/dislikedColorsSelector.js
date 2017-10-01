@@ -1,5 +1,7 @@
 // @flow
-const dislikedColorsSelector = state => {
+import type { ReduxStore } from '../reducers/rootReducer';
+
+const dislikedColorsSelector = (state: ReduxStore) => {
   return state.dislikedColors;
 };
 

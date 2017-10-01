@@ -10,10 +10,10 @@ type State = ColorType[];
 
 const defaultState = [];
 
-const suggestedColorsReducer = (
+export default function reducer (
   state: State = defaultState,
   action: SuggestedColorActions
-): State => {
+): State {
   switch (action.type) {
     case RECEIVE_PALETTE:
       return action.payload
@@ -25,5 +25,3 @@ const suggestedColorsReducer = (
       return state;
   }
 }
-
-export default suggestedColorsReducer;

@@ -2,17 +2,24 @@
 import { combineReducers } from 'redux';
 import dataStatus from './dataStatus';
 import suggestedColors from './suggestedColors';
-import likedColorsReducer, { likedColorsEpic } from './likedColors';
+import likedColors from './likedColors';
 import dislikedColors from './dislikedColors';
-import { combineEpics } from 'redux-observable';
+import type { ColorType } from '../../constants/FlowTypes';
 
-export const rootEpic = combineEpics(
-  likedColorsEpic,
-);
+export type ReduxStore = {|
+  +likedColors: ColorType[],
+  +suggestedColors: ColorType[],
+  +dislikedColors: ColorType[],
+  +dataStatus: {
+    +isFetching: boolean,
+    +isStale: boolean,
+    +hasFetchFailed: boolean,
+  }
+|};
 
 export const rootReducer = combineReducers({
   dataStatus,
-  likedColorsReducer,
+  likedColors,
   dislikedColors,
   suggestedColors,
 });

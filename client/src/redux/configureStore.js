@@ -2,7 +2,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { createEpicMiddleware } from 'redux-observable';
-import { rootReducer, rootEpic } from './reducers/rootReducer';
+import { rootReducer } from './reducers/rootReducer';
+import { rootEpic } from './epics/rootEpic';
 import rootSaga from './sagas/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();

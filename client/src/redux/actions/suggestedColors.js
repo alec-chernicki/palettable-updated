@@ -7,7 +7,7 @@ import {
 
 type ReceivePaletteAction = {
   type: typeof RECEIVE_PALETTE,
-  payload: Array<ColorType>
+  payload: ColorType[]
 };
 
 type RequestPaletteAction = {
@@ -20,9 +20,9 @@ export type SuggestedColorActions =
   | RequestPaletteAction;
 
 export const receivePalette = (
-  sourcePalette:  Array<ColorType>
+  palette:  ColorType[]
 ): ReceivePaletteAction => {
-  return { type: RECEIVE_PALETTE, payload: sourcePalette };
+  return { type: RECEIVE_PALETTE, payload: palette };
 };
 
 // Handled by Sagas

@@ -1,6 +1,9 @@
 // @flow
 import type { ColorType } from '../../constants/FlowTypes';
 import {
+  LIKE_COLOR,
+  CHANGE_COLOR,
+  REMOVE_COLOR,
   ADD_LIKED_COLOR,
   ADD_LIKED_COLORS,
   REMOVE_LIKED_COLOR,
@@ -60,17 +63,17 @@ export const changeLikedColor = (
 export const likeColor = (
   color: ColorType
 ): AddLikedColorAction => {
-  return { type: 'LIKE_COLOR', payload: color };
+  return { type: LIKE_COLOR, payload: color };
 };
 
 export const changeColor = (
   { color, newHexCode } : { color: ColorType, newHexCode: string }
 ): ChangeLikedColorAction => {
-  return { type: 'CHANGE_COLOR', payload: { color, newHexCode }}
+  return { type: CHANGE_COLOR, payload: { color, newHexCode }}
 };
 
 export const removeColor = (
   color: ColorType
 ): RemoveLikedColorAction => {
-  return { type: 'REMOVE_COLOR', payload: color };
+  return { type: REMOVE_COLOR, payload: color };
 };
