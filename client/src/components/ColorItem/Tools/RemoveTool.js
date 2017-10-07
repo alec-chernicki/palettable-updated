@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import { connect } from 'react-redux';
-import { removeColor } from 'redux/actions/likedColors';
+import { removeLikedColor } from 'redux/actions/likedColors';
 import getInterfaceAttributes from 'utils/getInterfaceAttributes';
 
 const RemoveTool = ({ onClick, color, isOnlyItem }) => {
@@ -43,7 +43,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, { color }) => {
   return {
-    onClick: () => dispatch(removeColor(color)),
+    onClick: () => dispatch(removeLikedColor(color)),
   };
 };
 

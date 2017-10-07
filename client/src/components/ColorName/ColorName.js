@@ -3,7 +3,7 @@ import styles from './ColorName.css';
 import CSSModules from 'react-css-modules';
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeColor } from '../../redux/actions/likedColors';
+import { changeLikedColor } from '../../redux/actions/likedColors';
 import getInterfaceAttributes from '../../utils/getInterfaceAttributes';
 import isHex from '../../utils/isHex';
 import Color from 'color';
@@ -89,7 +89,7 @@ const mapDispatchToProps = (dispatch, { color }) => {
   return {
     onBlur: (newHexCode: string) => {
       dispatch(
-        changeColor({
+        changeLikedColor({
           color,
           newHexCode: newHexCode,
         })

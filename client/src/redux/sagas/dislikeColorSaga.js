@@ -1,3 +1,4 @@
+// @flow
 import { put, takeLatest, select, call } from 'redux-saga/effects';
 import {
   setIsStale,

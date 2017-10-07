@@ -11,13 +11,13 @@ const fetchInitialPalette = (action$, store) => {
   return action$.ofType(REQUEST_PALETTE)
     .switchMap(action => {
       return Observable.fromPromise(PaletteAPI.getRandom())
+        .catch(err => Observable.of(Raven.captureException(err)))
         .flatMap((response: ColorType[]) => (
           [
             receivePalette(response),
             addLikedColor(response[0])
           ]
         ))
-        .catch(err => Observable.of(Raven.captureException(err)))
     });
 };
 
