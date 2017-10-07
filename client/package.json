@@ -13,7 +13,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.6.5",
     "babel-preset-react-app": "^3.0.1",
     "babel-runtime": "6.23.0",
-    "canvas": "^1.4.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "classnames": "^2.2.5",
