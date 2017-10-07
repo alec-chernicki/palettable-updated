@@ -16,14 +16,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Controllers
 const randomController = require('./controllers/randomController');
 const changeController = require('./controllers/changeController');
-const imageController = require('./controllers/imageController');
 const homeController = require('./controllers/homeController');
 
 // Assign Routes and Controllers
 app.get('/api/initial/:palette', homeController.getHome);
-
-app.get('/api/image/:palette', imageController.drawMetaImage);
-
 app.get('/api/random', randomController.getRandom);
 app.get('/api/change',
         changeController.hasExactMatch,

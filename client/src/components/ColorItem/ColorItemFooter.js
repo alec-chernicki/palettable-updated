@@ -5,7 +5,7 @@ import React from 'react';
 import classNames from 'classnames';
 import UIButton from 'UILibrary/button/UIButton';
 import { connect } from 'react-redux';
-import { dislikeLikedColor } from 'redux/actions/dislikedColors';
+import { dislikeColor } from 'redux/actions/dislikedColors';
 import { likeColor } from 'redux/actions/likedColors';
 import likedColorsSelector from 'redux/selectors/likedColorsSelector';
 
@@ -97,7 +97,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, { color }) => {
   return {
     onLike: () => dispatch(likeColor(color)),
-    onDislike: () => dispatch(dislikeLikedColor(color)),
+    onDislike: () => dispatch(dislikeColor(color)),
   };
 };
 
