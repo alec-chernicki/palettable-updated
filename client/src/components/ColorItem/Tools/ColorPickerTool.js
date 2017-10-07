@@ -63,6 +63,10 @@ ColorPickerTool.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
+ColorPickerTool.defaultProps = {
+  onClick: () => {},
+}
+
 const mapStateToProps = state => {
   return {};
 };

@@ -25,12 +25,6 @@ class ColorList extends React.PureComponent<Props> {
     likedColors: [],
   }
 
-  componentDidMount() {
-    const { requestPalette } = this.props;
-
-    requestPalette();
-  }
-
   renderError() {
     return (
       <div styleName="loader-container">
@@ -114,12 +108,6 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    requestPalette: () => dispatch(requestPalette()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(
+export default connect(mapStateToProps)(
   CSSModules(ColorList, styles)
 );
