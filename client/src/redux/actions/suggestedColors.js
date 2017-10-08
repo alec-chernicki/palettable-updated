@@ -25,7 +25,6 @@ export const receivePalette = (
   return { type: RECEIVE_PALETTE, payload: palette };
 };
 
-// Handled by Sagas
 export const requestPalette = (): RequestPaletteAction => {
   return { type: REQUEST_PALETTE, payload: null };
 };

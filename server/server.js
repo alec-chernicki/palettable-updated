@@ -27,8 +27,6 @@ app.get('/api/change',
         randomController.getRandom
       );
 
-app.get('*', homeController.getHome);
-
 /**
  * Initialize Express server
  */

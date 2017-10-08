@@ -8,8 +8,8 @@ const CHANGE_ENDPOINT = '/api/change';
 
 const PaletteAPI = {
   getWithColors(
-    likedColors: ColorType[],
-    dislikedColors: ColorType[],
+    likedColors: ColorType[] = [],
+    dislikedColors: ColorType[] = [],
   ): Promise<ColorType[]> {
     const options = {
       params: {

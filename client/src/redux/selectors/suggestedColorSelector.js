@@ -15,7 +15,7 @@ const suggestedColorSelector = createSelector(
     suggestedColors: ColorType[],
     dislikedColors: ColorType[],
     likedColors: ColorType[]
-  ): ColorType => {
+  ): ColorType | void => {
     const flattenedDislikedColors = dislikedColors.map(color => color.hexCode);
     const flattenedLikedColors = likedColors.map(color => color.hexCode);
     const remainingColors = suggestedColors

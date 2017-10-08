@@ -9,5 +9,5 @@ export const rootEpic = combineEpics(
   fetchInitialPalette,
   likeColor,
   setPaletteUrl,
-  dislikeColor
+  dislikeColor,
 );

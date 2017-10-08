@@ -1,13 +1,14 @@
+// @flow
 import styles from './ColorItemFooter.css';
 import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import UIButton from 'UILibrary/button/UIButton';
+import UIButton from '../../UILibrary/button/UIButton';
 import { connect } from 'react-redux';
-import { dislikeColor } from 'redux/actions/dislikedColors';
-import { likeColor } from 'redux/actions/likedColors';
-import likedColorsSelector from 'redux/selectors/likedColorsSelector';
+import { dislikeColor } from '../../redux/actions/dislikedColors';
+import { likeColor } from '../../redux/actions/likedColors';
+import likedColorsSelector from '../../redux/selectors/likedColorsSelector';
 
 class ColorItemFooter extends React.Component {
   renderMessage() {

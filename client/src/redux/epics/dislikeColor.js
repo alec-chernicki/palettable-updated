@@ -5,29 +5,38 @@ import likedColorsSelector from '../selectors/likedColorsSelector';
 import dislikedColorsSelector from '../selectors/dislikedColorsSelector';
 import suggestedColorSelector from '../selectors/suggestedColorSelector';
 import PaletteAPI from '../../api/PaletteAPI';
-import type { ReduxStore } from '../reducers/rootReducer';
+import type { ReduxStore, ColorType } from '../reducers/rootReducer';
 import { receivePalette } from '../actions/suggestedColors';
 import { changeLikedColor } from '../actions/likedColors';
 import Raven from 'raven-js';
+import fetchPaletteWithColors from '../observables/fetchPaletteWithColors';
+import { setIsFetching } from '../actions/dataStatus'
 
 const dislikeColor = (action$, store) => {
   return action$.ofType(DISLIKE_COLOR)
     .switchMap(({ payload }) => {
       const state: ReduxStore = store.getState();
+      const suggestedColor = suggestedColorSelector(state);
 
-      return Observable.fromPromise(PaletteAPI.getWithColors(
-        likedColorsSelector(state),
-        dislikedColorsSelector(state)
-      ))
-      .catch(err => Observable.of(Raven.captureException(err)))
-      .flatMap((response) => {
-        const { hexCode } = suggestedColorSelector(state);
+      if (!suggestedColor) {
+        // TODO: This escape hatch will be deprecated,
+        // need to figure out a way around this.
+        store.dispatch(setIsFetching(true))
 
-        return [
-          receivePalette(response),
-          changeLikedColor({ color: payload, newHexCode: hexCode })
-        ];
-      })
+        return fetchPaletteWithColors(state)
+          .flatMap((response: ColorType[]) => {
+            return [
+              setIsFetching(false),
+              receivePalette(response),
+              changeLikedColor({ color: payload, newHexCode: response[0].hexCode })
+            ];
+          })
+      }
+      debugger
+      return Observable.of(changeLikedColor({
+        color: payload,
+        newHexCode: suggestedColor.hexCode
+      }));
     });
 };
 
