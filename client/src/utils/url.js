@@ -2,8 +2,9 @@
 import paletteAdapter from '../adapters/paletteAdapter';
 import isHex from '../utils/isHex';
 import Color from 'color';
+import type { ColorType } from '../constants/FlowTypes';
 
-const _colorsToString = (colors: Array<Object>): string => {
+const _colorsToString = (colors: ColorType[]): string => {
   return colors
     .map(colorItem => {
       const formattedColor: string = Color(colorItem.hexCode).hex();
@@ -13,7 +14,7 @@ const _colorsToString = (colors: Array<Object>): string => {
     .join('-');
 };
 
-const _stringToColors = () => {
+const _stringToColors = (): ColorType[] => {
   const path: string = window.location.pathname.replace('/', '');
 
   if (!path) {
@@ -29,7 +30,7 @@ const _stringToColors = () => {
 };
 
 const url = {
-  stringifyColors(colors: Array<Object>): string {
+  stringifyColors(colors: ColorType[]): string {
     return _colorsToString(colors);
   },
   parseColors() {

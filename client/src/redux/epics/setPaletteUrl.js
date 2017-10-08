@@ -1,11 +1,11 @@
 // @flow
 import { Observable } from 'rxjs/Observable';
-import { CHANGE_LIKED_COLOR, LIKE_COLOR, REMOVE_LIKED_COLOR } from '../actions/ActionTypes';
+import { CHANGE_LIKED_COLOR, ADD_LIKED_COLOR, REMOVE_LIKED_COLOR } from '../actions/ActionTypes';
 import { browserHistory } from 'react-router';
 import url from '../../utils/url';
 import likedColorsSelector from '../selectors/likedColorsSelector';
 
-const updatableActions = [CHANGE_LIKED_COLOR, LIKE_COLOR, REMOVE_LIKED_COLOR];
+const updatableActions = [CHANGE_LIKED_COLOR, ADD_LIKED_COLOR, REMOVE_LIKED_COLOR];
 
 const setPaletteUrl = (action$, store) => {
   return action$

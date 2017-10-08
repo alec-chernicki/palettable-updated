@@ -46,7 +46,10 @@ exports.hasExactMatch = (req, res, next) => {
 
       return res.json(formatColors(newColors));
     })
-    .catch(() => next(new Error('Error fetching exact match')));
+    .catch(() => {
+      res.status(500);
+      res.send('Error fetching exact match');
+    });
 };
 
 exports.hasClosestHexMatch = (req, res, next) => {
@@ -57,7 +60,7 @@ exports.hasClosestHexMatch = (req, res, next) => {
   const searchColor = currentColors[currentColors.length - 2];
   const searchTerm = colornamer(searchColor).html[0].hex;
 
-  getPalettes({ hex: searchTerm }, next)
+  getPalettes({ hex: searchTerm })
     .then(palettes => {
       const newColors = getNewColorsFromData(
         palettes,
@@ -69,5 +72,8 @@ exports.hasClosestHexMatch = (req, res, next) => {
 
       return res.json(formatColors(newColors));
     })
-    .catch(() => next(new Error('Error fetching closest hex match')));
+    .catch(() => {
+      res.status(500);
+      res.send('Error fetching closest hex match');
+    });
 };

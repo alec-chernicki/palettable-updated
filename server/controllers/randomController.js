@@ -21,5 +21,8 @@ exports.getRandom = (req, res, next) => {
   fetchRandomPalette()
     .then(formatColors)
     .then(colors => res.json(colors))
-    .catch(() => next(new Error('Error fetching random palette')));
+    .catch(() => {
+      res.status(500)
+      res.send('Error fetching random palette');
+    });
 };

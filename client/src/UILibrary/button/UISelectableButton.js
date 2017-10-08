@@ -4,22 +4,24 @@ import CSSModules from 'react-css-modules';
 import styles from './UISelectableButton.css';
 
 type Props = {
-  +image: string,
+  +icon: string,
   +children: React.Node,
   +onClick: () => mixed,
   +className: string,
   +href: string,
+  +styles: Object,
 };
 
 class UISelectableButton extends React.Component<Props> {
   renderImage() {
-    const { image } = this.props;
+    const { icon, styles } = this.props;
+    const IconEl = icon;
 
-    if (!image) {
+    if (!icon) {
       return null;
     }
 
-    return <img styleName="image" alt="" src={image} />;
+    return <IconEl size={45} className={styles['icon']} />;
   }
 
   render() {

@@ -5,7 +5,8 @@ import likedColorsSelector from '../selectors/likedColorsSelector';
 import dislikedColorsSelector from '../selectors/dislikedColorsSelector';
 import suggestedColorSelector from '../selectors/suggestedColorSelector';
 import PaletteAPI from '../../api/PaletteAPI';
-import type { ReduxStore, ColorType } from '../reducers/rootReducer';
+import type { ReduxStore } from '../reducers/rootReducer';
+import type { ColorType } from '../../constants/FlowTypes';
 import { receivePalette } from '../actions/suggestedColors';
 import { changeLikedColor } from '../actions/likedColors';
 import Raven from 'raven-js';
@@ -32,7 +33,7 @@ const dislikeColor = (action$, store) => {
             ];
           })
       }
-      debugger
+
       return Observable.of(changeLikedColor({
         color: payload,
         newHexCode: suggestedColor.hexCode

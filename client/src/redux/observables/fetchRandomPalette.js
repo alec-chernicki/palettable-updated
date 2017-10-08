@@ -9,7 +9,7 @@ import type { ColorType, ReduxStore } from '../../constants/FlowTypes';
 import suggestedColorSelector from '../selectors/suggestedColorSelector';
 import likedColorsSelector from '../selectors/likedColorsSelector';
 import dislikedColorsSelector from '../selectors/dislikedColorsSelector';
-
+import { setHasFetchFailed } from '../actions/dataStatus'
 
 const fetchRandomPalette = (
   state: ReduxStore,
@@ -17,7 +17,6 @@ const fetchRandomPalette = (
   const likedColors = likedColorsSelector(state);
 
   return Observable.fromPromise(PaletteAPI.getRandom())
-    .catch(err => Observable.of(Raven.captureException(err)))
 };
 
 export default fetchRandomPalette;
