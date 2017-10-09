@@ -8,7 +8,7 @@ import { Hue, Saturation } from 'react-color/lib/components/common';
 
 type Props = {
   +onBlur: () => mixed,
-  +onChange: () => mixed,
+  +onChange: (colorData: mixed) => mixed,
 };
 
 class ColorPicker extends Component<Props> {

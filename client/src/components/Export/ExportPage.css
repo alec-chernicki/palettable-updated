@@ -1,5 +1,5 @@
 .export-page {
-  background-color: #E6EAEC;
+  background-color: #333;
   height: 100%;
   width: 100%;
   display: flex;
@@ -8,8 +8,9 @@
 }
 
 .export-page h2 {
-  color: #222;
+  color: #FFF;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .export-buttons {
