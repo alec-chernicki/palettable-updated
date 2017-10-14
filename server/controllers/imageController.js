@@ -1,7 +1,16 @@
 // @flow
+const path = require('path');
 const Canvas = require('canvas');
 const isHex = require('../utils/isHex').default;
 const colorInterpreter = require('color');
+const Color = require('color');
+const colorNamer = require('color-namer');
+
+function getFontFile (name) {
+  return path.resolve(__dirname, '../assets/', name)
+}
+
+Canvas.registerFont(getFontFile('Asap-Bold.ttf'), {family: 'Asap', weight: 'bold' })
 
 exports.drawImage = (req, res) => {
   const palette = req.params.palette;
@@ -24,33 +33,58 @@ exports.drawImage = (req, res) => {
   const DPI_FACTOR = 2;
 
   const CANVAS_WIDTH = 900 * DPI_FACTOR;
-  const CANVAS_HEIGHT = 600 * DPI_FACTOR;
+  const CANVAS_HEIGHT = 550 * DPI_FACTOR;
 
-  const IMAGE_WIDTH = CANVAS_WIDTH ;
-  const IMAGE_HEIGHT = CANVAS_HEIGHT ;
-  const IMAGE_BAR_HEIGHT = (CANVAS_HEIGHT / 10);
+  const IMAGE_WIDTH = 900;
+  const IMAGE_HEIGHT = 550 ;
+  const IMAGE_BAR_HEIGHT = (IMAGE_HEIGHT / 10);
 
-  const canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-  console.log(canvas.webkitBackingStorePixelRatio)
+  const FONT_HEIGHT = 22;
+
+  const canvas = Canvas.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
 
   const ctx = canvas.getContext('2d');
-  ctx.scale(1, 1);
+  ctx.scale(DPI_FACTOR, DPI_FACTOR);
+  ctx.font = `bold ${FONT_HEIGHT}px Asap`;
 
   const stream = canvas.createPNGStream();
 
   stream.on('data', (chunk) => {
     res.write(chunk);
   });
+
   stream.on('end', () => {
     res.end();
   });
 
 
+
+  const _getInterfaceColor = (hexCode) => {
+    const colorObject = Color(hexCode);
+    const black = Color('#333');
+    const white = Color('#FFF');
+
+    const interfaceColor = colorObject.dark()
+      ? colorObject.mix(white)
+      : colorObject.mix(black);
+
+    return interfaceColor.hex();
+  };
+
+
   // Iterates over each color and draws a vertical rectangle
   for (let i = 0; i < formattedPalette.length; i++) {
-    const currentXCoordinate = IMAGE_WIDTH / (formattedPalette.length);
-    ctx.fillStyle = `#${formattedPalette[i]}`;
-    ctx.fillRect((i * currentXCoordinate), 0, currentXCoordinate, IMAGE_HEIGHT);
+    const colorWidth = IMAGE_WIDTH / (formattedPalette.length);
+    const hexCode = `#${formattedPalette[i]}`;
+
+    // Draws color item
+    ctx.fillStyle = hexCode;
+    ctx.fillRect((i * colorWidth), 0, colorWidth, IMAGE_HEIGHT);
+
+    // Draws hex code
+    ctx.textAlign = 'center';
+    ctx.fillStyle = _getInterfaceColor(hexCode);
+    ctx.fillText(hexCode, i * colorWidth + (colorWidth / 2), IMAGE_HEIGHT - 35)
   }
 
   // Draws top white bar
@@ -58,11 +92,14 @@ exports.drawImage = (req, res) => {
   ctx.fillRect(0, 0, IMAGE_WIDTH, IMAGE_BAR_HEIGHT)
 
   // Draws title
-  const FONT_HEIGHT = 22 * DPI_FACTOR;
-
-  ctx.font = `bold ${FONT_HEIGHT}px Arial`;
+  ctx.textAlign = 'left';
   ctx.fillStyle = '#333';
   ctx.fillText('PALETTABLE', IMAGE_WIDTH / 50, (IMAGE_BAR_HEIGHT / 2 ) + (FONT_HEIGHT / 2) - 3);
+
+  ctx.textAlign = 'end';
+  ctx.font = `bold ${FONT_HEIGHT/ 1.75}px Asap`;
+  ctx.fillStyle = '#999';
+  ctx.fillText(`palettable.io/${palette}`, IMAGE_WIDTH - (IMAGE_WIDTH / 50), (IMAGE_BAR_HEIGHT / 2 ) + (FONT_HEIGHT / 2) - 7)
 
 
   return 1;
