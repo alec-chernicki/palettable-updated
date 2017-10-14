@@ -15,7 +15,7 @@ const _colorsToString = (colors: ColorType[]): string => {
 };
 
 const _stringToColors = (): ColorType[] => {
-  const path: string = window.location.pathname.replace('/', '');
+  const path: string = window.location.pathname.split('/')[1];
 
   if (!path) {
     return [];

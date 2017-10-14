@@ -19,7 +19,7 @@ class App extends React.Component<Props> {
   componentDidMount() {
     const { requestRandomPalette, hydrateFromUrl } = this.props;
     const paletteFromUrl = url.parseColors();
-
+    debugger
     if (paletteFromUrl.length) {
       return hydrateFromUrl(paletteFromUrl);
     }
