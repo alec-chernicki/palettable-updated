@@ -2,9 +2,7 @@
 const path = require('path');
 const Canvas = require('canvas');
 const isHex = require('../utils/isHex').default;
-const colorInterpreter = require('color');
 const Color = require('color');
-const colorNamer = require('color-namer');
 
 function getFontFile (name) {
   return path.resolve(__dirname, '../assets/', name)

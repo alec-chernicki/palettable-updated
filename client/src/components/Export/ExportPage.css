@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .export-page h2 {
@@ -17,4 +18,32 @@
   display: flex;
   justify-content: space-between;
   min-width: 500px;
+}
+
+.content-container {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(51,51,51, 0.75)
+}
+
+.background-container {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.background-item {
+  flex-grow: 2;
 }
