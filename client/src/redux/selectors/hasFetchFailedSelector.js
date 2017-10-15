@@ -1,5 +1,5 @@
 // @flow
-import type { ReduxStore } from '../reducers/rootReducer';
+import type { ReduxStore } from '../../constants/FlowTypes'
 
 const hasFetchFailed = (state: ReduxStore) => {
   return state.dataStatus.hasFetchFailed;

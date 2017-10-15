@@ -3,16 +3,20 @@ import styles from './ExportPage.css';
 import CSSModules from 'react-css-modules';
 import UISelectableButton from '../../UILibrary/button/UISelectableButton';
 import React from 'react';
-import FaFilePdfO from 'react-icons/lib/fa/file-pdf-o';
 import FaImage from 'react-icons/lib/fa/image';
+import FaFilePdfO from 'react-icons/lib/fa/file-pdf-o';
 import FaChain from 'react-icons/lib/fa/chain';
-import { connect } from 'react-redux';
-import likedColorsSelector from '../../redux/selectors/likedColorsSelector';
 import type { ColorType } from '../../constants/FlowTypes';
+import likedColorsSelector from '../../redux/selectors/likedColorsSelector';
+import { connect } from 'react-redux';
+import url from '../../utils/url';
+import ExportButtonPng from './ExportButtons/ExportButtonPng';
 
 type Props = {
-  likedColors: ColorType[]
+  +likedColors: ColorType[]
 };
+
+const IMAGE_ENDPOINT = '/api/image';
 
 class ExportPage extends React.Component<Props> {
   renderBackground() {
@@ -30,6 +34,9 @@ class ExportPage extends React.Component<Props> {
   }
 
   render() {
+    const { likedColors } = this.props;
+    const stringifiedColors = url.stringifyColors(likedColors);
+
     return (
       <div styleName="export-page">
         <div styleName="background-container">
@@ -40,7 +47,7 @@ class ExportPage extends React.Component<Props> {
             <h2>How would you like to export your palette?</h2>
             <div styleName="export-buttons">
               <UISelectableButton icon={FaChain}>URL</UISelectableButton>
-              <UISelectableButton icon={FaImage}>PNG</UISelectableButton>
+              <ExportButtonPng />
               <UISelectableButton icon={FaFilePdfO}>PDF</UISelectableButton>
             </div>
           </div>

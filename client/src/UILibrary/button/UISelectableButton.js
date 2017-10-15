@@ -10,6 +10,7 @@ type Props = {
   +className: string,
   +href: string,
   +styles: Object,
+  +type: string,
 };
 
 class UISelectableButton extends React.Component<Props> {
@@ -25,10 +26,11 @@ class UISelectableButton extends React.Component<Props> {
   }
 
   render() {
-    const { children, onClick, className, href } = this.props;
+    const { children, onClick, className, href, type } = this.props;
 
     return (
       <a
+        type={type}
         styleName="selectable-button"
         onClick={onClick}
         className={className}

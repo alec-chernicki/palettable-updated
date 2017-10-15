@@ -5,7 +5,7 @@ import likedColorsSelector from '../selectors/likedColorsSelector';
 import dislikedColorsSelector from '../selectors/dislikedColorsSelector';
 import suggestedColorSelector from '../selectors/suggestedColorSelector';
 import PaletteAPI from '../../api/PaletteAPI';
-import type { ReduxStore } from '../reducers/rootReducer';
+import type { ReduxStore } from '../../constants/FlowTypes';
 import type { ColorType } from '../../constants/FlowTypes';
 import { receivePalette } from '../actions/suggestedColors';
 import { changeLikedColor } from '../actions/likedColors';

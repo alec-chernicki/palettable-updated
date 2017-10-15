@@ -3,6 +3,7 @@ const path = require('path');
 const Canvas = require('canvas');
 const isHex = require('../utils/isHex').default;
 const Color = require('color');
+const fs = require('fs');
 
 function getFontFile (name) {
   return path.resolve(__dirname, '../assets/', name)
@@ -11,22 +12,24 @@ function getFontFile (name) {
 Canvas.registerFont(getFontFile('Asap-Bold.ttf'), {family: 'Asap', weight: 'bold' })
 
 exports.drawImage = (req, res) => {
-  const palette = req.params.palette;
-  if (!palette || palette.indexOf('-') === -1) {
+  const palette = req.params.palette.replace('.png', '');
+
+  if (!palette === -1) {
     res.status(404);
     return res.end('Error');
   }
 
   const formattedPalette = palette.split('-').filter((color) => isHex(color));
-  if (formattedPalette.length <= 1) {
+
+  if (formattedPalette.length === 0) {
     res.status(404);
     return res.end('Error');
   }
 
-  res.setHeader('Content-Type', 'image/png');
-  res.setHeader('Cache-Control', 'public, max-age=31536000');
   res.setHeader('Expires', new Date(0));
   res.setHeader('Last-Modified', new Date(0));
+  res.setHeader('Content-disposition', `attachment; filename=${palette}.png`);
+  res.setHeader('Content-Type', 'image/png');
 
   const DPI_FACTOR = 2;
 
@@ -45,17 +48,7 @@ exports.drawImage = (req, res) => {
   ctx.scale(DPI_FACTOR, DPI_FACTOR);
   ctx.font = `bold ${FONT_HEIGHT}px Asap`;
 
-  const stream = canvas.createPNGStream();
-
-  stream.on('data', (chunk) => {
-    res.write(chunk);
-  });
-
-  stream.on('end', () => {
-    res.end();
-  });
-
-
+  canvas.createPNGStream().pipe(res);
 
   const _getInterfaceColor = (hexCode) => {
     const colorObject = Color(hexCode);
