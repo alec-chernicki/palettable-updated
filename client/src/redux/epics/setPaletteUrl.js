@@ -1,4 +1,8 @@
 // @flow
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/ignoreElements';
+import 'rxjs/add/observable/empty';
 import { Observable } from 'rxjs/Observable';
 import { CHANGE_LIKED_COLOR, ADD_LIKED_COLOR, REMOVE_LIKED_COLOR } from '../actions/ActionTypes';
 import { browserHistory } from 'react-router';

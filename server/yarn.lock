@@ -165,7 +165,7 @@ bytes@2.4.0:
 
 canvas@2.0.0-alpha.5:
   version "2.0.0-alpha.5"
-  resolved "https://npm.hubteam.com/npm-nexus/repository/npm-all/canvas/-/canvas-2.0.0-alpha.5.tgz#bd51c5bbf2be070180c42f405e30e330d95982bf"
+  resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.0.0-alpha.5.tgz#bd51c5bbf2be070180c42f405e30e330d95982bf"
   dependencies:
     nan "^2.4.0"
 
@@ -986,13 +986,9 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
-nan@^2.3.0:
+nan@^2.3.0, nan@^2.4.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
-
-nan@^2.4.0:
-  version "2.7.0"
-  resolved "https://npm.hubteam.com/npm-nexus/repository/npm-all/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
 
 negotiator@0.6.1:
   version "0.6.1"

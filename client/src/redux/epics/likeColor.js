@@ -1,4 +1,6 @@
 // @flow
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { LIKE_COLOR } from '../actions/ActionTypes';
 import suggestedColorSelector from '../selectors/suggestedColorSelector';
