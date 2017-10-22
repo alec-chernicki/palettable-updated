@@ -9,8 +9,13 @@ import { connect } from 'react-redux';
 import { dislikeColor } from '../../redux/actions/dislikedColors';
 import { likeColor } from '../../redux/actions/likedColors';
 import likedColorsSelector from '../../redux/selectors/likedColorsSelector';
+import ExportButton from '../Export/ExportButton';
 
-class ColorItemFooter extends React.Component {
+type Props = {
+  +isAtMaximum: boolean
+};
+
+class ColorItemFooter extends React.Component<Props> {
   renderMessage() {
     const { isAtMaximum } = this.props;
 
@@ -22,7 +27,7 @@ class ColorItemFooter extends React.Component {
   }
 
   renderExportButton() {
-    return <UIButton>Export</UIButton>;
+    return <ExportButton />;
   }
 
   renderLikeButton() {

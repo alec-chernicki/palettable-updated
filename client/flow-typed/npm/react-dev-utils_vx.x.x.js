@@ -1,4 +1,4 @@
-// flow-typed signature: 7e5767b86e8e5fe35e69937c1d9b4baa
+// flow-typed signature: d680014c690839bf3bf281ee07f82d0f
 // flow-typed version: <<STUB>>/react-dev-utils_v^3.0.2/flow_v0.55.0
 
 /**
@@ -78,6 +78,10 @@ declare module 'react-dev-utils/openBrowser' {
   declare module.exports: any;
 }
 
+declare module 'react-dev-utils/printBuildError' {
+  declare module.exports: any;
+}
+
 declare module 'react-dev-utils/printHostingInstructions' {
   declare module.exports: any;
 }
@@ -136,6 +140,9 @@ declare module 'react-dev-utils/noopServiceWorkerMiddleware.js' {
 }
 declare module 'react-dev-utils/openBrowser.js' {
   declare module.exports: $Exports<'react-dev-utils/openBrowser'>;
+}
+declare module 'react-dev-utils/printBuildError.js' {
+  declare module.exports: $Exports<'react-dev-utils/printBuildError'>;
 }
 declare module 'react-dev-utils/printHostingInstructions.js' {
   declare module.exports: $Exports<'react-dev-utils/printHostingInstructions'>;

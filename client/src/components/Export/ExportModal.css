@@ -1,0 +1,57 @@
+.export-modal-content {
+  padding: 40px;
+}
+
+.export-buttons {
+  display: flex;
+  justify-content: space-between;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.export-modal {
+  position: relative;
+  background-color: #FFF;
+  color: #333;
+  border-radius: 4px;
+}
+
+.export-modal-title {
+  margin: 0;
+  padding-right: 25px;
+  color: #FFF;
+}
+
+.export-modal-header {
+  padding: 25px;
+  display: flex;
+  border-bottom: solid 1px #333;
+  background-color: #333;
+}
+
+.close-button {
+  color: #FFF;
+  cursor: pointer;
+}
+
+.export-modal-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.export-modal-overlay {
+  background-color: rgba(51, 51, 51, 0.85);
+  z-index: 100000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

@@ -1,4 +1,4 @@
-// flow-typed signature: fdcc1962ee13d2e4afafe36a0085d96f
+// flow-typed signature: d0334528864e9e732699920d20c0ddf0
 // flow-typed version: <<STUB>>/lint-staged_v^4.0.3/flow_v0.55.0
 
 /**
@@ -34,11 +34,23 @@ declare module 'lint-staged/src/generateTasks' {
   declare module.exports: any;
 }
 
+declare module 'lint-staged/src/getConfig' {
+  declare module.exports: any;
+}
+
 declare module 'lint-staged/src/index' {
   declare module.exports: any;
 }
 
-declare module 'lint-staged/src/readConfigOption' {
+declare module 'lint-staged/src/printErrors' {
+  declare module.exports: any;
+}
+
+declare module 'lint-staged/src/resolveGitDir' {
+  declare module.exports: any;
+}
+
+declare module 'lint-staged/src/runAll' {
   declare module.exports: any;
 }
 
@@ -62,11 +74,20 @@ declare module 'lint-staged/src/findBin.js' {
 declare module 'lint-staged/src/generateTasks.js' {
   declare module.exports: $Exports<'lint-staged/src/generateTasks'>;
 }
+declare module 'lint-staged/src/getConfig.js' {
+  declare module.exports: $Exports<'lint-staged/src/getConfig'>;
+}
 declare module 'lint-staged/src/index.js' {
   declare module.exports: $Exports<'lint-staged/src/index'>;
 }
-declare module 'lint-staged/src/readConfigOption.js' {
-  declare module.exports: $Exports<'lint-staged/src/readConfigOption'>;
+declare module 'lint-staged/src/printErrors.js' {
+  declare module.exports: $Exports<'lint-staged/src/printErrors'>;
+}
+declare module 'lint-staged/src/resolveGitDir.js' {
+  declare module.exports: $Exports<'lint-staged/src/resolveGitDir'>;
+}
+declare module 'lint-staged/src/runAll.js' {
+  declare module.exports: $Exports<'lint-staged/src/runAll'>;
 }
 declare module 'lint-staged/src/runScript.js' {
   declare module.exports: $Exports<'lint-staged/src/runScript'>;
