@@ -5,6 +5,7 @@ import UIButton from '../../../UILibrary/button/UIButton';
 import exportOptionsKeys from '../exportOptionsKeys';
 import UITextInput from '../../../UILibrary/input/UITextCopyInput';
 import url from '../../../utils/url';
+import { baseUrl } from '../../../constants/links';
 
 type Props = {
   +onSelectExportType: (key: string) => {},
@@ -21,13 +22,14 @@ class ExportContentUrl extends React.Component<Props> {
   render() {
     const { likedColors } = this.props;
     const stringifiedColors = url.stringifyColors(likedColors);
+    const linkableUrl = baseUrl(stringifiedColors);
 
     return (
       <div>
         <p>
           Success url
         </p>
-        <UITextInput value={stringifiedColors}/>
+        <UITextInput value={linkableUrl}/>
         <UIButton onClick={this.handleClick}>
           Back to export options
         </UIButton>
