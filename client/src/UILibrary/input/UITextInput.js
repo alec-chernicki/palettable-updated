@@ -16,7 +16,7 @@ class UITextInput extends React.Component<Props> {
         value={value}
         onChange={onChange}
         type="text"
-        styleName="uiTextInput"
+        styleName="text-input"
       >
 
       </input>
