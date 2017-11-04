@@ -11,13 +11,11 @@ import { addLikedColor } from '../actions/likedColors';
 import { REQUEST_PALETTE } from '../actions/ActionTypes';
 import type { ColorType, ReduxStore } from '../../constants/FlowTypes';
 import { setHasFetchFailed } from '../actions/dataStatus'
-import likedColorsSelector from '../selectors/likedColorsSelector';
 
 const fetchInitialPalette = (action$, store) => {
   return action$.ofType(REQUEST_PALETTE)
     .mergeMap(action => {
       const state: ReduxStore = store.getState();
-      const likedColors = likedColorsSelector(state);
 
       return Observable.fromPromise(PaletteAPI.getRandom())
         .mergeMap((response: ColorType[]) => {

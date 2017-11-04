@@ -1,15 +1,11 @@
 // @flow
 import { Observable } from 'rxjs/Observable';
 import { DISLIKE_COLOR } from '../actions/ActionTypes';
-import likedColorsSelector from '../selectors/likedColorsSelector';
-import dislikedColorsSelector from '../selectors/dislikedColorsSelector';
 import suggestedColorSelector from '../selectors/suggestedColorSelector';
-import PaletteAPI from '../../api/PaletteAPI';
 import type { ReduxStore } from '../../constants/FlowTypes';
 import type { ColorType } from '../../constants/FlowTypes';
 import { receivePalette } from '../actions/suggestedColors';
 import { changeLikedColor } from '../actions/likedColors';
-import Raven from 'raven-js';
 import fetchPaletteWithColors from '../observables/fetchPaletteWithColors';
 import { setIsFetching } from '../actions/dataStatus'
 
