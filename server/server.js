@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Controllers
 const randomController = require('./controllers/randomController');
 const changeController = require('./controllers/changeController');
-const homeController = require('./controllers/homeController');
 const imageController = require('./controllers/imageController');
 
 // Assign Routes and Controllers
