@@ -1,19 +1,15 @@
 import styles from './SuggestedColorsTray.css';
 import CSSModules from 'react-css-modules';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import getInterfaceAttributes from 'utils/getInterfaceAttributes';
+import type { ReduxStore } from '../../constants/FlowTypes';
 
-class SuggestedColorsTray extends React.Component {
+class SuggestedColorsTray extends React.Component<Props> {
   renderColors() {
     const { suggestedColors } = this.props;
 
-    return suggestedColors.map((hexCode, key) => {
-      const interfaceAttributes = getInterfaceAttributes(hexCode);
-      const styles = {
-        backgroundColor: hexCode,
-      };
+    return suggestedColors.map((hexCode: string, key: number) => {
+      const styles = { backgroundColor: hexCode };
 
       return <div key={key} styleName="color" style={styles} />;
     });
@@ -32,7 +28,7 @@ class SuggestedColorsTray extends React.Component {
   }
 }
 
-const mapStateToProps = ({ suggestedColors }) => {
+const mapStateToProps = ({ suggestedColors }: ReduxStore) => {
   return {
     suggestedColors,
   };

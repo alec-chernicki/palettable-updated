@@ -7,10 +7,11 @@ import { changeLikedColor } from '../../redux/actions/likedColors';
 import getInterfaceAttributes from '../../utils/getInterfaceAttributes';
 import isHex from '../../utils/isHex';
 import Color from 'color';
+import type { ColorType } from '../../constants/FlowTypes';
 
 type Props = {
-  color: { hexCode: string },
-  onBlur: () => mixed,
+  color: ColorType,
+  onBlur: (hexCode: string) => mixed,
 };
 
 type State = {

@@ -1,7 +1,6 @@
 // @flow
 import styles from './ColorItem.css';
 import CSSModules from 'react-css-modules';
-import PropTypes from 'prop-types';
 import React from 'react';
 import ColorName from '../ColorName/ColorName';
 import ColorItemFooter from './ColorItemFooter';
@@ -12,10 +11,16 @@ import { connect } from 'react-redux';
 import getInterfaceAttributes from '../../utils/getInterfaceAttributes';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
-import getIsFetchingSelector from '../../redux/selectors/getIsFetchingSelector';
-import type { ReduxStore } from '../../constants/FlowTypes';
+import type { ReduxStore, ColorType } from '../../constants/FlowTypes';
 
-class ColorItem extends React.PureComponent {
+type Props = {
+  color: ColorType,
+  isFetching: boolean,
+  isLastItem: boolean,
+  styles: Object,
+}
+
+class ColorItem extends React.PureComponent<Props> {
   renderLoader() {
     const { color: { hexCode }, styles } = this.props;
     const interfaceAttributes = getInterfaceAttributes(hexCode);
@@ -91,12 +96,6 @@ class ColorItem extends React.PureComponent {
     );
   }
 }
-
-ColorItem.propTypes = {
-  color: PropTypes.object.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  isLastItem: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = (state: ReduxStore) => {
   return {

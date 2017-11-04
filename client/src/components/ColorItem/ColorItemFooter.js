@@ -1,7 +1,7 @@
 // @flow
 import styles from './ColorItemFooter.css';
 import CSSModules from 'react-css-modules';
-import PropTypes from 'prop-types';
+import type { ColorType } from '../../constants/FlowTypes';
 import React from 'react';
 import classNames from 'classnames';
 import UIButton from '../../UILibrary/button/UIButton';
@@ -12,10 +12,22 @@ import likedColorsSelector from '../../redux/selectors/likedColorsSelector';
 import ExportButton from '../Export/ExportButton';
 
 type Props = {
-  +isAtMaximum: boolean
+  +isAtMaximum: boolean,
+  +onLike: () => {},
+  +onDislike: () => {},
+  +color: ColorType,
+  +isLastItem: boolean,
+  +isAtMaximum: boolean,
+  +active: boolean,
+  +styles: Object,
 };
 
 class ColorItemFooter extends React.Component<Props> {
+  static defaultProps = {
+    isLastItem: false,
+    isAtMaximum: false,
+  }
+
   renderMessage() {
     const { isAtMaximum } = this.props;
 
@@ -82,19 +94,6 @@ class ColorItemFooter extends React.Component<Props> {
     );
   }
 }
-
-ColorItemFooter.propTypes = {
-  onLike: PropTypes.func.isRequired,
-  onDislike: PropTypes.func.isRequired,
-  color: PropTypes.object.isRequired,
-  isLastItem: PropTypes.bool.isRequired,
-  isAtMaximum: PropTypes.bool.isRequired,
-};
-
-ColorItemFooter.defaultProps = {
-  isLastItem: false,
-  isAtMaximum: false,
-};
 
 const mapStateToProps = state => ({
   isAtMaximum: likedColorsSelector(state).length >= 5,

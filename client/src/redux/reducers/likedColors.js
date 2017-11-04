@@ -2,9 +2,7 @@
 import shortId from 'shortid';
 import type { LikedColorsActions } from '../actions/likedColors';
 import type { ColorType } from '../../constants/FlowTypes';
-import { addLikedColor } from '../actions/likedColors';
 import {
-  LIKE_COLOR,
   ADD_LIKED_COLOR,
   ADD_LIKED_COLORS,
   REMOVE_LIKED_COLOR,

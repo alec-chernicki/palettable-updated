@@ -1,5 +1,4 @@
 // @flow
-import axios from 'axios';
 import React from 'react';
 import UISelectableButton from '../../../UILibrary/button/UISelectableButton';
 import FaImage from 'react-icons/lib/fa/image';

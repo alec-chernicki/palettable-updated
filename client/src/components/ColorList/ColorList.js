@@ -3,7 +3,6 @@ import styles from './ColorList.css';
 import CSSModules from 'react-css-modules';
 import React from 'react';
 import { connect } from 'react-redux';
-import { requestPalette } from '../../redux/actions/suggestedColors';
 import { MoonLoader } from 'halogen';
 import likedColorsSelector from '../../redux/selectors/likedColorsSelector';
 import ColorItem from '../../components/ColorItem/ColorItem';

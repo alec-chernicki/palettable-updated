@@ -1,7 +1,6 @@
 // @flow
 import styles from './ColorPicker.css';
 import CSSModules from 'react-css-modules';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { CustomPicker } from 'react-color';
 import { Hue, Saturation } from 'react-color/lib/components/common';
@@ -12,17 +11,11 @@ type Props = {
 };
 
 class ColorPicker extends Component<Props> {
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
   componentDidMount() {
     window.addEventListener('mousedown', this.props.onBlur);
   }
 
-  handleClick(e) {
+  handleClick = (e) => {
     e.stopPropagation();
   }
 

@@ -1,5 +1,4 @@
 // @flow
-import PropTypes from 'prop-types';
 import React from 'react';
 import ColorPicker from '../../ColorPicker/ColorPicker';
 import SliderIcon from '../../SliderIcon/SliderIcon';
@@ -7,22 +6,28 @@ import { connect } from 'react-redux';
 import { changeLikedColor } from '../../../redux/actions/likedColors';
 import UIPopover from '../../../UILibrary/popover/UIPopover';
 import { setActiveColorPickerId } from '../../../redux/actions/colorPicker';
+import type { ColorType } from '../../../constants/FlowTypes';
 
-class ColorPickerTool extends React.PureComponent {
-  constructor(props) {
-    super(props);
+type Props = {
+  color: ColorType,
+  onClick: () => {},
+  onChange: (hexCode: string) => {},
+  onBlur: () => {},
+  isActive: boolean,
+}
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+class ColorPickerTool extends React.PureComponent<Props> {
+  static defaultProps = {
+    onClick: () => {},
   }
 
-  handleChange(colorData) {
-    const { onChange, color } = this.props;
+  handleChange = (colorData) => {
+    const { onChange } = this.props;
 
     onChange(colorData.hex.toUpperCase());
   }
 
-  handleClick(e) {
+  handleClick = (e) => {
     const { onClick } = this.props;
 
     e.stopPropagation();
@@ -58,15 +63,6 @@ class ColorPickerTool extends React.PureComponent {
       </UIPopover>
     );
   }
-}
-
-ColorPickerTool.propTypes = {
-  color: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
-
-ColorPickerTool.defaultProps = {
-  onClick: () => {},
 }
 
 const mapStateToProps = (state, { color }) => {

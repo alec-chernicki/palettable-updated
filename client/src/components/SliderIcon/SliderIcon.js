@@ -21,16 +21,13 @@ class SliderIcon extends React.Component<Props, State> {
     this.state = {
       active: false,
     };
-
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
-  handleMouseEnter(e) {
+  handleMouseEnter = (e) => {
     this.setState({ active: true });
   }
 
-  handleMouseLeave(e) {
+  handleMouseLeave = (e) => {
     this.setState({ active: false });
   }
 
