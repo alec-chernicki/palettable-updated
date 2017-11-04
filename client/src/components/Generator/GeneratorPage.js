@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import ColorList from 'components/ColorList/ColorList';
 
-const GeneratorPage = props => {
+const GeneratorPage = () => {
   return <ColorList />;
 };
 
