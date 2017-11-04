@@ -19,8 +19,16 @@ type State = {
   shownHexCode: string,
 };
 
+const _formatToHashedString = (hexCode: string): string => {
+  if(hexCode[0] !== '#') {
+    return `#${hexCode}`;
+  }
+
+  return hexCode;
+};
+
 class ColorName extends React.Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -37,30 +45,32 @@ class ColorName extends React.Component<Props, State> {
     }
   }
 
-  handleFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  handleFocus = (e) => {
     this.setState({ isEditing: true });
   }
 
-  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const { value } = e.target;
+  handleChange = (e) => {
+    const { value } : { value: string } = e.target;
+    const formattedValue = _formatToHashedString(value);
 
     this.setState({ shownHexCode: value });
 
-    if (isHex(value)) {
-      this.props.onBlur(value);
+    if (isHex(formattedValue)) {
+      this.props.onBlur(formattedValue);
     }
   }
 
-  handleBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  handleBlur = (e) => {
     const { color: { hexCode } } = this.props;
-    const { value } = e.target;
+    const { value }: { value: string } = e.target;
+    const formattedValue = _formatToHashedString(value);
 
-    if (!isHex(value)) {
+    if (!isHex(formattedValue)) {
       return this.setState({ shownHexCode: hexCode });
     }
 
-    this.setState({ shownHexCode: Color(value).hex() });
-    this.props.onBlur(e.target.value);
+    this.setState({ shownHexCode: Color(formattedValue).hex() });
+    this.props.onBlur(formattedValue);
   }
 
   render() {
@@ -86,7 +96,7 @@ class ColorName extends React.Component<Props, State> {
   }
 }
 
-const mapDispatchToProps = (dispatch, { color }) => {
+const mapDispatchToProps = (dispatch, { color }: Props) => {
   return {
     onBlur: (newHexCode: string) => {
       dispatch(
