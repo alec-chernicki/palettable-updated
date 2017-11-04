@@ -18,8 +18,13 @@ class UITextCopyInput extends React.Component<Props> {
   render() {
     const { value, onChange } = this.props;
     return (
-      <div styleName="text-copy-input">
-        <UITextInput value={value} onChange={onChange} />
+      <div styleName="text-copy-input-container">
+        <input
+          value={value}
+          onChange={onChange}
+          type="text"
+          styleName="text-copy-input"
+        />
         <CopyToClipboard text={value}>
           <button styleName="copy-button">Copy</button>
         </CopyToClipboard>
