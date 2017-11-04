@@ -26,6 +26,10 @@ class ExportButton extends React.Component<Props, State> {
   renderExportModal() {
     const { isExportModalOpen } = this.state;
 
+    if (!isExportModalOpen) {
+      return null;
+    }
+
     return (
       <ExportModal
         isOpen={isExportModalOpen}

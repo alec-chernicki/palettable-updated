@@ -3,7 +3,7 @@ import styles from './ExportModal.css';
 import Modal from 'react-modal';
 import CSSModules from 'react-css-modules';
 import React from 'react';
-import type { ColorType } from '../../constants/FlowTypes';
+import type { ColorType, ReduxStore } from '../../constants/FlowTypes';
 import likedColorsSelector from '../../redux/selectors/likedColorsSelector';
 import { connect } from 'react-redux';
 import exportOptionsConfig from './exportOptionsConfig';
@@ -23,7 +23,7 @@ type State = {
 };
 
 class ExportModal extends React.Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -76,11 +76,11 @@ class ExportModal extends React.Component<Props, State> {
   }
 
   render() {
-    const { isOpen, styles, onClose } = this.props;
+    const { styles, onClose } = this.props;
 
     return (
       <Modal
-        isOpen={isOpen}
+        isOpen={true}
         className={styles['export-modal-container']}
         overlayClassName={styles['export-modal-overlay']}
       >
@@ -102,7 +102,7 @@ class ExportModal extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: ReduxStore) => {
   return {
     likedColors: likedColorsSelector(state),
   };
