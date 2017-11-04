@@ -24,9 +24,11 @@
 
 .export-modal-header {
   padding: 25px;
-  display: flex;
-  border-bottom: solid 1px #333;
-  background-color: #333;
+  display: flex;;
+  background: linear-gradient(to right, #16222a, #3a6073);
+
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .close-button {

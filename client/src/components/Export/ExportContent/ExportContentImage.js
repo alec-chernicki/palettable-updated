@@ -20,7 +20,7 @@ class ExportContentImage extends React.Component<Props> {
     return (
       <div>
         <p>
-          Success url
+          Your download should begin shortly.
         </p>
         <UIButton onClick={this.handleClick}>
           Back to export options

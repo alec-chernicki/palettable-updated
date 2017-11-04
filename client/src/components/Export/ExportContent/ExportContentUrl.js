@@ -27,7 +27,7 @@ class ExportContentUrl extends React.Component<Props> {
     return (
       <div>
         <p>
-          Success url
+          Return to this url to continue editing your current color palette.
         </p>
         <UITextInput value={linkableUrl}/>
         <UIButton onClick={this.handleClick}>
