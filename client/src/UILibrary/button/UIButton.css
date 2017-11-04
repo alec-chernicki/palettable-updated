@@ -8,7 +8,7 @@
 
 .primary {
   composes: uiButton;
-  background-color: #233B46;
+  background-color: #63A3D0;
 }
 
 .positive {
