@@ -57,6 +57,7 @@
     "react-icons": "^2.2.7",
     "react-icons-kit": "^1.0.7",
     "react-modal": "^3.0.4",
+    "react-popper": "^0.7.4",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
     "react-transition-group": "^2.2.0",
