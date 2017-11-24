@@ -3,7 +3,7 @@
   "clean_urls": true,
   "proxies": {
     "/api/": {
-      "origin": "${API_URL}"
+      "origin": "https://${API_APP_NAME}.herokuapp.com/"
     }
   }
 }
