@@ -29,7 +29,7 @@ class UIButton extends React.Component<Props> {
   };
 
   render() {
-    const { children, onClick, className, use, href, to } = this.props;
+    const { children, onClick, className, use, href, to, style } = this.props;
     const componentClass = classNames({
       primary: use === useProps.primary,
       positive: use === useProps.positive,
@@ -40,6 +40,7 @@ class UIButton extends React.Component<Props> {
 
     return (
       <ComponentToRender
+        style={style}
         onClick={onClick}
         styleName={componentClass}
         className={className}

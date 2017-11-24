@@ -17,12 +17,16 @@ class ExportContentImage extends React.Component<Props> {
   }
 
   render() {
+    const buttonStyle = {
+      maxWidth: '200px'
+    };
+
     return (
       <div>
         <p>
           Your download should begin shortly.
         </p>
-        <UIButton onClick={this.handleClick}>
+        <UIButton style={buttonStyle} onClick={this.handleClick}>
           Back to export options
         </UIButton>
       </div>

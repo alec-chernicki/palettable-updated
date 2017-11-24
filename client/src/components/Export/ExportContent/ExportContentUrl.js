@@ -23,6 +23,9 @@ class ExportContentUrl extends React.Component<Props> {
     const { likedColors } = this.props;
     const stringifiedColors = url.stringifyColors(likedColors);
     const linkableUrl = baseUrl(stringifiedColors);
+    const buttonStyle = {
+      maxWidth: '200px'
+    };
 
     return (
       <div>
@@ -30,7 +33,7 @@ class ExportContentUrl extends React.Component<Props> {
           Return to this url to continue editing your current color palette.
         </p>
         <UITextInput value={linkableUrl}/>
-        <UIButton onClick={this.handleClick}>
+        <UIButton style={buttonStyle} onClick={this.handleClick}>
           Back to export options
         </UIButton>
       </div>
