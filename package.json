@@ -5,6 +5,8 @@
   "author": "Alec Ortega",
   "repository": "git@github.com:alecortega/palettable.git",
   "scripts": {
+    "deploy-web-client": "git subtree push --prefix=client heroku-web-client master",
+    "deploy-back-end": "git subtree push --prefix=client heroku-back-end master",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node start-server.js",
@@ -28,7 +30,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
     "prettier": "^1.5.3",
-    "react-popper": "^0.7.2",
+    "react-popper": "^0.7.4",
     "shortid": "^2.2.8"
   },
   "devDependencies": {
