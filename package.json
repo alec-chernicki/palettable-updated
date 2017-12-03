@@ -29,8 +29,7 @@
     "eslint-plugin-import": "^2.6.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "prettier": "^1.5.3",
-    "shortid": "^2.2.8"
+    "prettier": "^1.5.3"
   },
   "devDependencies": {
     "husky": "^0.14.3",
