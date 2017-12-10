@@ -10,23 +10,19 @@ import { receivePalette } from '../actions/suggestedColors';
 import { addLikedColor } from '../actions/likedColors';
 import { REQUEST_PALETTE } from '../actions/ActionTypes';
 import type { ColorType } from '../../constants/FlowTypes';
-import { setHasFetchFailed } from '../actions/dataStatus'
+import { setHasFetchFailed } from '../actions/dataStatus';
 
 const fetchInitialPalette = (action$, store) => {
-  return action$.ofType(REQUEST_PALETTE)
-    .mergeMap(action => {
-      return Observable.fromPromise(PaletteAPI.getRandom())
-        .mergeMap((response: ColorType[]) => {
-          return [
-            receivePalette(response),
-            addLikedColor(response[0])
-          ]
-        })
-        .catch(err => {
-          Raven.captureException(err);
-          return Observable.of(setHasFetchFailed(true))
-        });
-    });
+  return action$.ofType(REQUEST_PALETTE).mergeMap(action => {
+    return Observable.fromPromise(PaletteAPI.getRandom())
+      .mergeMap((response: ColorType[]) => {
+        return [receivePalette(response), addLikedColor(response[0])];
+      })
+      .catch(err => {
+        Raven.captureException(err);
+        return Observable.of(setHasFetchFailed(true));
+      });
+  });
 };
 
 export default fetchInitialPalette;
