@@ -5,6 +5,7 @@
   display: inline-block;
   text-align: center;
   width: 100%;
+  transition: background-color 125ms ease-in-out;
 }
 
 .primary {
@@ -12,12 +13,36 @@
   background-color: #619fcc;
 }
 
+.primary:hover {
+  background-color: #588fb7;
+}
+
+.primary:active {
+  background-color: #6aaddd;
+}
+
 .positive {
   composes: uiButton;
   background-color: #77a88d;
 }
 
+.positive:hover {
+  background-color: #69937c;
+}
+
+.positive:active {
+  background-color: #84ba9c;
+}
+
 .negative {
   composes: uiButton;
+  background-color: #ed5e68;
+}
+
+.negative:hover {
+  background-color: #d3545d;
+}
+
+.negative:active {
   background-color: #ff6670;
 }
