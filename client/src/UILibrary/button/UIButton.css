@@ -9,15 +9,15 @@
 
 .primary {
   composes: uiButton;
-  background-color: #63A3D0;
+  background-color: #619fcc;
 }
 
 .positive {
   composes: uiButton;
-  background-color: #77A88D;
+  background-color: #77a88d;
 }
 
 .negative {
   composes: uiButton;
-  background-color: #FF6670;
+  background-color: #ff6670;
 }
