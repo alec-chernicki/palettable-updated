@@ -4,20 +4,21 @@
   height: 40px;
   width: 40px;
   display: block;
+  transition: fill 0.25s ease-in-out;
 }
 
 .light {
   composes: remove-tool;
 }
 
-.light svg {
-  fill: #FFF !important;
+.light:hover {
+  fill: #fff !important;
 }
 
 .dark {
   composes: remove-tool;
 }
 
-.dark svg {
+.dark:hover {
   fill: #333 !important;
 }

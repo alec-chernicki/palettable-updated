@@ -12,6 +12,14 @@ type Props = {
 };
 
 class NavigationBar extends React.Component<Props> {
+  renderSocialLinks() {
+    return (
+      <div>
+        <a />
+      </div>
+    );
+  }
+
   render() {
     return (
       <div styleName="navigation-bar">
