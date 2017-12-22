@@ -76,7 +76,7 @@ class ExportModal extends React.Component<Props, State> {
       <Modal
         isOpen={true}
         className={styles['export-modal-container']}
-        overlayClassName={styles['export-modal-overlay']}
+        closeTimeoutMS={200}
       >
         <div styleName="export-modal">
           <div styleName="export-modal-header">
