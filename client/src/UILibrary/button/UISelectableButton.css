@@ -1,6 +1,5 @@
 .selectable-button {
   padding: 35px 55px;
-  background-color: #FFF;
   border-radius: 2px;
   color: #222;
   display: flex;
@@ -8,12 +7,12 @@
   text-align: center;
   border-radius: 4px;
   cursor: pointer;
-  border: solid 2px #AAA;
+  border: solid 2px #d3d3d3;
+  transition: all 250ms ease-out;
 }
 
 .selectable-button:hover {
-  transition: background-color 0.25s ease-in-out;
-  background-color: #EEE;
+  border: solid 2px #588fb7;
 }
 
 .image {
