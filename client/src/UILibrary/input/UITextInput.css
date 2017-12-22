@@ -1,9 +1,10 @@
 .text-input {
   padding: 15px 20px;
   display: inline-block;
-  border: solid 2px #AAA;
-  border-radius: 4px;
-  min-width: 350px;
+  border: solid 2px #d3d3d3;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 350px;
   font-size: 15px;
   font-family: 'Asap';
 }

@@ -11,6 +11,12 @@
   transition: all 250ms ease-out;
 }
 
+@media only screen and (max-width: 768px) {
+  .selectable-button {
+    margin-bottom: 24px;
+  }
+}
+
 .selectable-button:hover {
   border: solid 2px #588fb7;
 }

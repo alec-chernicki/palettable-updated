@@ -7,13 +7,29 @@
   justify-content: space-between;
   max-width: 350px;
   margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 768px) {
+  .export-buttons {
+    justify-content: center;
+    flex-direction: column;
+  }
 }
 
 .export-modal {
   position: relative;
   background-color: #fff;
   color: #333;
-  border-radius: 4px;
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 768px) {
+  .export-modal {
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+  }
 }
 
 .export-modal-title {
@@ -65,7 +81,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   top: 0;
   bottom: 0;
   left: 0;

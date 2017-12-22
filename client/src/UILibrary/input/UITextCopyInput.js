@@ -25,15 +25,20 @@ class UITextCopyInput extends React.Component<Props, State> {
   state = {
     displayState: DISPLAY_STATES.INACTIVE,
   };
+  timeout = null;
 
   static defaultProps = {
     onChange: () => {},
   };
 
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
+
   handleClick = () => {
     this.setState({ displayState: DISPLAY_STATES.ACTIVE });
 
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.setState({ displayState: DISPLAY_STATES.INACTIVE });
     }, ACTIVE_STATE_DURATION);
   };
