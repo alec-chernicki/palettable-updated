@@ -15,10 +15,12 @@ class NavigationBar extends React.Component<Props> {
   render() {
     return (
       <div styleName="navigation-bar">
-        <a href="/">
-          <h1>PALETTABLE</h1>
-        </a>
-        <div>
+        <div styleName="content">
+          <a href="/">
+            <h1>PALETTABLE</h1>
+          </a>
+        </div>
+        <div styleName="content">
           <ExportButton />
         </div>
       </div>
