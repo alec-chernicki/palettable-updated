@@ -18,7 +18,7 @@ type Props = {
   isFetching: boolean,
   isLastItem: boolean,
   styles: Object,
-}
+};
 
 class ColorItem extends React.PureComponent<Props> {
   renderLoader() {
@@ -76,7 +76,7 @@ class ColorItem extends React.PureComponent<Props> {
     return this.renderTools();
   }
   render() {
-    const { color, isLastItem } = this.props;
+    const { color, isLastItem, styles } = this.props;
 
     const style = {
       backgroundColor: color.hexCode,
@@ -84,13 +84,10 @@ class ColorItem extends React.PureComponent<Props> {
 
     return (
       <li style={style} styleName="color-item">
-        <TransitionGroup>
-          {this.renderContent()}
-        </TransitionGroup>
+        <TransitionGroup>{this.renderContent()}</TransitionGroup>
         <ColorItemFooter
-          isLastItem={isLastItem}
           active={isLastItem}
-          color={color}
+          className={styles['desktop-footer']}
         />
       </li>
     );
@@ -99,7 +96,7 @@ class ColorItem extends React.PureComponent<Props> {
 
 const mapStateToProps = (state: ReduxStore) => {
   return {
-    isFetching: state.dataStatus.isFetching
+    isFetching: state.dataStatus.isFetching,
   };
 };
 

@@ -22,7 +22,7 @@ type Props = {
 class ColorList extends React.PureComponent<Props> {
   static defaultProps = {
     likedColors: [],
-  }
+  };
 
   renderError() {
     return (
@@ -107,6 +107,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(
-  CSSModules(ColorList, styles)
-);
+export default connect(mapStateToProps)(CSSModules(ColorList, styles));

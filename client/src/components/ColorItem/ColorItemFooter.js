@@ -1,4 +1,5 @@
 // @flow
+import { partial } from 'lodash';
 import styles from './ColorItemFooter.css';
 import CSSModules from 'react-css-modules';
 import type { ColorType } from '../../constants/FlowTypes';
@@ -13,20 +14,18 @@ import ExportButton from '../Export/ExportButton';
 
 type Props = {
   +isAtMaximum: boolean,
-  +onLike: () => {},
-  +onDislike: () => {},
+  +onLike: (color: ColorType) => {},
+  +onDislike: (color: ColorType) => {},
   +color: ColorType,
-  +isLastItem: boolean,
-  +isAtMaximum: boolean,
   +active: boolean,
   +styles: Object,
+  +className: string,
 };
 
 class ColorItemFooter extends React.Component<Props> {
   static defaultProps = {
-    isLastItem: false,
     isAtMaximum: false,
-  }
+  };
 
   renderMessage() {
     const { isAtMaximum } = this.props;
@@ -43,10 +42,10 @@ class ColorItemFooter extends React.Component<Props> {
   }
 
   renderLikeButton() {
-    const { onLike } = this.props;
+    const { onLike, color } = this.props;
 
     return (
-      <UIButton use="positive" onClick={onLike}>
+      <UIButton use="positive" onClick={partial(onLike, color)}>
         Like
       </UIButton>
     );
@@ -63,13 +62,13 @@ class ColorItemFooter extends React.Component<Props> {
   }
 
   renderPrimaryActionButton() {
-    const { onDislike, styles } = this.props;
+    const { onDislike, color, styles } = this.props;
 
     return (
       <UIButton
         use="negative"
         className={styles['button-dislike']}
-        onClick={onDislike}
+        onClick={partial(onDislike, color)}
       >
         Dislike
       </UIButton>
@@ -77,14 +76,14 @@ class ColorItemFooter extends React.Component<Props> {
   }
 
   render() {
-    const { active } = this.props;
+    const { active, className } = this.props;
     const componentClass = classNames({
       active: active,
       inactive: !active,
     });
 
     return (
-      <div styleName={componentClass}>
+      <div styleName={componentClass} className={className}>
         {this.renderMessage()}
         <div styleName="buttons">
           {this.renderPrimaryActionButton()}
@@ -95,14 +94,19 @@ class ColorItemFooter extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
-  isAtMaximum: likedColorsSelector(state).length >= 5,
-});
+const mapStateToProps = state => {
+  const likedColors = likedColorsSelector(state);
 
-const mapDispatchToProps = (dispatch, { color }) => {
   return {
-    onLike: () => dispatch(likeColor(color)),
-    onDislike: () => dispatch(dislikeColor(color)),
+    isAtMaximum: likedColors.length >= 5,
+    color: likedColors[likedColors.length - 1],
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onLike: color => dispatch(likeColor(color)),
+    onDislike: color => dispatch(dislikeColor(color)),
   };
 };
 

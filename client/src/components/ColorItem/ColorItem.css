@@ -1,9 +1,9 @@
 @keyframes fade-in {
   from {
-    opacity: 0
+    opacity: 0;
   }
   to {
-    opacity: 1
+    opacity: 1;
   }
 }
 
@@ -18,20 +18,27 @@
   justify-content: center;
   animation-delay: 125ms;
   animation: fade-in 125 ease-out;
-
 }
 
 .color-item {
   align-items: center;
   display: flex;
   justify-content: center;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   flex: 1;
   height: 100%;
   z-index: 100;
   overflow: hidden;
   transition: background-color 150ms ease-out;
+}
+
+@media only screen and (max-width: 768px) {
+  .desktop-footer {
+    display: none;
+  }
 }
 
 .tool-icons {

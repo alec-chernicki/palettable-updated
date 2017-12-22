@@ -1,4 +1,6 @@
 // @flow
+import styles from './GeneratorPage.css';
+import CSSModules from 'react-css-modules';
 import React from 'react';
 import ColorList from '../ColorList/ColorList';
 import { connect } from 'react-redux';
@@ -6,11 +8,13 @@ import { dislikeColor } from '../../redux/actions/dislikedColors';
 import { likeColor } from '../../redux/actions/likedColors';
 import lastColorInPaletteSelector from '../../redux/selectors/lastColorInPaletteSelector';
 import type { ColorType } from '../../constants/FlowTypes';
+import ColorItemFooter from '../ColorItem/ColorItemFooter';
 
 type Props = {
   +lastColorInPalette: ColorType,
   +onLike: (color: ColorType) => {},
   +onDislike: (color: ColorType) => {},
+  +styles: Object,
 };
 
 const L_KEYCODE = 76;
@@ -44,26 +48,33 @@ class GeneratorPage extends React.Component<Props> {
         onDislike(lastColorInPalette);
       }
     }
-  }
+  };
 
   render() {
+    const { styles } = this.props;
+
     return (
-      <ColorList />
+      <div styleName="generator-page">
+        <ColorList />
+        <ColorItemFooter active={true} className={styles['mobile-footer']} />
+      </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    lastColorInPalette: lastColorInPaletteSelector(state)
-  }
+    lastColorInPalette: lastColorInPaletteSelector(state),
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onLike: (color) => dispatch(likeColor(color)),
-    onDislike: (color) => dispatch(dislikeColor(color)),
-  }
-}
+    onLike: color => dispatch(likeColor(color)),
+    onDislike: color => dispatch(dislikeColor(color)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(GeneratorPage);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  CSSModules(GeneratorPage, styles)
+);

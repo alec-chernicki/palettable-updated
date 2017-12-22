@@ -14,18 +14,26 @@
   transition: color 125ms ease-in-out;
 }
 
+@media only screen and (max-width: 768px) {
+  .color-name {
+    margin-bottom: 0;
+  }
+}
+
 .light {
   composes: color-name;
 }
 
-.light:hover, .light:focus {
-  color: #FFF !important;
+.light:hover,
+.light:focus {
+  color: #fff !important;
 }
 
 .dark {
   composes: color-name;
 }
 
-.dark:hover, .dark:focus {
+.dark:hover,
+.dark:focus {
   color: #333 !important;
 }
