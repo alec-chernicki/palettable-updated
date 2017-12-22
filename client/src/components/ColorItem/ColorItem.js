@@ -54,8 +54,9 @@ class ColorItem extends React.PureComponent<Props> {
           exit: styles['fade-exit'],
           exitActive: styles['fade-exit-active'],
         }}
+        style={{ width: '100%' }}
       >
-        <div>
+        <div styleName="color-item-content">
           <ColorName color={color} />
           <div styleName="tool-icons">
             <ColorPickerTool color={color} />

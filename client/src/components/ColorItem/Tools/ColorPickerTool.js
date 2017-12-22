@@ -1,4 +1,6 @@
 // @flow
+import styles from './ColorPickerTool.css';
+import CSSModules from 'react-css-modules';
 import React from 'react';
 import ColorPicker from '../../ColorPicker/ColorPicker';
 import SliderIcon from '../../SliderIcon/SliderIcon';
@@ -14,25 +16,25 @@ type Props = {
   onChange: (hexCode: string) => {},
   onBlur: () => {},
   isActive: boolean,
-}
+};
 
 class ColorPickerTool extends React.PureComponent<Props> {
   static defaultProps = {
     onClick: () => {},
-  }
+  };
 
-  handleChange = (colorData) => {
+  handleChange = colorData => {
     const { onChange } = this.props;
 
     onChange(colorData.hex.toUpperCase());
-  }
+  };
 
-  handleClick = (e) => {
+  handleClick = e => {
     const { onClick } = this.props;
 
     e.stopPropagation();
     onClick();
-  }
+  };
 
   renderColorPicker() {
     const { color: { hexCode }, onBlur } = this.props;
@@ -50,24 +52,26 @@ class ColorPickerTool extends React.PureComponent<Props> {
     const { color, isActive } = this.props;
 
     return (
-      <UIPopover
-        placement="bottom"
-        isOpen={isActive}
-        content={this.renderColorPicker()}
-      >
-        <SliderIcon
-          hexCode={color.hexCode}
-          active={isActive}
-          onClick={this.handleClick}
-        />
-      </UIPopover>
+      <div styleName="color-picker-tool">
+        <UIPopover
+          placement="bottom"
+          isOpen={isActive}
+          content={this.renderColorPicker()}
+        >
+          <SliderIcon
+            hexCode={color.hexCode}
+            active={isActive}
+            onClick={this.handleClick}
+          />
+        </UIPopover>
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state, { color }) => {
   return {
-    isActive: state.colorPicker.activeColorPickerId === color.id
+    isActive: state.colorPicker.activeColorPickerId === color.id,
   };
 };
 
@@ -75,8 +79,11 @@ const mapDispatchToProps = (dispatch, { color }) => {
   return {
     onBlur: () => dispatch(setActiveColorPickerId('')),
     onClick: () => dispatch(setActiveColorPickerId(color.id)),
-    onChange: hexCode => dispatch(changeLikedColor({ color, newHexCode: hexCode })),
+    onChange: hexCode =>
+      dispatch(changeLikedColor({ color, newHexCode: hexCode })),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ColorPickerTool);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  CSSModules(ColorPickerTool, styles)
+);
