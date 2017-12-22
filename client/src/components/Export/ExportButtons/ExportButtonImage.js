@@ -16,15 +16,15 @@ type Props = {
   +onClick: (key: string) => {},
 };
 
-class ExportButtonPng extends React.Component<Props> {
-  handleClick = (e) => {
+class ExportButtonImage extends React.Component<Props> {
+  handleClick = e => {
     e.preventDefault();
     const { likedColors, onClick } = this.props;
     const stringifiedColors = url.stringifyColors(likedColors);
 
-    download(`${IMAGE_ENDPOINT}/${stringifiedColors}.png`)
+    download(`${IMAGE_ENDPOINT}/${stringifiedColors}.png`);
     onClick(exportOptionsKeys.IMAGE);
-  }
+  };
 
   render() {
     const { likedColors } = this.props;
@@ -48,4 +48,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ExportButtonPng);
+export default connect(mapStateToProps)(ExportButtonImage);

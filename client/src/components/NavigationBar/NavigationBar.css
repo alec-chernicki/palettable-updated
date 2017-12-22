@@ -18,3 +18,19 @@
   display: flex;
   align-items: center;
 }
+
+.social-icons {
+  margin-right: 24px;
+  border-right: solid 1px lightgray;
+}
+
+.social-icon {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 12px;
+  color: #619fcc;
+}
+
+.social-icon:hover {
+  color: #588fb7;
+}

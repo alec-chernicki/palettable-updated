@@ -8,47 +8,43 @@ import likedColorsSelector from '../../redux/selectors/likedColorsSelector';
 import { connect } from 'react-redux';
 import exportOptionsConfig from './exportOptionsConfig';
 import exportOptionsKeys from './exportOptionsKeys';
-import Icon from 'react-icons-kit';
-import { closeRound } from 'react-icons-kit/ionicons/closeRound';
+import CloseIcon from 'react-icons/lib/md/clear';
 
 type Props = {
   +likedColors: ColorType[],
   +isOpen: boolean,
   +onClose: () => {},
-  +styles: Object
+  +styles: Object,
 };
 
 type State = {
-  selectedExportOption: string
+  selectedExportOption: string,
 };
 
 class ExportModal extends React.Component<Props, State> {
   constructor(props: Props) {
-    super(props)
+    super(props);
 
     this.state = {
-      selectedExportOption: exportOptionsKeys.UNSELECTED
+      selectedExportOption: exportOptionsKeys.UNSELECTED,
     };
   }
 
-  handleExportOptionClick = (exportOptionsKey) => {
+  handleExportOptionClick = exportOptionsKey => {
     this.setState({ selectedExportOption: exportOptionsKey });
-  }
+  };
 
-  renderExportOptionButtons () {
+  renderExportOptionButtons() {
     return Object.keys(exportOptionsConfig).map((exportOptionKey, index) => {
       const { ButtonComponent } = exportOptionsConfig[exportOptionKey];
 
       return (
-        <ButtonComponent
-          key={index}
-          onClick={this.handleExportOptionClick}
-        />
+        <ButtonComponent key={index} onClick={this.handleExportOptionClick} />
       );
     });
   }
 
-  renderExportOptionsContent () {
+  renderExportOptionsContent() {
     const { selectedExportOption } = this.state;
     const { likedColors } = this.props;
     const { ContentComponent } = exportOptionsConfig[selectedExportOption];
@@ -66,10 +62,8 @@ class ExportModal extends React.Component<Props, State> {
 
     if (selectedExportOption === exportOptionsKeys.UNSELECTED) {
       return (
-        <div styleName="export-buttons">
-          {this.renderExportOptionButtons()}
-        </div>
-      )
+        <div styleName="export-buttons">{this.renderExportOptionButtons()}</div>
+      );
     }
 
     return this.renderExportOptionsContent();
@@ -90,7 +84,7 @@ class ExportModal extends React.Component<Props, State> {
               How would you like to export your palette?
             </h2>
             <a styleName="close-button" onClick={onClose}>
-              <Icon icon={closeRound} size={25}/>
+              <CloseIcon size={32} color="#FFF" />
             </a>
           </div>
           <div styleName="export-modal-content">
@@ -108,6 +102,4 @@ const mapStateToProps = (state: ReduxStore) => {
   };
 };
 
-export default connect(mapStateToProps, null)(
-  CSSModules(ExportModal, styles)
-);
+export default connect(mapStateToProps, null)(CSSModules(ExportModal, styles));
