@@ -5,5 +5,8 @@
     "/api/": {
       "origin": "https://${API_APP_NAME}.herokuapp.com/api"
     }
+  },
+  "routes": {
+    "/**": "index.html"
   }
 }
