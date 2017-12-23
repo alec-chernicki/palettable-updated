@@ -2,6 +2,7 @@
 const axios = require('axios');
 const _ = require('lodash');
 const colornamer = require('color-namer');
+const Raven = require('raven');
 
 const formatColors = colors => {
   return colors.map(color => `#${color}`);
@@ -46,9 +47,11 @@ exports.hasExactMatch = (req, res, next) => {
 
       return res.json(formatColors(newColors));
     })
-    .catch(() => {
+    .catch(e => {
+      Raven.captureException(e);
+
       res.status(500);
-      res.send('Error fetching exact match');
+      res.send({ error: 'Error fetching exact match' });
     });
 };
 
@@ -72,8 +75,10 @@ exports.hasClosestHexMatch = (req, res, next) => {
 
       return res.json(formatColors(newColors));
     })
-    .catch(() => {
+    .catch(e => {
+      Raven.captureException(e);
+
       res.status(500);
-      res.send('Error fetching closest hex match');
+      res.send({ error: 'Error fetching closest hex match' });
     });
 };
