@@ -28,8 +28,11 @@ class ColorList extends React.PureComponent<Props> {
     return (
       <div styleName="loader-container">
         <div>
-          <h1>Well, this is embarassing.</h1>
-          <p>Unfortunately we weren't able to get suggested palettes.</p>
+          <h1>Uh, oh.</h1>
+          <p>
+            Something went wrong, refresh to start the generator again with your
+            previous palette.
+          </p>
           <UIButton use="positive" href="/">
             Refresh the page
           </UIButton>

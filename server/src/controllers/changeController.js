@@ -4,21 +4,25 @@ const _ = require('lodash');
 const colornamer = require('color-namer');
 const Raven = require('raven');
 
-const formatColors = colors => {
+const formatColors = (colors: string[]): string[] => {
   return colors.map(color => `#${color}`);
 };
 
-function getPalettes(params) {
+function getPalettes(params): Promise<ColourLoversColorType[]> {
   return axios.get('/', { params }).then(request => request.data);
 }
 
-function getNewColorsFromData(palettes, dislikedColors, currentColors) {
-  const colorsWithoutDisliked = palettes
+function getNewColorsFromData(
+  palettes,
+  dislikedColors,
+  currentColors
+): string[] {
+  const colorsWithoutDisliked: string[] = palettes
     // Flatten data into single array of all returned colors
-    .reduce((a, b) => a.concat(b.colors), palettes[0].colors)
+    .reduce((a, b): string[] => a.concat(b.colors), palettes[0].colors)
     // Remove all colors that have already been disliked or already shown
     .filter(
-      color =>
+      (color): boolean =>
         dislikedColors.indexOf(`#${color}`) === -1 &&
         currentColors.indexOf(`#${color}`) === -1
     );
@@ -27,16 +31,17 @@ function getNewColorsFromData(palettes, dislikedColors, currentColors) {
 }
 
 exports.hasExactMatch = (req, res, next) => {
-  const currentColors = req.query.colors;
-  const dislikedColors = req.query.dislikedColors || [];
+  const currentColors: ColorType[] = req.query.colors;
+  const dislikedColors: ColorType[] = req.query.dislikedColors || [];
   // Color to search for is second to last since the last is the one being changed
-  const searchColor = currentColors[currentColors.length - 2];
+  const { hexCode }: ColorType = currentColors[currentColors.length - 2];
 
-  getPalettes({ hex: searchColor })
-    .then(palettes => {
+  getPalettes({ hex: hexCode })
+    .then((palettes: ColourLoversColorType[]) => {
       if (!palettes.length) {
         return next();
       }
+
       const newColors = getNewColorsFromData(
         palettes,
         dislikedColors,
@@ -57,14 +62,14 @@ exports.hasExactMatch = (req, res, next) => {
 
 exports.hasClosestHexMatch = (req, res, next) => {
   // Transforms HEX code into a search term then queries the API with term
-  const currentColors = req.query.colors;
-  const dislikedColors = req.query.dislikedColors || [];
+  const currentColors: ColorType[] = req.query.colors;
+  const dislikedColors: ColorType[] = req.query.dislikedColors || [];
   // Color to search for is second to last since the last is the one being changed
-  const searchColor = currentColors[currentColors.length - 2];
-  const searchTerm = colornamer(searchColor).html[0].hex;
+  const { hexCode }: ColorType = currentColors[currentColors.length - 2];
+  const searchTerm: string = colornamer(hexCode).html[0].hex;
 
   getPalettes({ hex: searchTerm })
-    .then(palettes => {
+    .then((palettes: ColourLoversColorType[]) => {
       const newColors = getNewColorsFromData(
         palettes,
         dislikedColors,

@@ -6,12 +6,12 @@ const formatColors = colors => {
   return colors.map(color => `#${color}`);
 };
 
-const fetchRandomPalette = () =>
-  axios.get('/random').then(response => {
-    const colors = response.data[0].colors;
+const fetchRandomPalette = (): Promise<string[]> =>
+  axios.get('/random').then((res: { data: ColourLoversColorType[] }) => {
+    const colors = res.data[0].colors;
 
-    // Continue calling API until palette that's 5 colors long (which is most of
-    // them) returns. This is because the API doesn't allow you to search by
+    // Continue calling API until palette that's 5 colors long returns.
+    // This is because the API doesn't allow you to search by
     // palette length and doesn't standardize this on their platform.
     if (colors.length < 5) {
       return fetchRandomPalette();

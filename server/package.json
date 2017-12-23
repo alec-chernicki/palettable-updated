@@ -5,7 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "test",
-    "start": "nodemon server.js"
+    "start": "node dist/server.js",
+    "start-dev":
+      "concurrently \"npm run build -- --watch\" \"nodemon dist/server.js\"",
+    "build":
+      "babel src/ --out-dir dist/ --no-babelrc --presets=flow --ignore spec.js ",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -18,8 +23,13 @@
     "express": "^4.16.2",
     "flow-bin": "^0.56.0",
     "lodash": "^4.17.4",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.14.3",
     "raven": "^2.3.0",
     "redux-saga": "^0.15.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "concurrently": "^3.5.1"
   }
 }

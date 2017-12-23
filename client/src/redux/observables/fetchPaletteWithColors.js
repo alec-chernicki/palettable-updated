@@ -1,6 +1,5 @@
 // @flow
 import { Observable } from 'rxjs/Observable';
-import Raven from 'raven-js';
 import PaletteAPI from '../../api/PaletteAPI';
 import type { ReduxStore } from '../../constants/FlowTypes';
 import likedColorsSelector from '../selectors/likedColorsSelector';
@@ -12,16 +11,7 @@ const fetchPaletteWithColors = (state: ReduxStore) => {
       likedColorsSelector(state),
       dislikedColorsSelector(state)
     )
-  ).catch(err => {
-    return Observable.of(
-      Raven.captureException(err.data.error, {
-        extra: {
-          likedColors: likedColorsSelector(state),
-          dislikedColors: dislikedColorsSelector(state),
-        },
-      })
-    );
-  });
+  );
 };
 
 export default fetchPaletteWithColors;

@@ -7,34 +7,44 @@ import type { ColorType } from '../../constants/FlowTypes';
 import { receivePalette } from '../actions/suggestedColors';
 import { changeLikedColor } from '../actions/likedColors';
 import fetchPaletteWithColors from '../observables/fetchPaletteWithColors';
-import { setIsFetching } from '../actions/dataStatus'
+import { setIsFetching, setHasFetchFailed } from '../actions/dataStatus';
+import Raven from 'raven-js';
 
 const dislikeColor = (action$, store) => {
-  return action$.ofType(DISLIKE_COLOR)
-    .switchMap(({ payload }) => {
-      const state: ReduxStore = store.getState();
-      const suggestedColor = suggestedColorSelector(state);
+  return action$.ofType(DISLIKE_COLOR).switchMap(({ payload }) => {
+    const state: ReduxStore = store.getState();
+    const suggestedColor = suggestedColorSelector(state);
 
-      if (!suggestedColor) {
-        // TODO: This escape hatch will be deprecated,
-        // need to figure out a way around this.
-        store.dispatch(setIsFetching(true))
+    if (!suggestedColor) {
+      // TODO: This escape hatch will be deprecated,
+      // need to figure out a way around this.
+      store.dispatch(setIsFetching(true));
 
-        return fetchPaletteWithColors(state)
-          .flatMap((response: ColorType[]) => {
-            return [
-              setIsFetching(false),
-              receivePalette(response),
-              changeLikedColor({ color: payload, newHexCode: response[0].hexCode })
-            ];
-          })
-      }
+      return fetchPaletteWithColors(state)
+        .flatMap((response: ColorType[]) => {
+          return [
+            setIsFetching(false),
+            receivePalette(response),
+            changeLikedColor({
+              color: payload,
+              newHexCode: response[0].hexCode,
+            }),
+          ];
+        })
+        .catch(err => {
+          Raven.captureException(err.data.error);
 
-      return Observable.of(changeLikedColor({
+          return Observable.of(setHasFetchFailed(true));
+        });
+    }
+
+    return Observable.of(
+      changeLikedColor({
         color: payload,
-        newHexCode: suggestedColor.hexCode
-      }));
-    });
+        newHexCode: suggestedColor.hexCode,
+      })
+    );
+  });
 };
 
 export default dislikeColor;

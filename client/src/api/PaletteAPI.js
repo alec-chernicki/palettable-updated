@@ -9,7 +9,7 @@ const CHANGE_ENDPOINT = '/api/change';
 const PaletteAPI = {
   getWithColors(
     likedColors: ColorType[] = [],
-    dislikedColors: ColorType[] = [],
+    dislikedColors: ColorType[] = []
   ): Promise<ColorType[]> {
     const options = {
       params: {
@@ -20,14 +20,14 @@ const PaletteAPI = {
 
     return axios
       .get(CHANGE_ENDPOINT, options)
-      .then(({ data }: { data: Array<string>}) => data)
+      .then(({ data }: { data: Array<string> }) => data)
       .then(paletteAdapter);
   },
 
   getRandom(): Promise<ColorType[]> {
     return axios
       .get(RANDOM_ENDPOINT)
-      .then(({ data }: { data: Array<string>}) => data)
+      .then(({ data }: { data: Array<string> }) => data)
       .then(paletteAdapter);
   },
 };
