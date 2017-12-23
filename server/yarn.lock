@@ -964,7 +964,7 @@ lowercase-keys@^1.0.0:
 
 lsmod@1.0.0:
   version "1.0.0"
-  resolved "https://npm.hubteam.com/npm-nexus/repository/npm-all/lsmod/-/lsmod-1.0.0.tgz#9a00f76dca36eb23fa05350afe1b585d4299e64b"
+  resolved "https://registry.yarnpkg.com/lsmod/-/lsmod-1.0.0.tgz#9a00f76dca36eb23fa05350afe1b585d4299e64b"
 
 map-stream@~0.1.0:
   version "0.1.0"
@@ -1273,7 +1273,7 @@ range-parser@~1.2.0:
 
 raven@^2.3.0:
   version "2.3.0"
-  resolved "https://npm.hubteam.com/npm-nexus/repository/npm-all/raven/-/raven-2.3.0.tgz#96f15346bdaa433b3b6d47130804506155833d69"
+  resolved "https://registry.yarnpkg.com/raven/-/raven-2.3.0.tgz#96f15346bdaa433b3b6d47130804506155833d69"
   dependencies:
     cookie "0.3.1"
     lsmod "1.0.0"
@@ -1502,7 +1502,7 @@ sshpk@^1.7.0:
 
 stack-trace@0.0.9:
   version "0.0.9"
-  resolved "https://npm.hubteam.com/npm-nexus/repository/npm-all/stack-trace/-/stack-trace-0.0.9.tgz#a8f6eaeca90674c333e7c43953f275b451510695"
+  resolved "https://registry.yarnpkg.com/stack-trace/-/stack-trace-0.0.9.tgz#a8f6eaeca90674c333e7c43953f275b451510695"
 
 "statuses@>= 1.3.1 < 2", statuses@~1.3.1:
   version "1.3.1"
@@ -1583,7 +1583,7 @@ through@2, through@~2.3, through@~2.3.1:
 
 timed-out@4.0.1:
   version "4.0.1"
-  resolved "https://npm.hubteam.com/npm-nexus/repository/npm-all/timed-out/-/timed-out-4.0.1.tgz#f32eacac5a175bea25d7fab565ab3ed8741ef56f"
+  resolved "https://registry.yarnpkg.com/timed-out/-/timed-out-4.0.1.tgz#f32eacac5a175bea25d7fab565ab3ed8741ef56f"
 
 timed-out@^2.0.0:
   version "2.0.0"
@@ -1652,7 +1652,7 @@ utils-merge@1.0.1:
 
 uuid@3.0.0:
   version "3.0.0"
-  resolved "https://npm.hubteam.com/npm-nexus/repository/npm-all/uuid/-/uuid-3.0.0.tgz#6728fc0459c450d796a99c31837569bdf672d728"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.0.tgz#6728fc0459c450d796a99c31837569bdf672d728"
 
 uuid@^2.0.1:
   version "2.0.3"
