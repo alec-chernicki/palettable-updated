@@ -9,9 +9,7 @@ import PaletteAPI from '../../api/PaletteAPI';
 import { receivePalette } from '../actions/suggestedColors';
 import { addLikedColor } from '../actions/likedColors';
 import { REQUEST_PALETTE } from '../actions/ActionTypes';
-import type { ColorType } from '../../constants/FlowTypes';
 import { setHasFetchFailed } from '../actions/dataStatus';
-import { log } from 'util';
 
 const fetchInitialPalette = (action$, store) => {
   return action$.ofType(REQUEST_PALETTE).mergeMap(action => {

@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { changeLikedColor } from '../../../redux/actions/likedColors';
 import UIPopover from '../../../UILibrary/popover/UIPopover';
 import { setActiveColorPickerId } from '../../../redux/actions/colorPicker';
-import type { ColorType } from '../../../constants/FlowTypes';
 
 type Props = {
   color: ColorType,

@@ -7,7 +7,6 @@ import { changeLikedColor } from '../../redux/actions/likedColors';
 import getInterfaceAttributes from '../../utils/getInterfaceAttributes';
 import isHex from '../../utils/isHex';
 import Color from 'color';
-import type { ColorType } from '../../constants/FlowTypes';
 
 type Props = {
   color: ColorType,
@@ -20,7 +19,7 @@ type State = {
 };
 
 const _formatToHashedString = (hexCode: string): string => {
-  if(hexCode[0] !== '#') {
+  if (hexCode[0] !== '#') {
     return `#${hexCode}`;
   }
 
@@ -45,12 +44,12 @@ class ColorName extends React.Component<Props, State> {
     }
   }
 
-  handleFocus = (e) => {
+  handleFocus = e => {
     this.setState({ isEditing: true });
-  }
+  };
 
-  handleChange = (e) => {
-    const { value } : { value: string } = e.target;
+  handleChange = e => {
+    const { value }: { value: string } = e.target;
     const formattedValue = _formatToHashedString(value);
 
     this.setState({ shownHexCode: value });
@@ -58,9 +57,9 @@ class ColorName extends React.Component<Props, State> {
     if (isHex(formattedValue)) {
       this.props.onBlur(formattedValue);
     }
-  }
+  };
 
-  handleBlur = (e) => {
+  handleBlur = e => {
     const { color: { hexCode } } = this.props;
     const { value }: { value: string } = e.target;
     const formattedValue = _formatToHashedString(value);
@@ -71,7 +70,7 @@ class ColorName extends React.Component<Props, State> {
 
     this.setState({ shownHexCode: Color(formattedValue).hex() });
     this.props.onBlur(formattedValue);
-  }
+  };
 
   render() {
     const { shownHexCode } = this.state;

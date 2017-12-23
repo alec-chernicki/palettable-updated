@@ -3,7 +3,6 @@ import styles from './ExportModal.css';
 import Modal from 'react-modal';
 import CSSModules from 'react-css-modules';
 import React from 'react';
-import type { ColorType, ReduxStore } from '../../constants/FlowTypes';
 import likedColorsSelector from '../../redux/selectors/likedColorsSelector';
 import { connect } from 'react-redux';
 import exportOptionsConfig from './exportOptionsConfig';
@@ -96,7 +95,7 @@ class ExportModal extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: ReduxStore) => {
+const mapStateToProps = (state: ReduxStoreType) => {
   return {
     likedColors: likedColorsSelector(state),
   };

@@ -1,7 +1,8 @@
 // @flow
-import type { ReduxStore, ColorType } from '../../constants/FlowTypes';
 
-const lastColorInPaletteSelector = ({ likedColors }: ReduxStore): ColorType => {
+const lastColorInPaletteSelector = ({
+  likedColors,
+}: ReduxStoreType): ColorType => {
   return likedColors[likedColors.length - 1];
 };
 

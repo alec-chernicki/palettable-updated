@@ -4,7 +4,6 @@ import UISelectableButton from '../../../UILibrary/button/UISelectableButton';
 import FaImage from 'react-icons/lib/fa/image';
 import { connect } from 'react-redux';
 import likedColorsSelector from '../../../redux/selectors/likedColorsSelector';
-import type { ColorType } from '../../../constants/FlowTypes';
 import url from '../../../utils/url';
 import download from 'downloadjs';
 import exportOptionsKeys from '../exportOptionsKeys';

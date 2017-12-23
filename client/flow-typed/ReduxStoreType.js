@@ -1,10 +1,5 @@
 // @flow
-export type ColorType = {
-  +id: string,
-  +hexCode: string,
-};
-
-export type ReduxStoreType = {|
+declare type ReduxStoreType = {|
   +likedColors: ColorType[],
   +suggestedColors: ColorType[],
   +dislikedColors: ColorType[],

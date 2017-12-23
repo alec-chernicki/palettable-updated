@@ -2,7 +2,6 @@
 import paletteAdapter from '../adapters/paletteAdapter';
 import isHex from '../utils/isHex';
 import Color from 'color';
-import type { ColorType } from '../constants/FlowTypes';
 
 const _colorsToString = (colors: ColorType[]): string => {
   return colors

@@ -2,7 +2,6 @@
 import { partial } from 'lodash';
 import styles from './ColorItemFooter.css';
 import CSSModules from 'react-css-modules';
-import type { ColorType } from '../../constants/FlowTypes';
 import React from 'react';
 import classNames from 'classnames';
 import UIButton from '../../UILibrary/button/UIButton';

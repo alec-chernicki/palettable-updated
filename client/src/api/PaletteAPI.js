@@ -1,7 +1,6 @@
 // @flow
 import axios from 'axios';
 import paletteAdapter from '../adapters/paletteAdapter';
-import type { ColorType } from '../constants/FlowTypes';
 
 const RANDOM_ENDPOINT = '/api/random';
 const CHANGE_ENDPOINT = '/api/change';

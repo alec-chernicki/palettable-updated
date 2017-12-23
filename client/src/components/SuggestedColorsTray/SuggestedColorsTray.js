@@ -1,8 +1,8 @@
+// @flow
 import styles from './SuggestedColorsTray.css';
 import CSSModules from 'react-css-modules';
 import React from 'react';
 import { connect } from 'react-redux';
-import type { ReduxStore } from '../../constants/FlowTypes';
 
 class SuggestedColorsTray extends React.Component<Props> {
   renderColors() {
@@ -20,15 +20,13 @@ class SuggestedColorsTray extends React.Component<Props> {
         <p styleName="source-title">
           Now suggesting colors from: Cool palette one
         </p>
-        <div styleName="color-list">
-          {this.renderColors()}
-        </div>
+        <div styleName="color-list">{this.renderColors()}</div>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ suggestedColors }: ReduxStore) => {
+const mapStateToProps = ({ suggestedColors }: ReduxStoreType) => {
   return {
     suggestedColors,
   };

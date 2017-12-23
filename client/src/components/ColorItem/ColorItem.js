@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import getInterfaceAttributes from '../../utils/getInterfaceAttributes';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
-import type { ReduxStore, ColorType } from '../../constants/FlowTypes';
 
 type Props = {
   color: ColorType,
@@ -95,7 +94,7 @@ class ColorItem extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = (state: ReduxStore) => {
+const mapStateToProps = (state: ReduxStoreType) => {
   return {
     isFetching: state.dataStatus.isFetching,
   };

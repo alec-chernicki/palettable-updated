@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { requestPalette } from '../../redux/actions/suggestedColors';
 import { addLikedColors } from '../../redux/actions/likedColors';
 import url from '../../utils/url';
-import type { ColorType } from '../../constants/FlowTypes';
 
 type Props = {
   hydrateFromUrl: (ColorType[]) => void,
@@ -42,7 +41,7 @@ class App extends React.Component<Props> {
 const mapDispatchToProps = dispatch => {
   return {
     requestRandomPalette: () => dispatch(requestPalette()),
-    hydrateFromUrl: (colors) => dispatch(addLikedColors(colors)),
+    hydrateFromUrl: colors => dispatch(addLikedColors(colors)),
   };
 };
 

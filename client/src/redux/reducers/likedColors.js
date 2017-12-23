@@ -1,7 +1,6 @@
 // @flow
 import shortId from 'shortid';
 import type { LikedColorsActions } from '../actions/likedColors';
-import type { ColorType } from '../../constants/FlowTypes';
 import {
   ADD_LIKED_COLOR,
   ADD_LIKED_COLORS,
@@ -13,7 +12,7 @@ type State = ColorType[];
 
 const initialState = [];
 
-export default function reducer (
+export default function reducer(
   state: State = initialState,
   action: LikedColorsActions
 ): State {
@@ -46,7 +45,7 @@ export default function reducer (
 
         return {
           ...likedColor,
-          hexCode: newHexCode
+          hexCode: newHexCode,
         };
       });
 
@@ -60,4 +59,4 @@ export default function reducer (
     default:
       return state;
   }
-};
+}

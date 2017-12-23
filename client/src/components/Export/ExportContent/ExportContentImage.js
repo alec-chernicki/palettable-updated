@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import type { ColorType } from '../../../constants/FlowTypes';
 import UIButton from '../../../UILibrary/button/UIButton';
 import exportOptionsKeys from '../exportOptionsKeys';
 
@@ -14,18 +13,16 @@ class ExportContentImage extends React.Component<Props> {
     const { onSelectExportType } = this.props;
 
     onSelectExportType(exportOptionsKeys.UNSELECTED);
-  }
+  };
 
   render() {
     const buttonStyle = {
-      maxWidth: '200px'
+      maxWidth: '200px',
     };
 
     return (
       <div>
-        <p>
-          Your download should begin shortly.
-        </p>
+        <p>Your download should begin shortly.</p>
         <UIButton style={buttonStyle} onClick={this.handleClick}>
           Back to export options
         </UIButton>

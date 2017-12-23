@@ -1,22 +1,18 @@
 // @flow
 import type { SuggestedColorActions } from '../actions/suggestedColors';
-import type { ColorType } from '../../constants/FlowTypes';
-import {
-  RECEIVE_PALETTE,
-  REQUEST_PALETTE,
-} from '../actions/ActionTypes';
+import { RECEIVE_PALETTE, REQUEST_PALETTE } from '../actions/ActionTypes';
 
 type State = ColorType[];
 
 const defaultState = [];
 
-export default function reducer (
+export default function reducer(
   state: State = defaultState,
   action: SuggestedColorActions
 ): State {
   switch (action.type) {
     case RECEIVE_PALETTE:
-      return action.payload
+      return action.payload;
 
     case REQUEST_PALETTE:
       return state;

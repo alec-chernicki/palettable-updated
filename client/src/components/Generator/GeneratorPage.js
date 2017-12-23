@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { dislikeColor } from '../../redux/actions/dislikedColors';
 import { likeColor } from '../../redux/actions/likedColors';
 import lastColorInPaletteSelector from '../../redux/selectors/lastColorInPaletteSelector';
-import type { ColorType } from '../../constants/FlowTypes';
 import ColorItemFooter from '../ColorItem/ColorItemFooter';
 
 type Props = {

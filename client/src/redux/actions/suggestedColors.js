@@ -1,5 +1,4 @@
 // @flow
-import type { ColorType } from '../../constants/FlowTypes';
 import { RECEIVE_PALETTE, REQUEST_PALETTE } from './ActionTypes';
 
 type ReceivePaletteAction = {
@@ -12,10 +11,7 @@ type RequestPaletteAction = {
   payload: null,
 };
 
-export type SuggestedColorActions =
-  | ReceivePaletteAction
-  | RequestPaletteAction
-  | RequestPaletteFailedAction;
+export type SuggestedColorActions = ReceivePaletteAction | RequestPaletteAction;
 
 export const receivePalette = (palette: ColorType[]): ReceivePaletteAction => {
   return { type: RECEIVE_PALETTE, payload: palette };

@@ -2,8 +2,6 @@
 import { Observable } from 'rxjs/Observable';
 import { DISLIKE_COLOR } from '../actions/ActionTypes';
 import suggestedColorSelector from '../selectors/suggestedColorSelector';
-import type { ReduxStore } from '../../constants/FlowTypes';
-import type { ColorType } from '../../constants/FlowTypes';
 import { receivePalette } from '../actions/suggestedColors';
 import { changeLikedColor } from '../actions/likedColors';
 import fetchPaletteWithColors from '../observables/fetchPaletteWithColors';
@@ -12,7 +10,7 @@ import Raven from 'raven-js';
 
 const dislikeColor = (action$, store) => {
   return action$.ofType(DISLIKE_COLOR).switchMap(({ payload }) => {
-    const state: ReduxStore = store.getState();
+    const state: ReduxStoreType = store.getState();
     const suggestedColor = suggestedColorSelector(state);
 
     if (!suggestedColor) {

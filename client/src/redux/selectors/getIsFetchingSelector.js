@@ -1,8 +1,7 @@
 // @flow
-import type { ReduxStore } from '../../constants/FlowTypes';;
 
-const getIsFetchingSelector = (state: ReduxStore): boolean => {
+const getIsFetchingSelector = (state: ReduxStoreType): boolean => {
   return !state.suggestedColors.length;
-}
+};
 
 export default getIsFetchingSelector;

@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import type { ColorType } from '../../../constants/FlowTypes';
 import UIButton from '../../../UILibrary/button/UIButton';
 import exportOptionsKeys from '../exportOptionsKeys';
 import UITextInput from '../../../UILibrary/input/UITextCopyInput';
@@ -17,14 +16,14 @@ class ExportContentUrl extends React.Component<Props> {
     const { onSelectExportType } = this.props;
 
     onSelectExportType(exportOptionsKeys.UNSELECTED);
-  }
+  };
 
   render() {
     const { likedColors } = this.props;
     const stringifiedColors = url.stringifyColors(likedColors);
     const linkableUrl = baseUrl(stringifiedColors);
     const buttonStyle = {
-      maxWidth: '200px'
+      maxWidth: '200px',
     };
 
     return (
@@ -32,7 +31,7 @@ class ExportContentUrl extends React.Component<Props> {
         <p>
           Return to this url to continue editing your current color palette.
         </p>
-        <UITextInput value={linkableUrl}/>
+        <UITextInput value={linkableUrl} />
         <UIButton style={buttonStyle} onClick={this.handleClick}>
           Back to export options
         </UIButton>
