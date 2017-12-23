@@ -41,6 +41,10 @@ class NavigationBar extends React.Component<Props> {
           <a href="/">
             <h1>PALETTABLE</h1>
           </a>
+          <h2 styleName="subtitle">
+            Generate beautiful color palettes using the knowledge of millions of
+            designers.
+          </h2>
         </div>
         <div styleName="content">
           {this.renderSocialLinks()}
