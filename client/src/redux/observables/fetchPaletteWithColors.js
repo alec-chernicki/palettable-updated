@@ -12,16 +12,16 @@ const fetchPaletteWithColors = (state: ReduxStore) => {
       likedColorsSelector(state),
       dislikedColorsSelector(state)
     )
-  ).catch(err =>
-    Observable.of(
-      Raven.captureException(err, {
+  ).catch(err => {
+    return Observable.of(
+      Raven.captureException(err.data.error, {
         extra: {
           likedColors: likedColorsSelector(state),
           dislikedColors: dislikedColorsSelector(state),
         },
       })
-    )
-  );
+    );
+  });
 };
 
 export default fetchPaletteWithColors;
