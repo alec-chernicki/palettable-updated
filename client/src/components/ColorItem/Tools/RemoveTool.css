@@ -15,7 +15,7 @@
 }
 
 .light {
-  composes: remove-tool;
+  display: block;
 }
 
 .light:hover {
@@ -23,7 +23,7 @@
 }
 
 .dark {
-  composes: remove-tool;
+  display: block;
 }
 
 .dark:hover {

@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules';
 import React from 'react';
 import classNames from 'classnames';
 import getInterfaceAttributes from '../../utils/getInterfaceAttributes';
+import { Tooltip } from 'react-tippy';
 
 type Props = {
   onClick: () => mixed,
@@ -23,13 +24,13 @@ class SliderIcon extends React.Component<Props, State> {
     };
   }
 
-  handleMouseEnter = (e) => {
+  handleMouseEnter = e => {
     this.setState({ active: true });
-  }
+  };
 
-  handleMouseLeave = (e) => {
+  handleMouseLeave = e => {
     this.setState({ active: false });
-  }
+  };
 
   render() {
     const { onClick, hexCode } = this.props;
@@ -47,18 +48,27 @@ class SliderIcon extends React.Component<Props, State> {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        <div styleName={interfaceAttributes.className}>
-          <div styleName="item-line" />
-          <div styleName="item-circle" />
-        </div>
-        <div styleName={interfaceAttributes.className}>
-          <div styleName="item-line" />
-          <div styleName="item-circle" />
-        </div>
-        <div styleName={interfaceAttributes.className}>
-          <div styleName="item-line" />
-          <div styleName="item-circle" />
-        </div>
+        <Tooltip
+          title="Adjust"
+          position="top"
+          trigger="mouseenter"
+          arrow={true}
+          distance={14}
+          theme={interfaceAttributes.className}
+        >
+          <div styleName={interfaceAttributes.className}>
+            <div styleName="item-line" />
+            <div styleName="item-circle" />
+          </div>
+          <div styleName={interfaceAttributes.className}>
+            <div styleName="item-line" />
+            <div styleName="item-circle" />
+          </div>
+          <div styleName={interfaceAttributes.className}>
+            <div styleName="item-line" />
+            <div styleName="item-circle" />
+          </div>
+        </Tooltip>
       </div>
     );
   }

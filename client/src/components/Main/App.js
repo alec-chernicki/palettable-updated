@@ -1,4 +1,6 @@
 // @flow
+import 'react-tippy/dist/tippy.css';
+
 import styles from './App.css';
 import CSSModules from 'react-css-modules';
 import * as React from 'react';

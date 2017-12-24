@@ -2,10 +2,11 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  color: #FFF;
+  color: #fff;
   height: 100%;
   font-family: 'Asap';
   -webkit-font-smoothing: antialiased;
@@ -18,7 +19,8 @@ h1 {
   margin: 0;
 }
 
-span, p {
+span,
+p {
   -webkit-font-smoothing: antialiased;
 }
 
@@ -27,8 +29,10 @@ ul {
   padding: 0;
 }
 
-a, a:visited, a:active {
-  color: #FFF;
+a,
+a:visited,
+a:active {
+  color: #fff;
   text-decoration: none;
 }
 
