@@ -11,14 +11,12 @@ const PaletteAPI = {
     dislikedColors: ColorType[] = []
   ): Promise<ColorType[]> {
     const options = {
-      params: {
-        colors: likedColors,
-        dislikedColors,
-      },
+      colors: likedColors,
+      dislikedColors,
     };
 
     return axios
-      .get(CHANGE_ENDPOINT, options)
+      .post(CHANGE_ENDPOINT, options)
       .then(({ data }: { data: Array<string> }) => data)
       .then(paletteAdapter);
   },

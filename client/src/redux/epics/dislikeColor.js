@@ -50,7 +50,7 @@ const dislikeColor = (action$, store) => {
         // TODO: This escape hatch will be deprecated,
         // need to figure out a way around this.
         store.dispatch(setIsFetching(true));
-        debugger;
+
         return fetchPaletteWithColors(state)
           .flatMap((response: ColorType[]) => {
             return [

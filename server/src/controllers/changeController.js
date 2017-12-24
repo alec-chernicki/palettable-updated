@@ -31,8 +31,8 @@ function getNewColorsFromData(
 }
 
 exports.hasExactMatch = (req, res, next) => {
-  const currentColors: ColorType[] = req.query.colors;
-  const dislikedColors: ColorType[] = req.query.dislikedColors || [];
+  const currentColors: ColorType[] = req.body.colors;
+  const dislikedColors: ColorType[] = req.body.dislikedColors || [];
   // Color to search for is second to last since the last is the one being changed
   const { hexCode }: ColorType = currentColors[currentColors.length - 2];
 
@@ -62,8 +62,8 @@ exports.hasExactMatch = (req, res, next) => {
 
 exports.hasClosestHexMatch = (req, res, next) => {
   // Transforms HEX code into a search term then queries the API with term
-  const currentColors: ColorType[] = req.query.colors;
-  const dislikedColors: ColorType[] = req.query.dislikedColors || [];
+  const currentColors: ColorType[] = req.body.colors;
+  const dislikedColors: ColorType[] = req.body.dislikedColors || [];
   // Color to search for is second to last since the last is the one being changed
   const { hexCode }: ColorType = currentColors[currentColors.length - 2];
   const searchTerm: string = colornamer(hexCode).html[0].hex;

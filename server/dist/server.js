@@ -24,7 +24,7 @@ Raven.context(function () {
   // Assign Routes and Controllers
   app.get('/api/image/:palette', imageController.drawImage);
   app.get('/api/random', randomController.getRandom);
-  app.get('/api/change', changeController.hasExactMatch, changeController.hasClosestHexMatch, randomController.getRandom);
+  app.post('/api/change', changeController.hasExactMatch, changeController.hasClosestHexMatch, randomController.getRandom);
 
   // Initialize Express server
   app.listen(app.get('port'), function () {
