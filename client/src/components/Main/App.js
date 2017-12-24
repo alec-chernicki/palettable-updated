@@ -22,7 +22,7 @@ class App extends React.Component<Props> {
     const paletteFromUrl = url.parseColors();
 
     if (paletteFromUrl.length) {
-      return hydrateFromUrl(paletteFromUrl);
+      hydrateFromUrl(paletteFromUrl);
     }
 
     requestRandomPalette();
