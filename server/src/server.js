@@ -8,36 +8,40 @@ axios.defaults.baseURL = 'http://www.colourlovers.com/api/palettes';
 axios.defaults.params = { format: 'json' };
 
 Raven.config(process.env.SENTRY_DSN).install();
-Raven.context(function() {
-  // Create Express App
-  const app = express();
 
-  // Initialize Middleware
-  app.set('port', process.env.PORT || 3001);
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
+// Create Express App
+const app = express();
 
-  // Controllers
-  const randomController = require('./controllers/randomController');
-  const changeController = require('./controllers/changeController');
-  const imageController = require('./controllers/imageController');
+// Initialize Middleware
+app.use(Raven.requestHandler());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-  // Assign Routes and Controllers
-  app.get('/api/image/:palette', imageController.drawImage);
-  app.get('/api/random', randomController.getRandom);
-  app.post(
-    '/api/change',
-    changeController.hasExactMatch,
-    changeController.hasClosestHexMatch,
-    randomController.getRandom
+// Controllers
+const randomController = require('./controllers/randomController');
+const changeController = require('./controllers/changeController');
+const imageController = require('./controllers/imageController');
+
+// Assign Routes and Controllers
+app.get('/api/image/:palette', imageController.drawImage);
+app.get('/api/random', randomController.getRandom);
+app.post(
+  '/api/change',
+  changeController.hasExactMatch,
+  changeController.hasClosestHexMatch,
+  randomController.getRandom
+);
+
+// Initialize error handling
+app.use(Raven.errorHandler());
+
+// Initialize Express server
+app.set('port', process.env.PORT || 3001);
+
+app.listen(app.get('port'), function() {
+  console.log(
+    'Express server listening on port %d in %s mode',
+    app.get('port'),
+    app.get('env')
   );
-
-  // Initialize Express server
-  app.listen(app.get('port'), function() {
-    console.log(
-      'Express server listening on port %d in %s mode',
-      app.get('port'),
-      app.get('env')
-    );
-  });
 });

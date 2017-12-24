@@ -19,10 +19,5 @@ const fetchRandomPalette = () => axios.get('/random').then(res => {
 });
 
 exports.getRandom = (req, res, next) => {
-  fetchRandomPalette().then(formatColors).then(colors => res.json(colors)).catch(e => {
-    Raven.captureException(e);
-
-    res.status(500);
-    res.send({ error: 'Error fetching random palette' });
-  });
+  fetchRandomPalette().then(formatColors).then(colors => res.json(colors)).catch(next);
 };

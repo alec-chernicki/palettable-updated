@@ -37,12 +37,7 @@ exports.hasExactMatch = (req, res, next) => {
     if (newColors.length < 5) return next();
 
     return res.json(formatColors(newColors));
-  }).catch(e => {
-    Raven.captureException(e);
-
-    res.status(500);
-    res.send({ error: 'Error fetching exact match' });
-  });
+  }).catch(next);
 };
 
 exports.hasClosestHexMatch = (req, res, next) => {
@@ -59,10 +54,5 @@ exports.hasClosestHexMatch = (req, res, next) => {
     if (newColors.length < 5) return next();
 
     return res.json(formatColors(newColors));
-  }).catch(e => {
-    Raven.captureException(e);
-
-    res.status(500);
-    res.send({ error: 'Error fetching closest hex match' });
-  });
+  }).catch(next);
 };
