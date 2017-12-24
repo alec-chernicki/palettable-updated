@@ -1,5 +1,3 @@
-'use strict';
-
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -184,6 +182,7 @@ module.exports = {
       // in the main CSS file.
       {
         test: /\.css$/,
+        include: paths.appSrc,
         loader: ExtractTextPlugin.extract(
           Object.assign(
             {
@@ -225,6 +224,19 @@ module.exports = {
           )
         ),
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+      },
+      {
+        test: /\.css$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+            },
+          },
+        ],
+        exclude: paths.appSrc,
       },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.
