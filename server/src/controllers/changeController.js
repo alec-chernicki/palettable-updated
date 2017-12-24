@@ -33,8 +33,13 @@ function getNewColorsFromData(
 exports.hasExactMatch = (req, res, next) => {
   const currentColors: ColorType[] = req.body.colors;
   const dislikedColors: ColorType[] = req.body.dislikedColors || [];
-  // Color to search for is second to last since the last is the one being changed
-  const { hexCode }: ColorType = currentColors[currentColors.length - 2];
+
+  // Color to search for is second to last since the last is the one being changed.
+  const searchColor =
+    currentColors.length === 1
+      ? currentColors[currentColors.length - 1]
+      : currentColors[currentColors.length - 2];
+  const { hexCode }: ColorType = searchColor;
 
   getPalettes({ hex: hexCode })
     .then((palettes: ColourLoversColorType[]) => {

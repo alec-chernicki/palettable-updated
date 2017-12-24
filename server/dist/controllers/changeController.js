@@ -24,8 +24,10 @@ function getNewColorsFromData(palettes, dislikedColors, currentColors) {
 exports.hasExactMatch = (req, res, next) => {
   const currentColors = req.body.colors;
   const dislikedColors = req.body.dislikedColors || [];
-  // Color to search for is second to last since the last is the one being changed
-  const { hexCode } = currentColors[currentColors.length - 2];
+
+  // Color to search for is second to last since the last is the one being changed.
+  const searchColor = currentColors.length === 1 ? currentColors[currentColors.length - 1] : currentColors[currentColors.length - 2];
+  const { hexCode } = searchColor;
 
   getPalettes({ hex: hexCode }).then(palettes => {
     if (!palettes.length) {
