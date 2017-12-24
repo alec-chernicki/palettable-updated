@@ -39,7 +39,7 @@ class GeneratorPage extends React.Component<Props> {
     const keycode: number = event.which;
     const isEventFromInput = this.getIsEventFromInput(event);
 
-    if (!isEventFromInput) {
+    if (!isEventFromInput && lastColorInPalette) {
       if (keycode === L_KEYCODE) {
         onLike(lastColorInPalette);
       } else if (keycode === D_KEYCODE) {
