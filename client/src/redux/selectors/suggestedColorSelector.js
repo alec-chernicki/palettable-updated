@@ -12,11 +12,15 @@ const suggestedColorSelector = createSelector(
   likedColorsSelector,
   (
     suggestedColors: ColorType[],
-    dislikedColors: ColorType[],
-    likedColors: ColorType[]
+    dislikedColors: ColorType[] | [],
+    likedColors: ColorType[] | []
   ): ColorType | void => {
-    const flattenedDislikedColors = dislikedColors.map(color => color.hexCode);
-    const flattenedLikedColors = likedColors.map(color => color.hexCode);
+    const flattenedDislikedColors = dislikedColors.length
+      ? dislikedColors.map(color => color.hexCode)
+      : [];
+    const flattenedLikedColors = likedColors.length
+      ? likedColors.map(color => color.hexCode)
+      : [];
     const remainingColors = suggestedColors
       .filter(color => flattenedDislikedColors.indexOf(color.hexCode) === -1)
       .filter(color => flattenedLikedColors.indexOf(color.hexCode) === -1);
