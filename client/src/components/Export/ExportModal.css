@@ -88,7 +88,8 @@
 }
 
 :global .ReactModal__Overlay {
-  transition: opacity 250ms ease-out;
+  transition: opacity 100ms ease-out;
+  opacity: 0;
   background-color: rgba(48, 69, 86, 0.925) !important;
   z-index: 1000000;
 }
@@ -103,7 +104,7 @@
 
 :global .ReactModalPortal .ReactModal__Content {
   outline: none;
-  transition: transform 250ms ease-out;
+  transition: transform 100ms ease-out;
   transform: scale(0.9);
 }
 
