@@ -1,5 +1,5 @@
 // @flow
-declare type ReduxStoreType = {|
+declare type ReduxStoreType = {
   +likedColors: ColorType[] | [],
   +suggestedColors: ColorType[] | [],
   +dislikedColors: ColorType[] | [],
@@ -8,4 +8,4 @@ declare type ReduxStoreType = {|
     +isStale: boolean,
     +hasFetchFailed: boolean,
   },
-|};
+};
