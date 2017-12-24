@@ -41,7 +41,6 @@ class GeneratorPage extends React.Component<Props> {
 
     if (!isEventFromInput) {
       if (keycode === L_KEYCODE) {
-        console.log(lastColorInPalette);
         onLike(lastColorInPalette);
       } else if (keycode === D_KEYCODE) {
         onDislike(lastColorInPalette);
