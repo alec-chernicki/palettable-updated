@@ -8,6 +8,8 @@
     }
   },
   "routes": {
+    "/sitemap.xml": "sitemap.xml",
+    "/robots.txt": "robots.txt",
     "/**": "index.html"
   }
 }
