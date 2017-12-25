@@ -1,7 +1,7 @@
 {
+  "https_only": true,
   "root": "build/",
   "clean_urls": true,
-  "https_only": true,
   "proxies": {
     "/api/": {
       "origin": "https://${API_APP_NAME}.herokuapp.com/api"
