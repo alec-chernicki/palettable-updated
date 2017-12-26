@@ -14,11 +14,11 @@
 }
 
 .primary:hover {
-  background-color: #588fb7;
+  background-color: #6aaddd;
 }
 
 .primary:active {
-  background-color: #6aaddd;
+  background-color: #588fb7;
 }
 
 .positive {
@@ -27,11 +27,11 @@
 }
 
 .positive:hover {
-  background-color: #69937c;
+  background-color: #84ba9c;
 }
 
 .positive:active {
-  background-color: #84ba9c;
+  background-color: #69937c;
 }
 
 .negative {
@@ -40,9 +40,9 @@
 }
 
 .negative:hover {
-  background-color: #d3545d;
+  background-color: #ff6670;
 }
 
 .negative:active {
-  background-color: #ff6670;
+  background-color: #d3545d;
 }
